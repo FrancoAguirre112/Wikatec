@@ -1,6 +1,7 @@
 const aplicaciones = [
   {
     id: 1,
+    ancla: 'sol-ciudades',
     titulo: 'Iluminación para Ciudades y Municipios',
     descripcion: 'Con Smart Lights, los gobiernos locales reducen hasta un 70% el gasto en energía y gestionan toda la red de alumbrado desde una sola plataforma. El sistema detecta fallas en tiempo real y notifica automáticamente al equipo técnico, eliminando reclamaciones y reduciendo el costo del mantenimiento preventivo.',
     bullets: ['Municipios', 'Comunas', 'Cooperativas eléctricas'],
@@ -9,6 +10,7 @@ const aplicaciones = [
   },
   {
     id: 2,
+    ancla: 'sol-residencial',
     titulo: 'Iluminación para Conjuntos Residenciales',
     descripcion: 'Menos consumo, menos expensas. Smart Lights automatiza el encendido y apagado de accesos, calles internas y espacios comunes, y alerta sobre cualquier falla de sus alumbrados o reportes. Una sola plataforma para gestionar toda la red del barrio, sin intervención manual.',
     bullets: ['Countries', 'Barrios cerrados', 'Urbanizaciones privadas'],
@@ -17,6 +19,7 @@ const aplicaciones = [
   },
   {
     id: 3,
+    ancla: 'sol-industria',
     titulo: 'Iluminación para Industria y Logística',
     descripcion: 'En entornos donde la seguridad convive con el ahorro: cada punto de luz cuenta. Smart Lights reduce el consumo eléctrico en zonas productivas, depósitos y playones de carga, y brinda visibilidad total sobre el estado de cada artefacto. Menos tiempos operativos de mantenimiento, más control sobre los costos operativos.',
     bullets: ['Parques industriales', 'Fábricas', 'Minería y Petróleo', 'Playones logísticos'],
@@ -25,6 +28,7 @@ const aplicaciones = [
   },
   {
     id: 4,
+    ancla: 'sol-comercio',
     titulo: 'Iluminación para Comercio y Servicios',
     descripcion: 'La luz correcta, en el momento exacto. Smart Lights adapta la intensidad de cada zona según el horario y el nivel de actividad, optimizando el consumo sin afectar la experiencia del cliente. Generación automática de tablas y reportes en tiempo real para que el equipo de facilities actúe antes de que nadie lo note.',
     bullets: ['Shoppings', 'Centros comerciales', 'Estacionamientos'],
@@ -33,6 +37,7 @@ const aplicaciones = [
   },
   {
     id: 5,
+    ancla: 'sol-transporte',
     titulo: 'Iluminación para Transporte y Movilidad',
     descripcion: 'Infraestructura que no puede fallar. Smart Lights garantiza iluminación continua con monitoreo remoto 24hs y alertas automáticas ante cualquier incidencia. Menos costos de mantenimiento, mayor seguridad operativa en los entornos de mayor exigencia.',
     bullets: ['Autopistas', 'Aeropuertos', 'Puertos', 'Terminales de buses', 'Estaciones de tren'],
@@ -41,6 +46,7 @@ const aplicaciones = [
   },
   {
     id: 6,
+    ancla: 'sol-turismo',
     titulo: 'Iluminación para Turismo y Deporte',
     descripcion: 'Accesos seguros, estacionamientos bien iluminados y pavimentos bajo control. Smart Lights gestiona la iluminación exterior de estadios, clubes y hoteles, reduciendo el consumo en horarios de baja actividad y garantizando visibilidad plena cuando el predio está en uso.',
     bullets: ['Estadios y Clubes', 'Polideportivos', 'Hoteles', 'Complejos turísticos'],
@@ -53,7 +59,7 @@ export default function SolucionesAplicaciones() {
   return (
     <section className="w-full bg-[#172555]">
       {aplicaciones.map((item) => (
-        <div key={item.id} className="w-full py-10 md:py-16 border-t border-white/10">
+        <div key={item.id} id={item.ancla} className="w-full py-10 md:py-16 border-t border-white/10 scroll-mt-[67px]">
           <div className="max-w-6xl mx-auto px-6">
 
             {/* Mobile: siempre apilado. Desktop: lado a lado */}
