@@ -12,10 +12,13 @@ export default function Beneficios() {
           <p className="text-white font-['Raleway',sans-serif] font-normal text-sm md:text-base leading-relaxed">
             Menos fallas, menos costos, más control. Nuestro sistema detecta anomalías antes de que se conviertan en problemas, reduce el gasto energético y permite a los operadores actuar desde cualquier lugar, en tiempo real.
           </p>
-          <Link to="/beneficios" className="inline-flex items-center justify-center w-full md:w-[190px] h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
+          <Link to="/beneficios" className="hidden md:inline-flex items-center justify-center w-[190px] h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
             Conocer más
           </Link>
         </div>
+        <Link to="/beneficios" className="md:hidden order-3 inline-flex items-center justify-center w-full h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
+          Conocer más
+        </Link>
       </div>
     </section>
   )

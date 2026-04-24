@@ -12,10 +12,13 @@ export default function SmartLightsSection() {
           <p className="text-white font-['Raleway',sans-serif] font-normal text-sm md:text-base leading-[170.4%]">
             Gestione toda su red lumínica desde una sola plataforma: programe encendidos y apagados graduales según horarios, adapte la intensidad a cada zona y responda a fallas en tiempo real. Con nuestra tecnología IoT integrada, municipios, empresas e instalaciones privadas reducen costos, automatizan la operación y mejoran la seguridad de sus espacios sin complicaciones.
           </p>
-          <Link to="/smart-lights" className="inline-flex items-center justify-center w-full md:w-[190px] h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
+          <Link to="/smart-lights" className="hidden md:inline-flex items-center justify-center w-[190px] h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
             Conocer más
           </Link>
         </div>
+        <Link to="/smart-lights" className="md:hidden order-3 inline-flex items-center justify-center w-full h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
+          Conocer más
+        </Link>
       </div>
     </section>
   )

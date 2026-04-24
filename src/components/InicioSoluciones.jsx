@@ -12,10 +12,13 @@ export default function Soluciones() {
           <p className="text-white font-['Raleway',sans-serif] font-normal text-sm md:text-base leading-[170.4%]">
             Combinamos luminarias LED, controladores IoT y software de gestión en un sistema integrado. Fácil de operar, adaptable a cualquier entorno urbano y diseñado para reducir costos desde el primer día.
           </p>
-          <Link to="/soluciones" className="inline-flex items-center justify-center w-full md:w-[190px] h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
+          <Link to="/soluciones" className="hidden md:inline-flex items-center justify-center w-[190px] h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
             Conocer más
           </Link>
         </div>
+        <Link to="/soluciones" className="md:hidden order-3 inline-flex items-center justify-center w-full h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Raleway',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
+          Conocer más
+        </Link>
       </div>
     </section>
   )

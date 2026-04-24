@@ -32,8 +32,8 @@ export default function HeroCarousel() {
               <div className="relative w-full h-full flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url('${slide.imagen}')` }}>
                 <div className="absolute inset-0 bg-[rgba(2,15,48,0.65)]" />
                 <div className="absolute bottom-0 left-0 w-full h-[307px] bg-gradient-to-t from-[rgba(2,15,48,0.95)] from-0% to-[rgba(7,9,48,0)] to-75%" />
-                <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-                  <h1 className="text-white mb-5 font-['Raleway',sans-serif] font-black text-[36px] md:text-[64px] leading-tight md:leading-[75px]">
+                <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+                  <h1 className="text-white mb-5 font-['Raleway',sans-serif] font-black text-[36px] md:text-[56px] leading-tight md:leading-[68px]">
                     {slide.titulo}
                   </h1>
                   {slide.subtitulo && (
