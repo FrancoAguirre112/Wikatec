@@ -15,12 +15,10 @@ pierde nada del resto.
 
 ## Cómo abrir la web
 
-- **Localmente (con Franco):** `http://localhost:5173`
-- **Si está deployada:** reemplazá `BASE_URL` en cada link por el dominio
-  donde está publicada.
+URL de revisión: **https://wikatec.vercel.app/**
 
-> En los links de abajo, **BASE_URL** = `http://localhost:5173` o el
-> dominio de prueba.
+Los links de cada cambio te llevan con scroll automático a la sección
+correspondiente.
 
 ---
 
@@ -29,7 +27,7 @@ pierde nada del resto.
 **Antes:** "Para ciudades inteligentes"
 **Después:** "Iluminación inteligente para sitios inteligentes"
 
-🔗 [BASE_URL/](http://localhost:5173/) — primer slide del carrusel, abajo del título "Smart Lights".
+🔗 [https://wikatec.vercel.app/](https://wikatec.vercel.app/) — primer slide del carrusel, abajo del título "Smart Lights".
 
 **Origen:** PDF pág. 1 (portada).
 
@@ -54,7 +52,7 @@ entorno urbano. Combinamos software avanzado y hardware de alto
 rendimiento para optimizar recursos y gestionar infraestructura lumínica
 de forma eficiente."
 
-🔗 [BASE_URL/#quienes-somos](http://localhost:5173/#quienes-somos)
+🔗 [https://wikatec.vercel.app/#quienes-somos](https://wikatec.vercel.app/#quienes-somos)
 
 **Origen:** PDF pág. 2.
 
@@ -70,7 +68,7 @@ de forma eficiente."
 Sección **completamente nueva**. Tres tarjetas con los problemas que
 resuelve Smart Lights: luz encendida de día, luminarias quemadas, tecnología obsoleta.
 
-🔗 [BASE_URL/beneficios#problemas-alumbrado-tradicional](http://localhost:5173/beneficios#problemas-alumbrado-tradicional)
+🔗 [https://wikatec.vercel.app/beneficios#problemas-alumbrado-tradicional](https://wikatec.vercel.app/beneficios#problemas-alumbrado-tradicional)
 
 **Origen:** PDF pág. 6.
 
@@ -94,7 +92,7 @@ Sección **completamente nueva**. Diez tarjetas con las razones para
 elegir el sistema (ahorro energético, modernización, gestión centralizada,
 seguridad urbana, etc.).
 
-🔗 [BASE_URL/beneficios#razones-smart-lights](http://localhost:5173/beneficios#razones-smart-lights)
+🔗 [https://wikatec.vercel.app/beneficios#razones-smart-lights](https://wikatec.vercel.app/beneficios#razones-smart-lights)
 
 **Origen:** PDF págs. 3, 4 y 5.
 
@@ -122,7 +120,7 @@ Sección **completamente nueva** con tus datos y los de Jesica:
 - Damián Menke — Director Comercial — dmenke@kiwatec.net — +54911-6500-6000
 - Jesica Kovalsky — Gerente Comercial — jesica@kiwatec.net — +54911-2182-1624
 
-🔗 [BASE_URL/contacto#contacto-equipo-comercial](http://localhost:5173/contacto#contacto-equipo-comercial)
+🔗 [https://wikatec.vercel.app/contacto#contacto-equipo-comercial](https://wikatec.vercel.app/contacto#contacto-equipo-comercial)
 
 **Origen:** PDF pág. 12.
 
@@ -159,7 +157,7 @@ avisanos.
 - **Fuente unificada:** todo el sitio ahora usa Montserrat (antes había
   mezcla con Raleway).
 - **Nombre del controlador 4G:** se renombró de `CT-220C` a `KCT-220C`
-  para que coincida con el PDF. Visible en [BASE_URL/hardware](http://localhost:5173/hardware).
+  para que coincida con el PDF. Visible en [https://wikatec.vercel.app/hardware](https://wikatec.vercel.app/hardware).
 - **Imagen de Turismo y Deporte:** pendiente — Franco le pidió a la
   diseñadora la nueva imagen (`05.png`). Una vez que llegue se reemplaza.
 
