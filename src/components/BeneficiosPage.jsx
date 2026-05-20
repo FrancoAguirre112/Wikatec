@@ -2,6 +2,7 @@ import BeneficiosHero from './BeneficiosHero'
 import BeneficiosDescripcion from './BeneficiosDescripcion'
 import BeneficiosProblemas from './BeneficiosProblemas'
 import BeneficiosCarrusel from './BeneficiosCarrusel'
+import BeneficiosRazones from './BeneficiosRazones'
 import Contacto from './Contacto'
 
 export default function BeneficiosPage() {
@@ -11,6 +12,7 @@ export default function BeneficiosPage() {
       <BeneficiosDescripcion />
       <BeneficiosProblemas />
       <BeneficiosCarrusel />
+      <BeneficiosRazones />
       <Contacto />
 
     </div>
