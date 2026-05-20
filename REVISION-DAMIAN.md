@@ -158,8 +158,8 @@ avisanos.
   mezcla con Raleway).
 - **Nombre del controlador 4G:** se renombró de `CT-220C` a `KCT-220C`
   para que coincida con el PDF. Visible en [https://wikatec.vercel.app/hardware](https://wikatec.vercel.app/hardware).
-- **Imagen de Turismo y Deporte:** pendiente — Franco le pidió a la
-  diseñadora la nueva imagen (`05.png`). Una vez que llegue se reemplaza.
+- **Imagen de Turismo y Deporte:** reemplazada por la nueva versión.
+  Visible en [https://wikatec.vercel.app/soluciones#sol-turismo](https://wikatec.vercel.app/soluciones#sol-turismo).
 
 ---
 
