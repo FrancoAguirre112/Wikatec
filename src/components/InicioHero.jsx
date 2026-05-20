@@ -33,16 +33,16 @@ export default function HeroCarousel() {
                 <div className="absolute inset-0 bg-[rgba(2,15,48,0.65)]" />
                 <div className="absolute bottom-0 left-0 w-full h-[307px] bg-gradient-to-t from-[rgba(2,15,48,0.95)] from-0% to-[rgba(7,9,48,0)] to-75%" />
                 <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-                  <h1 className="text-white mb-5 font-['Raleway',sans-serif] font-black text-[36px] md:text-[56px] leading-tight md:leading-[68px]">
+                  <h1 className="text-white mb-5 font-['Montserrat',sans-serif] font-black text-[36px] md:text-[56px] leading-tight md:leading-[68px]">
                     {slide.titulo}
                   </h1>
                   {slide.subtitulo && (
-                    <p className="text-white mb-8 max-w-2xl mx-auto font-['Raleway',sans-serif] font-semibold text-base md:text-2xl leading-[1.4]">
+                    <p className="text-white mb-8 max-w-2xl mx-auto font-['Montserrat',sans-serif] font-semibold text-base md:text-2xl leading-[1.4]">
                       {slide.subtitulo}
                     </p>
                   )}
                   {!slide.sinBoton && (
-                    <Link to={slide.link} className="inline-flex items-center justify-center w-[160px] md:w-[190px] h-[40px] bg-[#030C40] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] text-white text-base font-bold font-['Raleway',sans-serif] no-underline hover:bg-[#01051c] transition-colors duration-300">
+                    <Link to={slide.link} className="inline-flex items-center justify-center w-[160px] md:w-[190px] h-[40px] bg-[#030C40] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] text-white text-base font-bold font-['Montserrat',sans-serif] no-underline hover:bg-[#01051c] transition-colors duration-300">
                       Conocer más
                     </Link>
                   )}
