@@ -7,7 +7,7 @@ export default function QuienesSomos() {
         <div className="w-full md:w-[40%] flex flex-col gap-5 md:gap-7 order-1">
           <h2 className="text-white font-['Montserrat',sans-serif] font-bold text-[26px] md:text-[30px] leading-[35px]">¿Quiénes somos?</h2>
           <p className="text-white font-['Montserrat',sans-serif] font-normal text-sm md:text-base leading-[170.4%]">
-            En Kiwatec desarrollamos soluciones de iluminación inteligente para municipios, parques industriales, predios privados y todo tipo de infraestructura. Acompañamos cada etapa: desde la instalación hasta la gestión diaria, con el objetivo de reducir costos operativos, automatizar el mantenimiento y construir entornos más seguros, eficientes y sostenibles.
+            En Kiwatec desarrollamos una plataforma para el control de iluminación inteligente, abierta y escalable, que se adapta a cada entorno urbano. Combinamos software avanzado y hardware de alto rendimiento para optimizar recursos y gestionar infraestructura lumínica de forma eficiente.
           </p>
           <Link to="/nosotros" className="hidden md:inline-flex items-center justify-center w-[190px] h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Montserrat',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
             Conocer más
