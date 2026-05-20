@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const slides = [
-  { id: 1, imagen: "/images/hero-smart-lights.jpg", titulo: "Smart Lights", subtitulo: "Para ciudades inteligentes", sinBoton: true },
+  { id: 1, imagen: "/images/hero-smart-lights.jpg", titulo: "Smart Lights", subtitulo: "Iluminación inteligente para sitios inteligentes", sinBoton: true },
   { id: 2, imagen: "/images/hero-municipios.jpg", titulo: "Alumbrado Público para Ciudades y Municipios", subtitulo: "Reduzca hasta un 70% el gasto en energía y gestione toda la red pública desde un solo lugar", link: "/soluciones" },
   { id: 3, imagen: "/images/hero-residencial.jpg", titulo: "Iluminación para Conjuntos Residenciales", subtitulo: "Menos consumo, menos expensas. Más seguridad para sus residentes, con control automático", link: "/soluciones" },
   { id: 4, imagen: "/images/hero-industria.jpg", titulo: "Iluminación para Industria y Logística", subtitulo: "Su planta iluminada con inteligencia: menos costos operativos, cero intervención manual", link: "/soluciones" },
