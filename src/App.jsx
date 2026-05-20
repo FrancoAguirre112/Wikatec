@@ -23,7 +23,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#010A2B]" style={{ fontFamily: 'Raleway, sans-serif' }}>
+      <div className="min-h-screen bg-[#010A2B]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
         <Navbar />
         <div className="pt-[67px]">
           <Routes>

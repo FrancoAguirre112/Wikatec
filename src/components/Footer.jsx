@@ -11,7 +11,7 @@ export default function Footer() {
         />
       </Link>
 
-      <div className="text-white text-[12px] leading-[15px] space-y-1 font-['Raleway']">
+      <div className="text-white text-[12px] leading-[15px] space-y-1 font-['Montserrat']">
         <p>
           <a
             href="https://wa.me/5491165006000"
