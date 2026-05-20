@@ -3,7 +3,7 @@ const productos = [
   { id: 2, nombre: 'Línea KSL-122', descripcion: '50W, 60W, 100W, 150W y 200W', imagen: '/images/hw-ksl122.png', ficha: '/fichas/ksl122.pdf' },
   { id: 3, nombre: 'Gateway LoraWAN', descripcion: 'KGT-220L', imagen: '/images/hw-gateway.png', ficha: '/fichas/kgt220l.pdf' },
   { id: 4, nombre: 'Controlador LoraWan', descripcion: 'KCT-220L', imagen: '/images/hw-controlador-lorawan.png', ficha: '/fichas/kct220l.pdf' },
-  { id: 5, nombre: 'Controlador 4G', descripcion: 'CT-220C', imagen: '/images/hw-controlador-4g.png', ficha: '/fichas/ct220c.pdf' },
+  { id: 5, nombre: 'Controlador 4G', descripcion: 'KCT-220C', imagen: '/images/hw-controlador-4g.png', ficha: '/fichas/ct220c.pdf' },
 ]
 
 function ProductCard({ producto }) {
