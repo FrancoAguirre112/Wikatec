@@ -18,7 +18,7 @@ const problemas = [
 
 export default function BeneficiosProblemas() {
   return (
-    <section className="w-full py-12 md:py-20 px-6 bg-[linear-gradient(180deg,#030C40_0%,#172555_100%)]">
+    <section id="problemas-alumbrado-tradicional" className="w-full py-12 md:py-20 px-6 bg-[linear-gradient(180deg,#030C40_0%,#172555_100%)] scroll-mt-[67px]">
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-8 md:gap-12">
         <h2 className="text-white font-bold text-[24px] md:text-[34px] leading-tight text-center max-w-3xl">
           Los 3 problemas principales del alumbrado tradicional

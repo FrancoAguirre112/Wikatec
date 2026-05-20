@@ -12,10 +12,18 @@ import BeneficiosPage from './components/BeneficiosPage'
 import ContactoPage from './components/ContactoPage'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (hash) {
+      const id = hash.slice(1)
+      setTimeout(() => {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' })
+      }, 0)
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname, hash])
   return null
 }
 

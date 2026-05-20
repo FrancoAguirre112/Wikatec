@@ -19,7 +19,7 @@ const contactos = [
 
 export default function ContactoEquipo() {
   return (
-    <section className="w-full py-12 md:py-20 px-6 bg-[#030C40]">
+    <section id="contacto-equipo-comercial" className="w-full py-12 md:py-20 px-6 bg-[#030C40] scroll-mt-[67px]">
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-8 md:gap-12">
         <div className="flex flex-col items-center text-center gap-3 max-w-2xl">
           <h2 className="text-white font-bold text-[24px] md:text-[34px] leading-tight">

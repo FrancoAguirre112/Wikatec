@@ -53,7 +53,7 @@ const razones = [
 
 export default function BeneficiosRazones() {
   return (
-    <section className="w-full py-12 md:py-20 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)]">
+    <section id="razones-smart-lights" className="w-full py-12 md:py-20 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px]">
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-8 md:gap-12">
         <h2 className="text-white font-bold text-[24px] md:text-[34px] leading-tight text-center max-w-3xl">
           10 razones para elegir Kiwatec Smart Lights
