@@ -1,6 +1,6 @@
-import { useRef } from 'react'
 import { useReveal } from '../hooks/useReveal'
 import SmoothImage from './SmoothImage'
+import SwipeRow from './SwipeRow'
 
 const CheckIcon = () => (
   <svg
@@ -84,7 +84,7 @@ function AplicacionItem({ item, index }) {
     <div
       ref={ref}
       id={item.ancla}
-      className="relative w-full py-16 md:py-24 border-t border-white/10 scroll-mt-[67px] overflow-hidden"
+      className="relative w-full py-16 md:py-24 border-t border-white/10 scroll-mt-[67px] overflow-hidden hidden md:block"
     >
       {/* Subtle blur orb */}
       <div
@@ -92,43 +92,9 @@ function AplicacionItem({ item, index }) {
       />
 
       <div className="relative max-w-7xl mx-auto px-6">
-        {/* Mobile: stacked */}
-        <div className="md:hidden flex flex-col gap-5">
-          <div className="r-reveal flex items-center gap-3">
-            <span className="font-bold text-blue-300/80 text-[13px] tabular-nums tracking-wider">
-              {num(index)}
-            </span>
-            <span className="h-px w-10 bg-blue-300/40" />
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-300/80">
-              Aplicación
-            </span>
-          </div>
-          <h3 className="r-reveal text-white font-bold text-[24px] leading-tight">
-            {item.titulo}
-          </h3>
-          <div className="r-reveal relative group overflow-hidden rounded-[20px] shadow-[0px_4px_12px_rgba(0,0,0,0.3)]">
-            <SmoothImage
-              src={item.imagen}
-              alt={item.titulo}
-              className="w-full object-cover h-[240px] transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-          <p className="r-reveal text-white/85 text-sm leading-[170%]">{item.descripcion}</p>
-          <ul className="r-reveal flex flex-col gap-2.5">
-            {item.bullets.map((b) => (
-              <li key={b} className="flex items-center gap-2.5 text-white/90 text-sm">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-400/15 text-blue-300 ring-1 ring-blue-300/30">
-                  <CheckIcon />
-                </span>
-                {b}
-              </li>
-            ))}
-          </ul>
-        </div>
-
         {/* Desktop: side-by-side with alternating image position */}
         <div
-          className={`hidden md:flex items-center gap-12 lg:gap-20 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
+          className={`flex items-center gap-12 lg:gap-20 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
         >
           <div className="r-reveal flex-1 relative group">
             <span className="pointer-events-none absolute -top-12 -left-4 font-black text-[10rem] leading-none text-white/[0.05] select-none">
@@ -180,12 +146,87 @@ function AplicacionItem({ item, index }) {
   )
 }
 
+function MobileCarousel() {
+  const ref = useReveal()
+  return (
+    <section
+      ref={ref}
+      className="md:hidden w-full py-12 px-0 bg-[#172555] overflow-hidden relative"
+    >
+      <div className="pointer-events-none absolute -right-32 top-20 h-72 w-72 rounded-full bg-blue-400/8 blur-3xl" />
+
+      <div className="relative px-6 mb-6 flex items-center gap-3 r-reveal">
+        <span className="h-px w-10 bg-blue-300/40" />
+        <span className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-300/80">
+          6 aplicaciones · deslizá
+        </span>
+        <span className="h-px flex-1 bg-blue-300/20" />
+      </div>
+
+      <div className="r-reveal">
+        <SwipeRow>
+          {aplicaciones.map((item, index) => (
+            <article
+              key={item.id}
+              id={`${item.ancla}-m`}
+              className="w-[85vw] shrink-0 snap-center flex flex-col gap-3 bg-gradient-to-b from-[#0D1640] to-[#0A1133] border border-white/15 rounded-[20px] overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+            >
+              <div className="relative overflow-hidden">
+                <SmoothImage
+                  src={item.imagen}
+                  alt={item.titulo}
+                  className="w-full object-cover h-[180px]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030C40]/60 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute top-3 left-3 flex items-center gap-2 rounded-full bg-black/40 backdrop-blur-sm px-2.5 py-1 ring-1 ring-white/15">
+                  <span className="font-bold text-blue-300 text-[11px] tabular-nums">
+                    {num(index)}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-white/70">
+                    Aplicación
+                  </span>
+                </div>
+              </div>
+
+              <div className="px-5 pt-1 pb-5 flex flex-col gap-3">
+                <h3 className="text-white font-bold text-[19px] leading-tight">
+                  {item.titulo}
+                </h3>
+                <p className="text-white/75 text-[13.5px] leading-[170%]">
+                  {item.descripcion}
+                </p>
+                <ul className="flex flex-col gap-2 mt-1">
+                  {item.bullets.map((b) => (
+                    <li
+                      key={b}
+                      className="flex items-center gap-2.5 text-white/85 text-[13px]"
+                    >
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-400/15 text-blue-300 ring-1 ring-blue-300/30">
+                        <CheckIcon />
+                      </span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </SwipeRow>
+      </div>
+    </section>
+  )
+}
+
 export default function SolucionesAplicaciones() {
   return (
     <section className="w-full bg-[#172555]">
+      {/* Desktop: layout alternado por aplicacion */}
       {aplicaciones.map((item, index) => (
         <AplicacionItem key={item.id} item={item} index={index} />
       ))}
+
+      {/* Mobile: carrusel horizontal con focus center */}
+      <MobileCarousel />
     </section>
   )
 }
