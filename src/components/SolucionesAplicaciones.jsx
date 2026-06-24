@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import SmoothImage from './SmoothImage'
 
 const aplicaciones = [
   {
@@ -73,13 +74,13 @@ export default function SolucionesAplicaciones() {
                   <li key={b} className="text-white text-sm">• {b}</li>
                 ))}
               </ul>
-              <img src={item.imagen} alt={item.titulo} className="w-full object-cover h-[220px] rounded-[23px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
+              <SmoothImage src={item.imagen} alt={item.titulo} className="w-full object-cover h-[220px] rounded-[23px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
             </div>
 
             {/* Desktop */}
             <div className={`hidden md:flex items-center gap-[59px] ${item.imagenIzquierda ? 'flex-row' : 'flex-row-reverse'}`}>
               <div className="flex-1">
-                <img src={item.imagen} alt={item.titulo} className="w-full object-cover h-[417px] rounded-[23px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
+                <SmoothImage src={item.imagen} alt={item.titulo} className="w-full object-cover h-[417px] rounded-[23px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
               </div>
               <div className="w-[386px] flex-shrink-0 flex flex-col gap-[28px]">
                 <h3 className="text-white font-bold text-[30px] leading-[35px]">{item.titulo}</h3>

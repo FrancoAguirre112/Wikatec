@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
+import SmoothImage from './SmoothImage'
 
 export default function Beneficios() {
   return (
     <Reveal as="section" className="py-12 md:py-16 px-6 bg-gradient-to-b from-[#030C40] to-[#172555]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
         <div className="w-full md:w-[60%] order-2 md:order-1">
-          <img src="/images/beneficios.jpg" alt="Ciudad inteligente con IoT" className="w-full rounded-[23px] shadow-2xl object-cover h-[250px] md:h-auto md:aspect-[16/10]" />
+          <SmoothImage src="/images/beneficios.jpg" alt="Ciudad inteligente con IoT" className="w-full rounded-[23px] shadow-2xl object-cover h-[250px] md:h-auto md:aspect-[16/10]" />
         </div>
         <div className="w-full md:w-[40%] flex flex-col gap-5 md:gap-6 order-1 md:order-2">
           <h2 className="text-white font-['Montserrat',sans-serif] font-bold text-[26px] md:text-[30px] leading-[35px]">Beneficios</h2>

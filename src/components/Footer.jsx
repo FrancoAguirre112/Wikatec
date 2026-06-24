@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom'
+import SmoothImage from './SmoothImage'
 
 export default function Footer() {
   return (
     <footer className="w-full flex flex-col items-center justify-center text-center bg-[#030C40] h-[270px] gap-[25px] pb-20 md:pb-0">
       <Link to="/" className="flex flex-col items-center gap-2">
-        <img
+        <SmoothImage
           src="/images/logo-kiwatec.png"
           alt="Kiwatec"
+          loading="eager"
+          fetchPriority="high"
           className="h-[87px] w-auto"
         />
       </Link>

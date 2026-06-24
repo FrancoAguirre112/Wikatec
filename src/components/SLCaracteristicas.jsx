@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import SmoothImage from './SmoothImage'
 
 const caracteristicas = [
   {
@@ -87,7 +88,7 @@ export default function SLCaracteristicas() {
             </div>
             {/* Imagen siempre segunda en mobile */}
             <div className="flex-shrink-0 order-2 md:order-none w-full md:w-[55%]">
-              <img
+              <SmoothImage
                 src={item.imagen}
                 alt={item.titulo}
                 className="opacity-[0.79] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] rounded-[23px] w-full h-auto"

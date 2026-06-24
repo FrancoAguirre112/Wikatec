@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import SmoothImage from './SmoothImage'
 
 const galeria = [
   { imagen: '/images/sol-ciudades.jpg', titulo: 'Ciudades y Municipios', ancla: 'sol-ciudades' },
@@ -19,7 +20,7 @@ export default function SolucionesGaleria() {
             href={`#${item.ancla}`}
             className="group relative overflow-hidden rounded-[16px] md:rounded-[23px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] cursor-pointer"
           >
-            <img
+            <SmoothImage
               src={item.imagen}
               alt={item.titulo}
               className="w-full object-cover h-[160px] md:h-[325px]"

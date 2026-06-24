@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
+import SmoothImage from './SmoothImage'
 
 export default function Soluciones() {
   return (
     <Reveal as="section" className="py-12 md:py-20 px-6 bg-gradient-to-b from-[#030C40] to-[#172555] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-[75px]">
         <div className="w-full md:w-[55%] order-2 md:order-1">
-          <img src="/images/soluciones-red.jpg" alt="Soluciones Kiwatec" className="w-full object-cover h-[250px] md:h-[416px] rounded-[23px] opacity-[0.79] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
+          <SmoothImage src="/images/soluciones-red.jpg" alt="Soluciones Kiwatec" className="w-full object-cover h-[250px] md:h-[416px] rounded-[23px] opacity-[0.79] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
         </div>
         <div className="w-full md:w-[40%] flex flex-col gap-5 md:gap-7 order-1 md:order-2">
           <h2 className="text-white font-['Montserrat',sans-serif] font-bold text-[26px] md:text-[30px] leading-[35px]">Soluciones</h2>

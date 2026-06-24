@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import SmoothImage from './SmoothImage'
 
 const productos = [
   { id: 1, nombre: 'Línea KSL-119', descripcion: '100W, 150W y 200W', imagen: '/images/hw-ksl119.png', ficha: '/fichas/ksl119.pdf' },
@@ -11,7 +12,7 @@ const productos = [
 function ProductCard({ producto }) {
   return (
     <div className="flex flex-col items-center text-center p-6 w-full md:w-[220px] bg-[#0D1640] border border-white rounded-2xl">
-      <img src={producto.imagen} alt={producto.nombre} className="w-[140px] h-[140px] object-contain" />
+      <SmoothImage src={producto.imagen} alt={producto.nombre} width={140} height={140} className="w-[140px] h-[140px] object-contain" />
       <div className="w-full border-t border-white mt-4" />
       <div className="flex-1 flex flex-col justify-center py-4">
         <p className="text-white font-bold text-[16px]">{producto.nombre}</p>
