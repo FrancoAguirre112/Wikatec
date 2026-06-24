@@ -1,4 +1,5 @@
 import InicioHero from './InicioHero'
+import InicioStats from './InicioStats'
 import InicioSmartLightsSection from './InicioSmartLightsSection'
 import InicioQuienesSomos from './InicioQuienesSomos'
 import InicioSoluciones from './InicioSoluciones'
@@ -10,6 +11,7 @@ export default function Inicio() {
   return (
     <>
       <InicioHero />
+      <InicioStats />
       <InicioSmartLightsSection />
       <InicioQuienesSomos />
       <InicioSoluciones />
