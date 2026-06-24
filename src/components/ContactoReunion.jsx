@@ -5,6 +5,8 @@ export default function ContactoReunion() {
     <section className="relative w-full min-h-[456px] flex items-center justify-center overflow-hidden py-16 md:py-0">
       <div className="absolute inset-0 bg-[url('/images/cta-ciudad.webp')] bg-cover bg-[center_40%]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#1F2E61_0%,#07042A_100%)] opacity-[0.65]" />
+      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-blue-400/15 blur-3xl" />
+      <div className="pointer-events-none absolute -left-32 -bottom-32 h-96 w-96 rounded-full bg-sky-300/15 blur-3xl" />
 
       <Reveal as="div" className="relative z-10 text-center max-w-2xl mx-auto px-6">
         <h2 className="text-white font-bold text-[26px] md:text-[39px] leading-[34px] md:leading-[51px] mb-4">

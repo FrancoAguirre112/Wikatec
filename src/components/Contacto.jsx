@@ -6,6 +6,8 @@ export default function CTASection() {
     <section className="relative w-full min-h-[400px] md:h-[456px] flex items-center justify-center overflow-hidden border border-white/20 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
       <div className="absolute inset-0 bg-[url('/images/cta-ciudad.webp')] bg-cover bg-[center_40%]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#1F2E61_0%,#07042A_100%)] opacity-[0.45]" />
+      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-blue-400/15 blur-3xl" />
+      <div className="pointer-events-none absolute -left-32 -bottom-32 h-96 w-96 rounded-full bg-sky-300/15 blur-3xl" />
       <Reveal as="div" className="relative z-10 text-center max-w-3xl mx-auto px-6 py-12 md:py-0">
         <h2 className="text-white font-bold text-[24px] md:text-[39px] leading-tight md:leading-[51px] mb-4 md:mb-6">
           Hagamos la transformación juntos con Iluminación inteligente y eficiente
