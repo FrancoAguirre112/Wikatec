@@ -1,4 +1,4 @@
-import Reveal from './Reveal'
+import { useReveal } from '../hooks/useReveal'
 
 const Icon = ({ children }) => (
   <svg
@@ -120,45 +120,60 @@ const razones = [
 ]
 
 export default function BeneficiosRazones() {
+  const ref = useReveal()
   return (
     <section
+      ref={ref}
       id="razones-smart-lights"
-      className="w-full py-12 md:py-20 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px]"
+      className="relative w-full py-16 md:py-24 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto flex flex-col items-center gap-8 md:gap-12">
-        <div className="flex flex-col items-center gap-3 text-center max-w-3xl">
-          <h2 className="text-white font-bold text-[24px] md:text-[34px] leading-tight">
-            10 razones para elegir Kiwatec Smart Lights
+      {/* Decorative blur orbs */}
+      <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
+      <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16">
+        {/* Sticky title column (desktop) — normal title (mobile) */}
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <p className="r-reveal mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
+            Beneficios medibles
+          </p>
+          <h2 className="r-reveal text-white font-bold text-[28px] md:text-[40px] leading-[1.05]">
+            10 razones para elegir <span className="text-blue-300">Kiwatec Smart Lights</span>
           </h2>
-          <p className="text-white/70 font-normal text-sm md:text-base leading-[170%]">
+          <p className="r-reveal mt-5 text-white/70 text-sm md:text-base leading-[170%] max-w-md">
             El impacto concreto de pasar a una red lumínica inteligente: ahorro, control y sustentabilidad medibles desde el primer día.
           </p>
+          <div className="r-reveal mt-6 hidden lg:flex items-center gap-2 text-xs text-white/40">
+            <span className="h-px w-12 bg-white/20" />
+            <span className="uppercase tracking-[0.2em]">Scroll para descubrir</span>
+          </div>
         </div>
 
-        <Reveal as="div" stagger={0.06} className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
+        {/* Grid de cards (con reveal stagger via .r-reveal) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
           {razones.map((r) => (
             <div
               key={r.id}
-              className="group relative flex flex-col items-center text-center gap-3 p-5 md:p-6 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[18px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/40 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
+              className="r-reveal group relative flex flex-col gap-3 p-5 md:p-6 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[18px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/40 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
             >
-              <span className="absolute top-3 right-3 text-white/35 font-bold text-[12px] tracking-wide">
+              <span className="absolute top-3 right-3 text-white/30 font-bold text-[12px] tracking-wide tabular-nums">
                 {String(r.id).padStart(2, '0')}
               </span>
 
-              <div className="text-white/85 group-hover:text-white transition-colors">
+              <div className="text-blue-300/90 group-hover:text-blue-300 group-hover:scale-110 transition-all duration-300">
                 {r.icon}
               </div>
 
-              <h3 className="text-white font-bold text-[14px] md:text-[15px] leading-tight">
+              <h3 className="text-white font-bold text-[15px] md:text-[16px] leading-tight">
                 {r.titulo}
               </h3>
 
-              <p className="text-white/75 font-normal text-[12.5px] md:text-[13px] leading-[160%]">
+              <p className="text-white/75 font-normal text-[13px] md:text-[13.5px] leading-[160%]">
                 {r.resumen}
               </p>
             </div>
           ))}
-        </Reveal>
+        </div>
       </div>
     </section>
   )
