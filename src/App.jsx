@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { ScrollTrigger } from './lib/gsap'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
@@ -17,11 +18,13 @@ function ScrollToTop() {
     if (hash) {
       const id = hash.slice(1)
       setTimeout(() => {
+        ScrollTrigger.refresh()
         const el = document.getElementById(id)
         if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' })
-      }, 0)
+      }, 50)
     } else {
       window.scrollTo(0, 0)
+      ScrollTrigger.refresh()
     }
   }, [pathname, hash])
   return null

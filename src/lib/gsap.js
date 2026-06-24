@@ -13,4 +13,25 @@ if (prefersReduced) {
   gsap.globalTimeline.timeScale(100)
 }
 
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', () => ScrollTrigger.refresh())
+
+  if (typeof ResizeObserver !== 'undefined' && typeof document !== 'undefined') {
+    let scheduled = false
+    const ro = new ResizeObserver(() => {
+      if (scheduled) return
+      scheduled = true
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh()
+        scheduled = false
+      })
+    })
+    if (document.body) {
+      ro.observe(document.body)
+    } else {
+      document.addEventListener('DOMContentLoaded', () => ro.observe(document.body), { once: true })
+    }
+  }
+}
+
 export { gsap, ScrollTrigger, prefersReduced }
