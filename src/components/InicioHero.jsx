@@ -5,13 +5,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const slides = [
-  { id: 1, imagen: "/images/hero-smart-lights.jpg", titulo: "Smart Lights", subtitulo: "Iluminación inteligente para sitios inteligentes", sinBoton: true },
-  { id: 2, imagen: "/images/hero-municipios.jpg", titulo: "Alumbrado Público para Ciudades y Municipios", subtitulo: "Reduzca hasta un 70% el gasto en energía y gestione toda la red pública desde un solo lugar", link: "/soluciones" },
-  { id: 3, imagen: "/images/hero-residencial.jpg", titulo: "Iluminación para Conjuntos Residenciales", subtitulo: "Menos consumo, menos expensas. Más seguridad para sus residentes, con control automático", link: "/soluciones" },
-  { id: 4, imagen: "/images/hero-industria.jpg", titulo: "Iluminación para Industria y Logística", subtitulo: "Su planta iluminada con inteligencia: menos costos operativos, cero intervención manual", link: "/soluciones" },
-  { id: 5, imagen: "/images/hero-comercios.jpg", titulo: "Iluminación para Comercios y Servicios", subtitulo: "Optimice el consumo de sus espacios sin afectar la experiencia del cliente. La luz correcta, en el momento exacto", link: "/soluciones" },
-  { id: 6, imagen: "/images/hero-transporte.jpg", titulo: "Iluminación para Transporte y Movilidad", subtitulo: "En donde la infraestructura que no puede fallar, acceda a un monitoreo en tiempo real y reduzca costos", link: "/soluciones" },
-  { id: 7, imagen: "/images/hero-deporte.jpg", titulo: "Iluminación para Deporte y Turismo", subtitulo: "Estacionamientos, accesos y zonas de ingreso iluminados con inteligencia. Más seguridad para los visitantes con menos costos de energía", link: "/soluciones" },
+  { id: 1, imagen: "/images/hero-smart-lights.webp", titulo: "Smart Lights", subtitulo: "Iluminación inteligente para sitios inteligentes", sinBoton: true },
+  { id: 2, imagen: "/images/hero-municipios.webp", titulo: "Alumbrado Público para Ciudades y Municipios", subtitulo: "Reduzca hasta un 70% el gasto en energía y gestione toda la red pública desde un solo lugar", link: "/soluciones" },
+  { id: 3, imagen: "/images/hero-residencial.webp", titulo: "Iluminación para Conjuntos Residenciales", subtitulo: "Menos consumo, menos expensas. Más seguridad para sus residentes, con control automático", link: "/soluciones" },
+  { id: 4, imagen: "/images/hero-industria.webp", titulo: "Iluminación para Industria y Logística", subtitulo: "Su planta iluminada con inteligencia: menos costos operativos, cero intervención manual", link: "/soluciones" },
+  { id: 5, imagen: "/images/hero-comercios.webp", titulo: "Iluminación para Comercios y Servicios", subtitulo: "Optimice el consumo de sus espacios sin afectar la experiencia del cliente. La luz correcta, en el momento exacto", link: "/soluciones" },
+  { id: 6, imagen: "/images/hero-transporte.webp", titulo: "Iluminación para Transporte y Movilidad", subtitulo: "En donde la infraestructura que no puede fallar, acceda a un monitoreo en tiempo real y reduzca costos", link: "/soluciones" },
+  { id: 7, imagen: "/images/hero-deporte.webp", titulo: "Iluminación para Deporte y Turismo", subtitulo: "Estacionamientos, accesos y zonas de ingreso iluminados con inteligencia. Más seguridad para los visitantes con menos costos de energía", link: "/soluciones" },
 ];
 
 export default function HeroCarousel() {

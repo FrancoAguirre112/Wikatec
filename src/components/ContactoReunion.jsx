@@ -3,7 +3,7 @@ import Reveal from './Reveal'
 export default function ContactoReunion() {
   return (
     <Reveal as="section" className="relative w-full min-h-[456px] flex items-center justify-center overflow-hidden py-16 md:py-0">
-      <div className="absolute inset-0 bg-[url('/images/cta-ciudad.jpg')] bg-cover bg-[center_40%]" />
+      <div className="absolute inset-0 bg-[url('/images/cta-ciudad.webp')] bg-cover bg-[center_40%]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#1F2E61_0%,#07042A_100%)] opacity-[0.65]" />
 
       <div className="relative z-10 text-center max-w-2xl mx-auto px-6">
