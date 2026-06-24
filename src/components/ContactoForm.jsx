@@ -27,8 +27,8 @@ export default function ContactoForm() {
   }
 
   return (
-    <Reveal as="section" className="w-full bg-[#172555] py-12 md:py-16 px-6">
-      <div className="max-w-[1272px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+    <section className="w-full bg-[#172555] py-12 md:py-16 px-6">
+      <Reveal as="div" className="max-w-[1272px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-start">
 
         {/* Formulario — primero en mobile, segundo en desktop */}
         <div className="flex-1 w-full bg-[#0D1640] rounded-[16px] p-6 md:p-8 order-1 md:order-2">
@@ -125,7 +125,7 @@ export default function ContactoForm() {
           </div>
         </div>
 
-      </div>
-    </Reveal>
+      </Reveal>
+    </section>
   )
 }

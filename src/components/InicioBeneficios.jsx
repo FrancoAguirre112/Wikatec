@@ -4,8 +4,8 @@ import SmoothImage from './SmoothImage'
 
 export default function Beneficios() {
   return (
-    <Reveal as="section" className="py-12 md:py-16 px-6 bg-gradient-to-b from-[#030C40] to-[#172555]">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+    <section className="py-12 md:py-16 px-6 bg-gradient-to-b from-[#030C40] to-[#172555]">
+      <Reveal as="div" className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
         <div className="w-full md:w-[60%] order-2 md:order-1">
           <SmoothImage src="/images/beneficios.jpg" alt="Ciudad inteligente con IoT" className="w-full rounded-[23px] shadow-2xl object-cover h-[250px] md:h-auto md:aspect-[16/10]" />
         </div>
@@ -21,7 +21,7 @@ export default function Beneficios() {
         <Link to="/beneficios" className="md:hidden order-3 inline-flex items-center justify-center w-full h-[40px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold font-['Montserrat',sans-serif] border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] no-underline transition-colors duration-300">
           Conocer más
         </Link>
-      </div>
-    </Reveal>
+      </Reveal>
+    </section>
   )
 }

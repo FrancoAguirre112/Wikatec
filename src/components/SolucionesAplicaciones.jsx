@@ -62,8 +62,8 @@ export default function SolucionesAplicaciones() {
   return (
     <section className="w-full bg-[#172555]">
       {aplicaciones.map((item) => (
-        <Reveal as="div" key={item.id} id={item.ancla} className="w-full py-10 md:py-16 border-t border-white/10 scroll-mt-[67px]">
-          <div className="max-w-6xl mx-auto px-6">
+        <div key={item.id} id={item.ancla} className="w-full py-10 md:py-16 border-t border-white/10 scroll-mt-[67px]">
+          <Reveal as="div" className="max-w-6xl mx-auto px-6">
 
             {/* Mobile: siempre apilado. Desktop: lado a lado */}
             <div className="block md:hidden">
@@ -93,8 +93,8 @@ export default function SolucionesAplicaciones() {
               </div>
             </div>
 
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       ))}
     </section>
   )

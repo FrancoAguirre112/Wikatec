@@ -71,8 +71,9 @@ export default function SLCaracteristicas() {
   return (
     <section className="w-full">
       {caracteristicas.map((item) => (
-        <Reveal as="div" key={item.id} className={`w-full py-10 md:py-16 ${item.fondo}`}>
-          <div
+        <div key={item.id} className={`w-full py-10 md:py-16 ${item.fondo}`}>
+          <Reveal
+            as="div"
             className={`max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8 md:gap-[66px] ${
               item.imagenIzquierda ? "md:flex-row-reverse" : "md:flex-row"
             }`}
@@ -94,8 +95,8 @@ export default function SLCaracteristicas() {
                 className="opacity-[0.79] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] rounded-[23px] w-full h-auto"
               />
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       ))}
     </section>
   );

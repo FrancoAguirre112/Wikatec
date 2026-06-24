@@ -2,11 +2,11 @@ import Reveal from './Reveal'
 
 export default function ContactoReunion() {
   return (
-    <Reveal as="section" className="relative w-full min-h-[456px] flex items-center justify-center overflow-hidden py-16 md:py-0">
+    <section className="relative w-full min-h-[456px] flex items-center justify-center overflow-hidden py-16 md:py-0">
       <div className="absolute inset-0 bg-[url('/images/cta-ciudad.webp')] bg-cover bg-[center_40%]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#1F2E61_0%,#07042A_100%)] opacity-[0.65]" />
 
-      <div className="relative z-10 text-center max-w-2xl mx-auto px-6">
+      <Reveal as="div" className="relative z-10 text-center max-w-2xl mx-auto px-6">
         <h2 className="text-white font-bold text-[26px] md:text-[39px] leading-[34px] md:leading-[51px] mb-4">
           Agende una reunión con nuestro equipo
         </h2>
@@ -21,7 +21,7 @@ export default function ContactoReunion() {
         >
           Agendar una reunión
         </a>
-      </div>
-    </Reveal>
+      </Reveal>
+    </section>
   );
 }
