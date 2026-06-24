@@ -35,10 +35,14 @@ export default function SmartLightsSection() {
           />
         </div>
         <div className="w-full md:w-[45%] flex flex-col gap-5 md:gap-7 order-1 md:order-2">
-          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
+          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-amber-300/80">
             Plataforma
           </p>
-          <h2 className="r-reveal text-white font-bold text-[26px] md:text-[34px] leading-[1.15]">
+          <h2 className="r-reveal relative inline-block w-fit text-white font-bold text-[26px] md:text-[34px] leading-[1.15]">
+            <span
+              className="pointer-events-none absolute -inset-x-4 -inset-y-2 -z-10 rounded-full bg-amber-300/25 blur-2xl animate-pulse"
+              style={{ animationDuration: '3s' }}
+            />
             Smart Lights
           </h2>
           <p className="r-reveal text-white/85 font-normal text-sm md:text-base leading-[170%]">

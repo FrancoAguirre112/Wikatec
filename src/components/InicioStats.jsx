@@ -4,9 +4,8 @@ import { gsap, prefersReduced } from '../lib/gsap'
 const stats = [
   {
     value: 70,
-    prefix: 'Hasta ',
     suffix: '%',
-    label: 'Reducción en consumo energético',
+    label: 'Hasta de ahorro energético',
   },
   {
     value: 100,
@@ -31,7 +30,7 @@ function Counter({ value, prefix = '', suffix = '', format, start }) {
   useEffect(() => {
     if (!ref.current) return
     if (prefersReduced) {
-      ref.current.textContent = (format ? format(value) : Math.round(value)) + ''
+      ref.current.textContent = String(format ? format(value) : Math.round(value))
       return
     }
     if (!start) {
@@ -52,7 +51,7 @@ function Counter({ value, prefix = '', suffix = '', format, start }) {
   }, [start, value, format])
 
   return (
-    <span>
+    <span className="inline-flex items-baseline">
       {prefix}
       <span ref={ref}>0</span>
       {suffix}
@@ -86,14 +85,19 @@ export default function InicioStats() {
     >
       <div className="pointer-events-none absolute -right-32 top-0 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-sky-300/10 blur-3xl" />
+      {/* Warm light glow that brightens when stats activate */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[28rem] w-[60rem] rounded-full bg-amber-300/0 blur-3xl transition-all duration-[2000ms] ease-out"
+        style={start ? { backgroundColor: 'rgba(252, 211, 77, 0.08)' } : undefined}
+      />
 
-      <div className="relative max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-8">
+      <div className="relative max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 lg:gap-10">
         {stats.map((s, i) => (
           <div
             key={i}
-            className="group flex flex-col items-center text-center gap-2 px-2 py-4 transition-transform duration-300 hover:-translate-y-1"
+            className="group flex flex-col items-center text-center gap-3 transition-transform duration-300 hover:-translate-y-1"
           >
-            <p className="font-black text-[40px] md:text-[56px] leading-none text-transparent bg-clip-text bg-gradient-to-b from-blue-300 to-sky-400 tabular-nums tracking-tight">
+            <p className="relative font-black text-[44px] md:text-[60px] leading-[1] text-transparent bg-clip-text bg-gradient-to-b from-blue-200 via-blue-300 to-sky-500 tabular-nums tracking-tight whitespace-nowrap">
               <Counter
                 value={s.value}
                 prefix={s.prefix}
@@ -102,8 +106,8 @@ export default function InicioStats() {
                 start={start}
               />
             </p>
-            <div className="h-px w-10 bg-white/20 group-hover:bg-blue-300/60 transition-colors duration-300" />
-            <p className="text-white/75 text-[13px] md:text-sm leading-tight max-w-[180px]">
+            <div className="h-px w-12 bg-white/20 group-hover:bg-blue-300/60 transition-colors duration-300" />
+            <p className="text-white/70 text-[12.5px] md:text-[13.5px] leading-tight max-w-[170px]">
               {s.label}
             </p>
           </div>
