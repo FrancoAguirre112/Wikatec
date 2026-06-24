@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import Reveal from './Reveal'
 
 const tarjetas = [
   { id: 1, iconoSrc: '/images/carrusel-eco.png', texto: 'Ayudamos a reducir la huella de carbono.' },
@@ -14,7 +15,7 @@ const tarjetas = [
 
 export default function NosotrosCarrusel() {
   return (
-    <section className="w-full py-12 md:py-24 bg-[linear-gradient(180deg,#030C40_0%,#172555_86.62%)] overflow-hidden">
+    <Reveal as="section" className="w-full py-12 md:py-24 bg-[linear-gradient(180deg,#030C40_0%,#172555_86.62%)] overflow-hidden">
       <div className="relative w-full max-w-[1272px] mx-auto px-10 md:px-16">
 
         <button
@@ -65,6 +66,6 @@ export default function NosotrosCarrusel() {
         </button>
 
       </div>
-    </section>
+    </Reveal>
   )
 }

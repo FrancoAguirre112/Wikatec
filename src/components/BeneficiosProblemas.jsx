@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const problemas = [
   {
     id: 1,
@@ -24,7 +26,7 @@ export default function BeneficiosProblemas() {
           Los 3 problemas principales del alumbrado tradicional
         </h2>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <Reveal as="div" stagger={0.12} className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {problemas.map((p) => (
             <div
               key={p.id}
@@ -38,7 +40,7 @@ export default function BeneficiosProblemas() {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

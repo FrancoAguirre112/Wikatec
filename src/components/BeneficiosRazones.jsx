@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const Icon = ({ children }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +135,7 @@ export default function BeneficiosRazones() {
           </p>
         </div>
 
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
+        <Reveal as="div" stagger={0.06} className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
           {razones.map((r) => (
             <div
               key={r.id}
@@ -156,7 +158,7 @@ export default function BeneficiosRazones() {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

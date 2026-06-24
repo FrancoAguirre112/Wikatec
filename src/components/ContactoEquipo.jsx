@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const contactos = [
   {
     id: 1,
@@ -30,7 +32,7 @@ export default function ContactoEquipo() {
           </div>
         </div>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl">
+        <Reveal as="div" stagger={0.15} className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl">
           {contactos.map((c) => (
             <div
               key={c.id}
@@ -55,7 +57,7 @@ export default function ContactoEquipo() {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
 
         <p className="text-white/80 text-sm md:text-base text-center mt-2">
           Dirección: Melian 3552 2A - Buenos Aires - Argentina

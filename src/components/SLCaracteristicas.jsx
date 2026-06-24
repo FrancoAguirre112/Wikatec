@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const caracteristicas = [
   {
     id: 1,
@@ -68,7 +70,7 @@ export default function SLCaracteristicas() {
   return (
     <section className="w-full">
       {caracteristicas.map((item) => (
-        <div key={item.id} className={`w-full py-10 md:py-16 ${item.fondo}`}>
+        <Reveal as="div" key={item.id} className={`w-full py-10 md:py-16 ${item.fondo}`}>
           <div
             className={`max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8 md:gap-[66px] ${
               item.imagenIzquierda ? "md:flex-row-reverse" : "md:flex-row"
@@ -92,7 +94,7 @@ export default function SLCaracteristicas() {
               />
             </div>
           </div>
-        </div>
+        </Reveal>
       ))}
     </section>
   );

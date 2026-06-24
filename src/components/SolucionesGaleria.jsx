@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const galeria = [
   { imagen: '/images/sol-ciudades.jpg', titulo: 'Ciudades y Municipios', ancla: 'sol-ciudades' },
   { imagen: '/images/sol-residencial.jpg', titulo: 'Conjuntos Residenciales', ancla: 'sol-residencial' },
@@ -10,7 +12,7 @@ const galeria = [
 export default function SolucionesGaleria() {
   return (
     <section className="w-full py-10 md:py-16 px-6 bg-[#141E4B]">
-      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+      <Reveal as="div" stagger={0.08} className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         {galeria.map((item) => (
           <a
             key={item.ancla}
@@ -28,7 +30,7 @@ export default function SolucionesGaleria() {
             </p>
           </a>
         ))}
-      </div>
+      </Reveal>
     </section>
   )
 }

@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import Reveal from './Reveal'
 
 export default function SmartLightsSection() {
   return (
-    <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-[#030C40] to-[#172555] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+    <Reveal as="section" className="py-12 md:py-20 px-6 bg-gradient-to-b from-[#030C40] to-[#172555] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-[75px]">
         <div className="w-full md:w-[55%] order-2 md:order-1">
           <img src="/images/smart-lights-iot.jpg" alt="Smart Lights IoT" className="w-full object-cover h-[250px] md:h-[416px] rounded-[23px] opacity-[0.79] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
@@ -20,6 +21,6 @@ export default function SmartLightsSection() {
           Conocer más
         </Link>
       </div>
-    </section>
+    </Reveal>
   )
 }

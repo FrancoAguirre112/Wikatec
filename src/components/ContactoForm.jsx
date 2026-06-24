@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Reveal from './Reveal'
 
 export default function ContactoForm() {
   const [form, setForm] = useState({
@@ -26,7 +27,7 @@ export default function ContactoForm() {
   }
 
   return (
-    <section className="w-full bg-[#172555] py-12 md:py-16 px-6">
+    <Reveal as="section" className="w-full bg-[#172555] py-12 md:py-16 px-6">
       <div className="max-w-[1272px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-start">
 
         {/* Formulario — primero en mobile, segundo en desktop */}
@@ -125,6 +126,6 @@ export default function ContactoForm() {
         </div>
 
       </div>
-    </section>
+    </Reveal>
   )
 }

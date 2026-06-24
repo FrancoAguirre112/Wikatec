@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import Reveal from './Reveal'
 
 export default function QuienesSomos() {
   return (
-    <section id="quienes-somos" className="py-12 md:py-20 px-6 bg-gradient-to-b from-[#030C40] to-[#172555] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] scroll-mt-[67px]">
+    <Reveal as="section" id="quienes-somos" className="py-12 md:py-20 px-6 bg-gradient-to-b from-[#030C40] to-[#172555] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] scroll-mt-[67px]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-[75px]">
         <div className="w-full md:w-[40%] flex flex-col gap-5 md:gap-7 order-1">
           <h2 className="text-white font-['Montserrat',sans-serif] font-bold text-[26px] md:text-[30px] leading-[35px]">¿Quiénes somos?</h2>
@@ -20,6 +21,6 @@ export default function QuienesSomos() {
           Conocer más
         </Link>
       </div>
-    </section>
+    </Reveal>
   )
 }

@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const productos = [
   { id: 1, nombre: 'Línea KSL-119', descripcion: '100W, 150W y 200W', imagen: '/images/hw-ksl119.png', ficha: '/fichas/ksl119.pdf' },
   { id: 2, nombre: 'Línea KSL-122', descripcion: '50W, 60W, 100W, 150W y 200W', imagen: '/images/hw-ksl122.png', ficha: '/fichas/ksl122.pdf' },
@@ -33,17 +35,17 @@ export default function HardwareProductos() {
     <section className="w-full py-12 md:py-16 px-6 bg-[#141E4B]">
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-6">
 
-        <div className="block md:hidden w-full flex flex-col gap-6">
+        <Reveal as="div" stagger={0.1} className="block md:hidden w-full flex flex-col gap-6">
           {productos.map((p) => <ProductCard key={p.id} producto={p} />)}
-        </div>
+        </Reveal>
 
         <div className="hidden md:flex flex-col items-center gap-8 w-full">
-          <div className="flex justify-center gap-8">
+          <Reveal as="div" stagger={0.1} className="flex justify-center gap-8">
             {productos.slice(0, 3).map((p) => <ProductCard key={p.id} producto={p} />)}
-          </div>
-          <div className="flex justify-center gap-8">
+          </Reveal>
+          <Reveal as="div" stagger={0.1} className="flex justify-center gap-8">
             {productos.slice(3).map((p) => <ProductCard key={p.id} producto={p} />)}
-          </div>
+          </Reveal>
         </div>
 
       </div>

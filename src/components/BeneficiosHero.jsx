@@ -1,6 +1,8 @@
+import Reveal from './Reveal'
+
 export default function BeneficiosHero() {
   return (
-    <section className="relative w-full h-[320px] md:h-[441px] flex items-center justify-center overflow-hidden">
+    <Reveal as="section" className="relative w-full h-[320px] md:h-[441px] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-[url('/images/beneficios-hero.jpg')] bg-cover bg-center" />
       <div className="absolute inset-0 bg-[#0C132D] opacity-[0.29]" />
       <div className="relative z-10 flex flex-col items-center text-center gap-4 px-6">
@@ -9,6 +11,6 @@ export default function BeneficiosHero() {
           Ventajas de una red lumínica eficiente y controlable
         </p>
       </div>
-    </section>
+    </Reveal>
   )
 }
