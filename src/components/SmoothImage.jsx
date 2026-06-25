@@ -41,7 +41,8 @@ export default function SmoothImage({
         onError={() => setLoaded(true)}
         style={{
           opacity: loaded ? undefined : 0,
-          transition: 'opacity 400ms ease-out, transform 700ms cubic-bezier(0.22, 1, 0.36, 1)',
+          transition:
+            'opacity 400ms ease-out, transform 700ms cubic-bezier(0.22, 1, 0.36, 1), scale 700ms cubic-bezier(0.22, 1, 0.36, 1)',
         }}
         className={className}
         {...props}
