@@ -38,6 +38,10 @@ const previews = [
   },
 ]
 
+// Duplicate slides so Swiper loop works reliably with few base slides.
+// Computed at module scope so the array reference is stable across renders.
+const carouselSlides = [...previews, ...previews]
+
 function PreviewCard({ p, i }) {
   return (
     <Link
@@ -119,9 +123,8 @@ export default function Soluciones() {
       </div>
 
       {/* Mobile: infinite-loop carousel + CTA below.
-          Swiper requires more slides than slidesPerView*2 to loop reliably,
-          so we duplicate the array (the cards are identical anyway, user
-          perceives it as a continuous loop). */}
+          Slides are duplicated at module scope (carouselSlides) so Swiper's
+          internal loop has enough buffer with our 3 base previews. */}
       <div className="lg:hidden relative z-10 mt-10">
         <Swiper
           modules={[Autoplay]}
@@ -136,9 +139,13 @@ export default function Soluciones() {
             pauseOnMouseEnter: false,
           }}
           speed={700}
+          onSwiper={(sw) => {
+            // Ensure autoplay starts even if Swiper init raced with mount
+            if (sw?.autoplay && !sw.autoplay.running) sw.autoplay.start()
+          }}
           className="!px-6 !pb-2"
         >
-          {[...previews, ...previews].map((p, i) => (
+          {carouselSlides.map((p, i) => (
             <SwiperSlide key={`${p.label}-${i}`} className="!h-auto">
               <PreviewCard p={p} i={i % previews.length} />
             </SwiperSlide>
