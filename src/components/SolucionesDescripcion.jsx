@@ -17,10 +17,16 @@ const LONGEST = CONTEXTS.reduce((a, b) =>
 export default function SolucionesDescripcion() {
   const ref = useReveal()
   const [idx, setIdx] = useState(0)
+  const [prevIdx, setPrevIdx] = useState(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
-    const id = setInterval(() => setIdx((i) => (i + 1) % CONTEXTS.length), 3000)
+    const id = setInterval(() => {
+      setIdx((prev) => {
+        setPrevIdx(prev)
+        return (prev + 1) % CONTEXTS.length
+      })
+    }, 3000)
     return () => clearInterval(id)
   }, [])
 
@@ -58,21 +64,31 @@ export default function SolucionesDescripcion() {
           </span>
         </div>
         <h2 className="r-reveal text-white font-bold text-[24px] md:text-[34px] leading-[1.15]">
-          La solución correcta para{' '}
+          La solución correcta para
+          <br />
           <span className="relative inline-block align-baseline text-blue-300">
             <span aria-hidden="true" className="invisible">
               {LONGEST}
             </span>
-            {CONTEXTS.map((c, i) => (
-              <span
-                key={c.word}
-                className={`absolute left-0 top-0 whitespace-nowrap transition-opacity duration-500 ${
-                  i === idx ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                {c.word}
-              </span>
-            ))}
+            {CONTEXTS.map((c, i) => {
+              const state =
+                i === idx ? 'active' : i === prevIdx ? 'exiting' : 'idle'
+              const ty = state === 'active' ? '0' : state === 'exiting' ? '0.7em' : '-0.7em'
+              return (
+                <span
+                  key={c.word}
+                  className="absolute top-0 left-1/2 whitespace-nowrap will-change-transform"
+                  style={{
+                    transform: `translate(-50%, ${ty})`,
+                    opacity: state === 'active' ? 1 : 0,
+                    transition:
+                      'transform 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 380ms ease-out',
+                  }}
+                >
+                  {c.word}
+                </span>
+              )
+            })}
           </span>
         </h2>
         <p className="r-reveal text-white/85 font-normal text-sm md:text-base leading-[170%] max-w-2xl">

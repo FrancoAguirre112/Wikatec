@@ -30,10 +30,16 @@ const pills = [
 export default function SLDescripcion() {
   const ref = useReveal()
   const [wordIdx, setWordIdx] = useState(0)
+  const [prevIdx, setPrevIdx] = useState(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
-    const id = setInterval(() => setWordIdx((i) => (i + 1) % ROTATING.length), 2500)
+    const id = setInterval(() => {
+      setWordIdx((prev) => {
+        setPrevIdx(prev)
+        return (prev + 1) % ROTATING.length
+      })
+    }, 2500)
     return () => clearInterval(id)
   }, [])
 
@@ -58,21 +64,31 @@ export default function SLDescripcion() {
           Plataforma SaaS
         </p>
         <h2 className="r-reveal text-white font-bold text-[24px] md:text-[34px] leading-[1.15]">
-          Todo el control de tu red lumínica para{' '}
+          Todo el control de tu red lumínica para
+          <br />
           <span className="relative inline-block align-baseline text-amber-300">
             <span aria-hidden="true" className="invisible">
               {LONGEST}
             </span>
-            {ROTATING.map((w, i) => (
-              <span
-                key={w}
-                className={`absolute left-0 top-0 transition-opacity duration-500 ${
-                  i === wordIdx ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                {w}
-              </span>
-            ))}
+            {ROTATING.map((w, i) => {
+              const state =
+                i === wordIdx ? 'active' : i === prevIdx ? 'exiting' : 'idle'
+              const ty = state === 'active' ? '0' : state === 'exiting' ? '0.7em' : '-0.7em'
+              return (
+                <span
+                  key={w}
+                  className="absolute top-0 left-1/2 whitespace-nowrap will-change-transform"
+                  style={{
+                    transform: `translate(-50%, ${ty})`,
+                    opacity: state === 'active' ? 1 : 0,
+                    transition:
+                      'transform 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 380ms ease-out',
+                  }}
+                >
+                  {w}
+                </span>
+              )
+            })}
           </span>
         </h2>
         <p className="r-reveal text-white/85 font-normal text-sm md:text-base leading-[170%] max-w-2xl">
