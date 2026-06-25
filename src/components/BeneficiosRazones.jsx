@@ -122,6 +122,8 @@ const razones = [
   },
 ]
 
+const PAIR_COUNT = razones.length / 2 // 5 pares de 2
+
 export default function BeneficiosRazones() {
   const sectionRef = useRef(null)
   const cardRefs = useRef([])
@@ -134,11 +136,9 @@ export default function BeneficiosRazones() {
       if (prefersReduced) return
       const mm = gsap.matchMedia()
       mm.add('(min-width: 1024px)', () => {
-        const total = razones.length
-        // Cards reveal in reading order (1..10). Each one occupies ~9.5% of pin progress,
-        // with a 5% intro buildup and ~5% outro settled view.
-        const stepSize = 0.95 / total
-        const spotlightWindow = stepSize * 0.65 // brief glow
+        // 5 pares, cada uno ocupa ~18% del pin progress, con 5% intro y 5% outro
+        const stepSize = 0.9 / PAIR_COUNT
+        const spotlightWindow = stepSize * 0.4 // brief glow
 
         const st = ScrollTrigger.create({
           trigger: sectionRef.current,
@@ -150,28 +150,40 @@ export default function BeneficiosRazones() {
           onUpdate: (self) => {
             const progress = self.progress
             let revealedCount = 0
-            razones.forEach((_, i) => {
-              const appearAt = 0.025 + i * stepSize
-              const card = cardRefs.current[i]
-              if (!card) return
-              if (progress >= appearAt) {
-                card.classList.add('is-visible')
-                revealedCount++
-                if (progress < appearAt + spotlightWindow) {
-                  card.classList.add('is-spotlight')
+
+            for (let pairIdx = 0; pairIdx < PAIR_COUNT; pairIdx++) {
+              const appearAt = 0.05 + pairIdx * stepSize
+              const inSpotlight =
+                progress >= appearAt && progress < appearAt + spotlightWindow
+              const visible = progress >= appearAt
+
+              const leftIdx = pairIdx * 2
+              const rightIdx = leftIdx + 1
+              const leftCard = cardRefs.current[leftIdx]
+              const rightCard = cardRefs.current[rightIdx]
+
+              ;[leftCard, rightCard].forEach((card) => {
+                if (!card) return
+                if (visible) {
+                  card.classList.add('is-visible')
+                  if (inSpotlight) {
+                    card.classList.add('is-spotlight')
+                  } else {
+                    card.classList.remove('is-spotlight')
+                  }
                 } else {
-                  card.classList.remove('is-spotlight')
+                  card.classList.remove('is-visible', 'is-spotlight')
                 }
-              } else {
-                card.classList.remove('is-visible', 'is-spotlight')
-              }
-            })
+              })
+
+              if (visible) revealedCount += 2
+            }
 
             if (counterRef.current) {
               counterRef.current.textContent = `${String(revealedCount).padStart(2, '0')} / 10`
             }
             if (progressBarRef.current) {
-              progressBarRef.current.style.transform = `scaleX(${revealedCount / total})`
+              progressBarRef.current.style.transform = `scaleX(${revealedCount / razones.length})`
             }
           },
         })
@@ -188,44 +200,27 @@ export default function BeneficiosRazones() {
     <section
       ref={sectionRef}
       id="razones-smart-lights"
-      className="relative w-full py-8 md:py-12 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
+      className="relative w-full py-8 md:py-10 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
     >
       <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-14">
-        {/* Sticky title column */}
-        <div ref={revealRef} className="lg:sticky lg:top-28 lg:self-start">
+      <div ref={revealRef} className="relative max-w-7xl mx-auto">
+        {/* Header centered */}
+        <div className="max-w-3xl mx-auto text-center">
           <p className="r-reveal mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
             Beneficios medibles
           </p>
-          <h2 className="r-reveal text-white font-bold text-[26px] md:text-[34px] leading-[1.05]">
+          <h2 className="r-reveal text-white font-bold text-[26px] md:text-[36px] leading-[1.05]">
             10 razones para elegir <span className="text-blue-300">Kiwatec Smart Lights</span>
           </h2>
-          <p className="r-reveal mt-4 text-white/70 text-sm leading-[165%] max-w-md">
+          <p className="r-reveal mt-3 text-white/70 text-sm md:text-[15px] leading-[160%] max-w-xl mx-auto">
             El impacto concreto de pasar a una red lumínica inteligente: ahorro, control y sustentabilidad medibles desde el primer día.
           </p>
-          <div className="r-reveal mt-5 hidden lg:flex items-center gap-2.5 text-xs text-white/40">
-            <span className="h-px w-10 bg-white/20" />
-            <span className="uppercase tracking-[0.2em]">Scroll para descubrir</span>
-            <span
-              ref={counterRef}
-              className="ml-auto font-semibold tabular-nums text-blue-300/90"
-            >
-              00 / 10
-            </span>
-          </div>
-          <div className="r-reveal hidden lg:block mt-3 h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
-            <div
-              ref={progressBarRef}
-              className="h-full origin-left bg-gradient-to-r from-blue-400 to-sky-300"
-              style={{ transform: 'scaleX(0)', transition: 'transform 250ms ease-out' }}
-            />
-          </div>
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="mt-7 md:mt-8 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
           {razones.map((r, i) => (
             <div
               key={r.id}
@@ -246,6 +241,26 @@ export default function BeneficiosRazones() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Progress block at bottom — full width of the title container for impact */}
+        <div className="r-reveal hidden lg:block mt-6 max-w-5xl mx-auto">
+          <div className="flex items-center justify-between text-[11px] text-white/40 mb-2">
+            <span className="uppercase tracking-[0.28em]">Scroll para descubrir</span>
+            <span
+              ref={counterRef}
+              className="font-semibold tabular-nums text-blue-300/90 text-xs"
+            >
+              00 / 10
+            </span>
+          </div>
+          <div className="h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
+            <div
+              ref={progressBarRef}
+              className="h-full origin-left bg-gradient-to-r from-blue-400 to-sky-300 shadow-[0_0_8px_rgba(96,165,250,0.5)]"
+              style={{ transform: 'scaleX(0)', transition: 'transform 250ms ease-out' }}
+            />
+          </div>
         </div>
       </div>
 
