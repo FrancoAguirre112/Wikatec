@@ -216,17 +216,17 @@ export default function SolucionesGaleria() {
 
             {/* Header bar — backdrop-blur pills, equal spacing from frame edges */}
             <div className="absolute top-5 left-5 right-5 z-40 flex items-center justify-between pointer-events-none">
-              <div className="flex items-center gap-2 bg-black/55 backdrop-blur-md rounded-full pl-3 pr-4 py-1.5 ring-1 ring-white/15 pointer-events-auto">
-                <span className="h-px w-5 bg-blue-300/60" />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/90">
+              <div className="flex items-center gap-2.5 bg-black/70 backdrop-blur-md rounded-full pl-3.5 pr-4 py-2 ring-1 ring-white/20 pointer-events-auto">
+                <span className="flex h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-white">
                   6 aplicaciones
                 </span>
               </div>
-              <div className="flex items-baseline gap-1.5 bg-black/55 backdrop-blur-md rounded-full px-4 py-1.5 ring-1 ring-white/15 pointer-events-auto">
-                <span className="text-blue-300 font-black text-base tabular-nums leading-none">
+              <div className="flex items-baseline gap-1.5 bg-black/70 backdrop-blur-md rounded-full px-4 py-1.5 ring-1 ring-white/20 pointer-events-auto">
+                <span className="text-white font-black text-lg tabular-nums leading-none">
                   {num(active)}
                 </span>
-                <span className="text-white/50 text-[11px] tabular-nums leading-none">
+                <span className="text-white/50 text-[12px] font-semibold tabular-nums leading-none">
                   / {num(items.length - 1)}
                 </span>
               </div>
