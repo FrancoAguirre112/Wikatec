@@ -1,7 +1,5 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useGSAP } from '@gsap/react'
-import { gsap, prefersReduced } from '../lib/gsap'
 import { useReveal } from '../hooks/useReveal'
 import SmoothImage from './SmoothImage'
 
@@ -40,23 +38,6 @@ const previews = [
 export default function Soluciones() {
   const root = useRef(null)
   const revealRef = useReveal()
-
-  useGSAP(
-    () => {
-      if (prefersReduced) return
-      gsap.to('.sol-number', {
-        yPercent: -25,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      })
-    },
-    { scope: root }
-  )
 
   return (
     <section

@@ -36,16 +36,6 @@ export default function Beneficios() {
           scrub: 0.5,
         },
       })
-      gsap.to('.ben-number', {
-        yPercent: -40,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      })
       // Animated accent bar grows from top as section enters
       gsap.fromTo(
         '.ben-bar',

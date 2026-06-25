@@ -37,16 +37,6 @@ export default function QuienesSomos() {
           scrub: 0.5,
         },
       })
-      gsap.to('.qs-number', {
-        yPercent: -45,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      })
     },
     { scope: root }
   )

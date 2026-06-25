@@ -38,16 +38,6 @@ export default function Hardware() {
           scrub: 0.5,
         },
       })
-      gsap.to('.hw-number', {
-        yPercent: -30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      })
     },
     { scope: root }
   )

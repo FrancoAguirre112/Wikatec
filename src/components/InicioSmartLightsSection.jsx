@@ -36,16 +36,6 @@ export default function SmartLightsSection() {
           scrub: 0.5,
         },
       })
-      gsap.to('.sl-number', {
-        yPercent: -30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      })
     },
     { scope: root }
   )
