@@ -191,7 +191,7 @@ export default function SLCaracteristicas() {
         ref={explorerRef}
         className="hidden lg:flex lg:items-center lg:h-screen lg:max-h-[860px] relative"
       >
-        <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-center">
+        <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-stretch">
           {/* Left: tabs list */}
           <div className="col-span-5 flex flex-col gap-2">
             {caracteristicas.map((f, i) => {
@@ -259,7 +259,7 @@ export default function SLCaracteristicas() {
               {num(active)}
             </span>
 
-            <div className="sl-panel-item flex items-center gap-4 p-7 border-b border-white/10">
+            <div className="sl-panel-item flex items-center gap-4 p-7 pb-5">
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white ring-1 ring-white/15">
                 {current.icon}
               </span>
@@ -267,21 +267,21 @@ export default function SLCaracteristicas() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
                   {num(active)} / {num(caracteristicas.length - 1)}
                 </p>
-                <h3 className="text-2xl font-bold text-white">{current.titulo}</h3>
+                <h3 className="text-[22px] font-bold text-white leading-tight">{current.titulo}</h3>
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col md:flex-row gap-5 px-7 pt-5 pb-5">
-              <p className="sl-panel-item text-white/80 text-[15px] leading-relaxed md:w-2/5 md:flex-shrink-0">
-                {current.descripcion}
-              </p>
-              <div className="sl-panel-item md:flex-1 min-h-0">
+            <div className="flex-1 flex flex-col gap-5 px-7 pb-5 min-h-0">
+              <div className="sl-panel-item flex-1 min-h-0 overflow-hidden rounded-2xl">
                 <SmoothImage
                   src={current.imagen}
                   alt={current.titulo}
-                  className="w-full h-full max-h-[260px] object-cover rounded-2xl shadow-xl shadow-black/30 opacity-90"
+                  className="w-full h-full object-cover rounded-2xl shadow-xl shadow-black/30 opacity-95"
                 />
               </div>
+              <p className="sl-panel-item text-white/80 text-[14.5px] leading-relaxed">
+                {current.descripcion}
+              </p>
             </div>
 
             {/* Progress bar */}
