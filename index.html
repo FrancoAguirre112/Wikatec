@@ -1,19 +1,174 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="logo/logo-wikated.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#030C40" />
+
+    <!-- Primary Meta -->
+    <title>Kiwatec — Iluminación Inteligente IoT | Smart Lights para ciudades y empresas</title>
+    <meta name="description" content="Kiwatec — Plataforma IoT Smart Lights para gestionar redes de alumbrado público y privado. Hasta 70% menos consumo, monitoreo en tiempo real, control remoto. Empresa argentina con sede en Buenos Aires." />
+    <meta name="keywords" content="iluminación inteligente, smart lights, IoT alumbrado, alumbrado público, controlador LED, plataforma SaaS lighting, LoRaWAN iluminación, smart city Argentina, gestión luminarias, Kiwatec, Wikatec" />
+    <meta name="author" content="Kiwatec" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    <meta name="geo.region" content="AR-C" />
+    <meta name="geo.placename" content="Buenos Aires" />
+    <meta name="geo.position" content="-34.5763;-58.4621" />
+    <meta name="ICBM" content="-34.5763, -58.4621" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://wikatec.vercel.app/" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/logo/logo-wikated.svg" />
+    <link rel="apple-touch-icon" href="/images/logo-kiwatec.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wikatec.vercel.app/" />
+    <meta property="og:title" content="Kiwatec — Iluminación Inteligente IoT" />
+    <meta property="og:description" content="Plataforma IoT Smart Lights para gestión integral de redes de alumbrado. Hasta 70% menos consumo, monitoreo en tiempo real, control remoto desde una sola plataforma." />
+    <meta property="og:image" content="https://wikatec.vercel.app/images/hero-smart-lights.webp" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
+    <meta property="og:image:alt" content="Kiwatec Smart Lights — Plataforma IoT de iluminación inteligente" />
+    <meta property="og:site_name" content="Kiwatec" />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://wikatec.vercel.app/" />
+    <meta name="twitter:title" content="Kiwatec — Iluminación Inteligente IoT" />
+    <meta name="twitter:description" content="Plataforma IoT para gestión integral de redes de alumbrado público y privado. Hasta 70% menos consumo." />
+    <meta name="twitter:image" content="https://wikatec.vercel.app/images/hero-smart-lights.webp" />
+
+    <!-- Performance preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" />
     <link rel="preload" as="image" href="/images/hero-smart-lights.webp" type="image/webp" fetchpriority="high" />
-    <meta name="description" content="Kiwatec — Soluciones de iluminación inteligente e IoT para ciudades, industria, comercio y más." />
-    <meta property="og:title" content="Kiwatec — Iluminación Inteligente" />
-    <meta property="og:description" content="Soluciones IoT para gestión y control de redes de alumbrado público y privado." />
-    <meta property="og:type" content="website" />
-    <title>Kiwatec — Iluminación Inteligente</title>
+
+    <!-- JSON-LD: Organization + LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://wikatec.vercel.app/#organization",
+          "name": "Kiwatec",
+          "alternateName": ["Wikatec", "Kiwatec Smart Lights"],
+          "url": "https://wikatec.vercel.app",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://wikatec.vercel.app/images/logo-kiwatec.png",
+            "width": 512,
+            "height": 512
+          },
+          "image": "https://wikatec.vercel.app/images/hero-smart-lights.webp",
+          "description": "Empresa argentina especializada en soluciones de iluminación inteligente IoT y plataformas SaaS para gestión de redes de alumbrado público y privado.",
+          "foundingLocation": "Buenos Aires, Argentina",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Melian 3552 2A",
+            "addressLocality": "Buenos Aires",
+            "addressRegion": "Ciudad Autónoma de Buenos Aires",
+            "addressCountry": "AR"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "info@kiwatec.net",
+              "telephone": "+54-9-11-6500-6000",
+              "areaServed": "AR",
+              "availableLanguage": ["Spanish"]
+            },
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "telephone": "+54-9-11-2182-1624",
+              "areaServed": "AR",
+              "availableLanguage": ["Spanish"]
+            }
+          ],
+          "employee": [
+            {
+              "@type": "Person",
+              "name": "Damián Menke",
+              "jobTitle": "Director Comercial",
+              "email": "dmenke@kiwatec.net"
+            },
+            {
+              "@type": "Person",
+              "name": "Jesica Kovalsky",
+              "jobTitle": "Gerente Comercial",
+              "email": "jesica@kiwatec.net"
+            }
+          ],
+          "knowsAbout": [
+            "Iluminación inteligente",
+            "Internet of Things (IoT)",
+            "LoRaWAN",
+            "Smart City",
+            "Eficiencia energética",
+            "Alumbrado público",
+            "Plataforma SaaS"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://wikatec.vercel.app/#website",
+          "url": "https://wikatec.vercel.app",
+          "name": "Kiwatec",
+          "description": "Plataforma IoT Smart Lights para gestión de iluminación inteligente",
+          "publisher": { "@id": "https://wikatec.vercel.app/#organization" },
+          "inLanguage": "es-AR"
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://wikatec.vercel.app/#localbusiness",
+          "name": "Kiwatec",
+          "image": "https://wikatec.vercel.app/images/logo-kiwatec.png",
+          "url": "https://wikatec.vercel.app",
+          "telephone": "+54-9-11-6500-6000",
+          "email": "info@kiwatec.net",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Melian 3552 2A",
+            "addressLocality": "Buenos Aires",
+            "addressRegion": "CABA",
+            "addressCountry": "AR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -34.5763,
+            "longitude": -58.4621
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Argentina"
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://wikatec.vercel.app/#smartlights",
+          "name": "Smart Lights — Plataforma de gestión IoT",
+          "provider": { "@id": "https://wikatec.vercel.app/#organization" },
+          "serviceType": "Plataforma SaaS de iluminación inteligente",
+          "description": "Plataforma web intuitiva y segura para supervisar, operar y analizar toda la infraestructura de alumbrado. Monitoreo en tiempo real, control remoto y reportes automáticos.",
+          "areaServed": "AR",
+          "audience": {
+            "@type": "BusinessAudience",
+            "audienceType": "Municipios, empresas, instalaciones privadas"
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

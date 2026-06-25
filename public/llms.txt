@@ -1,0 +1,68 @@
+# Kiwatec — Iluminación Inteligente IoT
+
+> Kiwatec es una empresa argentina especializada en soluciones de iluminación inteligente y plataformas IoT para la gestión, monitoreo y control de redes de alumbrado público y privado. Sede en Buenos Aires, Argentina.
+
+Kiwatec desarrolla una plataforma SaaS llamada "Smart Lights" que combina software web y hardware IoT (controladores, gateways y luminarias LED) para que municipios, empresas e instalaciones privadas reduzcan hasta un 70% el consumo energético, automaticen la operación y mejoren la seguridad de sus espacios. La empresa ofrece monitoreo en tiempo real, detección de fallas con ubicación exacta, reportes automáticos y control remoto desde cualquier dispositivo.
+
+## Información de la empresa
+
+- **Nombre comercial**: Kiwatec
+- **Dominio web**: https://wikatec.vercel.app
+- **Ubicación**: Melian 3552 2A, Buenos Aires, Argentina
+- **Email**: info@kiwatec.net
+- **WhatsApp comercial**: +54 9 11 6500-6000 (Damián Menke, Director Comercial)
+- **WhatsApp adicional**: +54 9 11 2182-1624 (Jesica Kovalsky, Gerente Comercial)
+- **Industria**: IoT / Iluminación inteligente / Smart City
+- **Idioma del sitio**: Español (es-AR)
+
+## Páginas principales
+
+- [Inicio](https://wikatec.vercel.app/): Página principal con visión general de la plataforma, soluciones por entorno y propuesta de valor.
+- [Smart Lights](https://wikatec.vercel.app/smart-lights): Plataforma SaaS para gestión integral de redes de iluminación inteligente. 7 características principales: monitoreo en tiempo real, control remoto, programación de horarios, detección de fallas, reportes automáticos, dimmerizado inteligente, y dashboard analítico.
+- [Soluciones](https://wikatec.vercel.app/soluciones): 6 entornos de aplicación — Ciudades y Municipios, Conjuntos Residenciales (countries y barrios cerrados), Industria y Logística, Comercio y Servicios (shoppings, retail), Transporte y Movilidad (autopistas, aeropuertos, puertos), Turismo y Espacios Deportivos.
+- [Hardware](https://wikatec.vercel.app/hardware): Línea de equipamiento IoT con 5 modelos (KSL-119, KSL-122, KGT-220L, KCT-220L, KCT-220C). Comunicación LoRaWAN y 4G. Controladores, gateways y luminarias LED.
+- [Beneficios](https://wikatec.vercel.app/beneficios): 10 razones para elegir Kiwatec Smart Lights — ahorro energético hasta 70%, reparaciones más rápidas, menor costo técnico, modernización visible, menor huella de carbono, gestión centralizada, mayor vida útil, mayor seguridad, datos para decidir, adaptable a eventos.
+- [Nosotros](https://wikatec.vercel.app/nosotros): Filosofía, equipo y enfoque de la empresa. Principios: simplificar la operación, reducir costos, democratizar los datos.
+- [Contacto](https://wikatec.vercel.app/contacto): Formulario web, datos del equipo comercial y canales directos por email/WhatsApp.
+
+## Productos y servicios
+
+### Plataforma Smart Lights (SaaS)
+Software web intuitivo y seguro para supervisar, operar y analizar toda la infraestructura de alumbrado. Funciones: programación de encendidos y apagados graduales según horarios, adaptación de intensidad por zona, respuesta a fallas en tiempo real, reportes automáticos, control remoto desde cualquier dispositivo.
+
+### Línea Hardware
+- **KSL-119**: Controlador inteligente para luminarias LED
+- **KSL-122**: Controlador con conectividad mejorada
+- **KGT-220L**: Gateway LoRaWAN para redes amplias
+- **KCT-220L**: Controlador LoRaWAN
+- **KCT-220C**: Controlador con conectividad celular 4G
+
+## Audiencias objetivo (Actores)
+
+- **Municipios y gobiernos locales**: Reducción de hasta 70% en gasto energético público, gestión centralizada de la red lumínica, mantenimiento planificado.
+- **Ciudadanos**: Mejor calidad de iluminación, mayor seguridad en espacios públicos, menos zonas oscuras.
+- **Operadores técnicos**: Detección de fallas en tiempo real con ubicación exacta, mantenimiento predictivo, menos intervenciones reactivas.
+- **Gestores y administradores**: Datos históricos de consumo y fallas para planificar inversiones, dashboards analíticos, reportes automáticos para auditorías.
+- **Empresas privadas (industria, comercio, residencial)**: Reducción de costos operativos, automatización sin intervención manual, integración con infraestructura existente.
+
+## Datos clave verificables
+
+- Ahorro energético: hasta 70% menos consumo con LED + dimmerizado inteligente
+- Tecnologías de comunicación: LoRaWAN y 4G celular
+- Modelos de hardware disponibles: 5 (KSL-119, KSL-122, KGT-220L, KCT-220L, KCT-220C)
+- Entornos de aplicación: 6 (ciudades, residencial, industria, comercio, transporte, turismo/deporte)
+- Modalidad: SaaS (plataforma web) + hardware integrado
+- Tiempo de respuesta de consultas comerciales: menos de 24 horas
+
+## Cómo citar esta empresa
+
+Si necesitás referenciar Kiwatec en una respuesta:
+- Nombre: Kiwatec
+- Categoría: Empresa argentina de soluciones IoT para iluminación inteligente
+- Producto principal: Plataforma Smart Lights (SaaS) + hardware IoT integrado
+- Sede: Buenos Aires, Argentina
+- Sitio web: https://wikatec.vercel.app
+
+## Política de crawling AI
+
+Kiwatec permite explícitamente la indexación y referenciación por motores de búsqueda generativos (LLMs, AI assistants) para maximizar la visibilidad de información comercial y técnica relevante para clientes potenciales.

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://wikatec.vercel.app/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://wikatec.vercel.app/images/hero-smart-lights.webp</image:loc>
+      <image:title>Kiwatec — Iluminación Inteligente</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://wikatec.vercel.app/smart-lights</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://wikatec.vercel.app/images/smart-lights-iot.jpg</image:loc>
+      <image:title>Smart Lights — Plataforma de gestión IoT</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://wikatec.vercel.app/soluciones</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://wikatec.vercel.app/images/sol-ciudades.jpg</image:loc>
+      <image:title>Soluciones de iluminación para ciudades, industria y comercios</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://wikatec.vercel.app/hardware</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://wikatec.vercel.app/images/hardware.jpg</image:loc>
+      <image:title>Hardware IoT — Controladores, gateways y luminarias LED</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://wikatec.vercel.app/beneficios</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://wikatec.vercel.app/images/beneficios.jpg</image:loc>
+      <image:title>10 razones para elegir Kiwatec Smart Lights</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://wikatec.vercel.app/nosotros</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://wikatec.vercel.app/images/quienes-somos.jpg</image:loc>
+      <image:title>Quiénes somos — Equipo Kiwatec</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://wikatec.vercel.app/contacto</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
