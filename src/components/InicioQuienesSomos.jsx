@@ -1,4 +1,7 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useGSAP } from '@gsap/react'
+import { gsap, ScrollTrigger, prefersReduced } from '../lib/gsap'
 import { useReveal } from '../hooks/useReveal'
 import SmoothImage from './SmoothImage'
 
@@ -16,46 +19,99 @@ const ArrowIcon = () => (
   </svg>
 )
 
-const btnCls =
-  'group inline-flex items-center justify-center gap-2 h-[42px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300'
-
 export default function QuienesSomos() {
-  const ref = useReveal()
+  const root = useRef(null)
+  const revealRef = useReveal()
+
+  // Scroll-linked parallax: image moves slower than scroll, number moves faster
+  useGSAP(
+    () => {
+      if (prefersReduced) return
+      gsap.to('.qs-image', {
+        yPercent: -12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: root.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5,
+        },
+      })
+      gsap.to('.qs-number', {
+        yPercent: -45,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: root.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5,
+        },
+      })
+    },
+    { scope: root }
+  )
+
   return (
     <section
-      ref={ref}
+      ref={root}
       id="quienes-somos"
-      className="py-12 md:py-20 px-6 bg-gradient-to-b from-[#030C40] to-[#172555] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] scroll-mt-[67px]"
+      className="relative w-full bg-[#030C40] overflow-hidden scroll-mt-[67px]"
     >
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-[75px]">
-        <div className="w-full md:w-[40%] flex flex-col gap-5 md:gap-7 order-1">
-          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
-            Sobre Kiwatec
+      {/* Big translucent "01" — parallax watermark */}
+      <div
+        aria-hidden="true"
+        className="qs-number pointer-events-none absolute -top-8 right-4 lg:right-12 font-black leading-none text-white/[0.04] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[26rem] tabular-nums"
+      >
+        01
+      </div>
+
+      <div ref={revealRef} className="relative z-10 grid lg:grid-cols-2 min-h-[80vh] lg:min-h-[640px]">
+        {/* Full-bleed image with subtle parallax */}
+        <div className="relative h-[60vh] lg:h-auto overflow-hidden">
+          <div className="qs-image absolute inset-0 scale-110">
+            <SmoothImage
+              src="/images/quienes-somos.jpg"
+              alt="Equipo Kiwatec"
+              loading="eager"
+              fetchPriority="high"
+              className="w-full h-full object-cover opacity-90"
+            />
+          </div>
+          {/* Dark fade on the inner edge for smooth blend with text side */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-[#030C40] via-[#030C40]/40 to-transparent hidden lg:block" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030C40] via-[#030C40]/40 to-transparent lg:hidden" />
+          {/* Decorative corner accent */}
+          <div className="pointer-events-none absolute top-6 left-6 flex items-center gap-2 rounded-full bg-black/50 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90">
+              01 · Sobre Kiwatec
+            </span>
+          </div>
+        </div>
+
+        {/* Text panel */}
+        <div className="relative flex flex-col justify-center px-6 lg:px-14 py-12 lg:py-20">
+          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80 mb-5">
+            Especialistas en iluminación inteligente
           </p>
-          <h2 className="r-reveal text-white font-bold text-[26px] md:text-[34px] leading-[1.15]">
+          <h2 className="r-reveal text-white font-bold text-[32px] md:text-[44px] lg:text-[52px] leading-[1.05] mb-6">
             ¿Quiénes somos?
           </h2>
-          <p className="r-reveal text-white/85 font-normal text-sm md:text-base leading-[170%]">
-            En Kiwatec desarrollamos una plataforma para el control de iluminación inteligente, abierta y escalable, que se adapta a cada entorno urbano. Combinamos software avanzado y hardware de alto rendimiento para optimizar recursos y gestionar infraestructura lumínica de forma eficiente.
+          <p className="r-reveal text-white/85 text-base lg:text-[17px] leading-[170%] mb-8 max-w-xl">
+            En Kiwatec desarrollamos una plataforma para el control de
+            iluminación inteligente, abierta y escalable, que se adapta a cada
+            entorno urbano. Combinamos software avanzado y hardware de alto
+            rendimiento para optimizar recursos y gestionar infraestructura
+            lumínica de forma eficiente.
           </p>
-          <Link to="/nosotros" className={`r-reveal hidden md:inline-flex w-[200px] ${btnCls}`}>
+          <Link
+            to="/nosotros"
+            className="r-reveal group inline-flex items-center justify-center gap-2 w-[210px] h-[44px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300"
+          >
             Conocer más
             <ArrowIcon />
           </Link>
         </div>
-        <div className="r-reveal w-full md:w-[55%] order-2 group overflow-hidden rounded-[23px]">
-          <SmoothImage
-            src="/images/quienes-somos.jpg"
-            alt="Equipo Kiwatec"
-            loading="eager"
-            fetchPriority="high"
-            className="w-full object-cover h-[250px] md:h-[416px] rounded-[23px] opacity-[0.79] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <Link to="/nosotros" className={`md:hidden order-3 w-full r-reveal ${btnCls}`}>
-          Conocer más
-          <ArrowIcon />
-        </Link>
       </div>
     </section>
   )
