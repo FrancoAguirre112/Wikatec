@@ -200,27 +200,27 @@ export default function BeneficiosRazones() {
     <section
       ref={sectionRef}
       id="razones-smart-lights"
-      className="relative w-full py-8 md:py-10 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
+      className="relative w-full py-6 md:py-8 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
     >
       <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
 
       <div ref={revealRef} className="relative max-w-7xl mx-auto">
         {/* Header centered */}
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="r-reveal mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="r-reveal mb-2 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
             Beneficios medibles
           </p>
-          <h2 className="r-reveal text-white font-bold text-[26px] md:text-[36px] leading-[1.05]">
+          <h2 className="r-reveal text-white font-bold text-[24px] md:text-[30px] leading-[1.1]">
             10 razones para elegir <span className="text-blue-300">Kiwatec Smart Lights</span>
           </h2>
-          <p className="r-reveal mt-3 text-white/70 text-sm md:text-[15px] leading-[160%] max-w-xl mx-auto">
+          <p className="r-reveal mt-2.5 text-white/70 text-sm leading-[155%] max-w-xl mx-auto">
             El impacto concreto de pasar a una red lumínica inteligente: ahorro, control y sustentabilidad medibles desde el primer día.
           </p>
         </div>
 
         {/* Cards grid */}
-        <div className="mt-7 md:mt-8 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="mt-5 md:mt-6 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
           {razones.map((r, i) => (
             <div
               key={r.id}
@@ -244,7 +244,7 @@ export default function BeneficiosRazones() {
         </div>
 
         {/* Progress block at bottom — full width of the title container for impact */}
-        <div className="r-reveal hidden lg:block mt-6 max-w-5xl mx-auto">
+        <div className="r-reveal hidden lg:block mt-4 max-w-5xl mx-auto">
           <div className="flex items-center justify-between text-[11px] text-white/40 mb-2">
             <span className="uppercase tracking-[0.28em]">Scroll para descubrir</span>
             <span
