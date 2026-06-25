@@ -98,7 +98,7 @@ export default function SolucionesGaleria() {
     const tx = (1 - col) * 100 // col 0 -> +100, col 1 -> 0, col 2 -> -100
     const ty = row === 0 ? 50 : -50
     return {
-      transform: `translate(${tx}%, ${ty}%) scale(2.65)`,
+      transform: `translate(${tx}%, ${ty}%) scale(3)`,
       opacity: 1,
       filter: 'none',
       zIndex: 30,
@@ -114,7 +114,7 @@ export default function SolucionesGaleria() {
         if (prefersReduced) return
         const st = ScrollTrigger.create({
           trigger: root.current,
-          start: 'top top',
+          start: 'top top+=67',
           end: '+=' + items.length * 500,
           pin: true,
           anticipatePin: 1,
@@ -173,8 +173,8 @@ export default function SolucionesGaleria() {
 
   return (
     <section ref={root} className="relative w-full bg-[#030C40]">
-      {/* Desktop: pin + zoom inmersivo */}
-      <div className="hidden md:flex md:items-center md:h-screen md:overflow-hidden relative">
+      {/* Desktop: pin + zoom inmersivo (height = viewport - navbar 67px) */}
+      <div className="hidden md:flex md:items-center md:h-[calc(100vh-67px)] md:overflow-hidden relative">
         {/* Decorative orbs */}
         <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
         <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
