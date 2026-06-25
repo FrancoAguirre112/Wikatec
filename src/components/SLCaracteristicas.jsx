@@ -123,7 +123,7 @@ export default function SLCaracteristicas() {
       mm.add('(min-width: 1024px)', () => {
         const st = ScrollTrigger.create({
           trigger: explorerRef.current,
-          start: 'center center',
+          start: 'top top+=67',
           end: '+=' + caracteristicas.length * 220,
           pin: true,
           anticipatePin: 1,
@@ -186,12 +186,12 @@ export default function SLCaracteristicas() {
       <div className="pointer-events-none absolute -right-32 top-1/3 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-1/4 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
 
-      {/* Desktop: pin + scroll-step explorer */}
+      {/* Desktop: pin + scroll-step explorer (height = viewport - navbar 67px) */}
       <div
         ref={explorerRef}
-        className="hidden lg:flex lg:items-center lg:h-screen lg:max-h-[860px] relative"
+        className="hidden lg:flex lg:items-center lg:justify-center lg:h-[calc(100vh-67px)] lg:max-h-[860px] relative"
       >
-        <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-stretch lg:h-[42rem]">
+        <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-stretch lg:h-[36rem]">
           {/* Left: tabs list */}
           <div className="col-span-5 flex flex-col justify-center gap-2">
             {caracteristicas.map((f, i) => {
@@ -279,7 +279,7 @@ export default function SLCaracteristicas() {
                   className="w-full h-full object-cover rounded-2xl shadow-xl shadow-black/30 opacity-95"
                 />
               </div>
-              <p className="sl-panel-item text-white/80 text-[14.5px] leading-relaxed min-h-[6.5rem]">
+              <p className="sl-panel-item text-white/80 text-[14.5px] leading-relaxed min-h-[5.5rem]">
                 {current.descripcion}
               </p>
             </div>
