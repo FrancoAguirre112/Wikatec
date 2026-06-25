@@ -70,10 +70,10 @@ export default function Beneficios() {
       ref={root}
       className="relative w-full bg-gradient-to-b from-[#172555] to-[#030C40] overflow-hidden py-20 lg:py-28"
     >
-      {/* "05" decoration top-left (opposite of image which is on the right) */}
+      {/* "05" decoration top-right (opposite of image which is now on the left) */}
       <span
         aria-hidden="true"
-        className="ben-number pointer-events-none absolute -top-8 left-2 lg:left-12 font-black leading-none text-white/[0.04] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[22rem] tabular-nums"
+        className="ben-number pointer-events-none absolute -top-8 right-4 lg:right-12 font-black leading-none text-white/4 select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[22rem] tabular-nums"
       >
         05
       </span>
@@ -82,8 +82,8 @@ export default function Beneficios() {
         ref={revealRef}
         className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
       >
-        {/* Left: text with vertical accent bar */}
-        <div className="relative pl-8 lg:pl-10">
+        {/* Right: text with vertical accent bar (order-2 on desktop = right column) */}
+        <div className="relative pl-8 lg:pl-10 lg:order-2">
           {/* Vertical accent bar (animated) — only blue→sky, amber reserved for Smart Lights */}
           <div className="ben-bar absolute left-0 top-2 bottom-2 w-1.5 bg-gradient-to-b from-blue-400 to-sky-300 rounded-full shadow-[0_0_12px_rgba(96,165,250,0.4)]" />
 
@@ -108,8 +108,8 @@ export default function Beneficios() {
           </Link>
         </div>
 
-        {/* Right: framed image with subtle right-rotation */}
-        <div className="ben-image relative">
+        {/* Left: framed image (order-1 on desktop = left column) */}
+        <div className="ben-image relative lg:order-1">
           <div className="relative group transition-transform duration-500">
             <div className="relative overflow-hidden rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.55)] ring-1 ring-white/10">
               <SmoothImage
