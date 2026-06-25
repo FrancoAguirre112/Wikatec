@@ -110,7 +110,7 @@ export default function Hardware() {
 
         {/* Right: image floating with subtle rotation */}
         <div className="hw-image relative">
-          <div className="relative group lg:rotate-[-3deg] transition-transform duration-500 hover:rotate-0">
+          <div className="relative group transition-transform duration-500">
             <SmoothImage
               src="/images/hardware.jpg"
               alt="Controladores IoT y hardware Smart Lights"

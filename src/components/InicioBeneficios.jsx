@@ -111,7 +111,7 @@ export default function Beneficios() {
 
         {/* Right: framed image with subtle right-rotation */}
         <div className="ben-image relative">
-          <div className="relative group lg:rotate-[2deg] transition-transform duration-500 hover:rotate-0">
+          <div className="relative group transition-transform duration-500">
             <div className="relative overflow-hidden rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.55)] ring-1 ring-white/10">
               <SmoothImage
                 src="/images/beneficios.jpg"

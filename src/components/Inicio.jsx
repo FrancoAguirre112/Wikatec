@@ -12,8 +12,8 @@ export default function Inicio() {
     <>
       <InicioHero />
       <InicioStats />
-      <InicioSmartLightsSection />
       <InicioQuienesSomos />
+      <InicioSmartLightsSection />
       <InicioSoluciones />
       <InicioHardware />
       <InicioBeneficios />
