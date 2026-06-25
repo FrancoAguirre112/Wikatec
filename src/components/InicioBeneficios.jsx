@@ -70,36 +70,44 @@ export default function Beneficios() {
 
       <div
         ref={revealRef}
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-y-5 gap-x-12 lg:gap-x-16 items-start"
       >
-        {/* Right: text with vertical accent bar (order-2 on desktop = right column) */}
-        <div className="relative pl-8 lg:pl-10 lg:order-2">
-          {/* Vertical accent bar (animated) — only blue→sky, amber reserved for Smart Lights */}
-          <div className="ben-bar absolute left-0 top-2 bottom-2 w-1.5 bg-gradient-to-b from-blue-400 to-sky-300 rounded-full shadow-[0_0_12px_rgba(96,165,250,0.4)]" />
+        {/* Text wrapper: contents on mobile (children flow flat into grid),
+            flex column on desktop (col 2, with accent bar inside) */}
+        <div className="contents lg:flex lg:flex-col lg:relative lg:pl-10 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
+          {/* Vertical accent bar (animated, desktop only — anchors the text column) */}
+          <div className="ben-bar hidden lg:block absolute left-0 top-2 bottom-2 w-1.5 bg-gradient-to-b from-blue-400 to-sky-300 rounded-full shadow-[0_0_12px_rgba(96,165,250,0.4)]" />
 
-          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80 mb-5">
-            05 · Impacto medible
-          </p>
-          <h2 className="r-reveal text-white font-bold text-[32px] md:text-[44px] lg:text-[52px] leading-[1.1] mb-6">
-            Menos fallas, menos costos,{' '}
-            <span className="text-blue-300">más control</span>.
-          </h2>
-          <p className="r-reveal text-white/85 text-base lg:text-[17px] leading-[170%] max-w-xl mb-8">
-            Nuestro sistema detecta anomalías antes de que se conviertan en
-            problemas, reduce el gasto energético y permite a los operadores
-            actuar desde cualquier lugar, en tiempo real.
-          </p>
-          <Link
-            to="/beneficios"
-            className="r-reveal group inline-flex items-center justify-center gap-2 w-[210px] h-[44px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300"
-          >
-            Conocer más
-            <ArrowIcon />
-          </Link>
+          {/* Title — mobile order-1 (top), desktop natural flow */}
+          <div className="order-1 lg:order-none flex flex-col gap-5">
+            <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
+              05 · Impacto medible
+            </p>
+            <h2 className="r-reveal text-white font-bold text-[32px] md:text-[44px] lg:text-[52px] leading-[1.1]">
+              Menos fallas, menos costos,{' '}
+              <span className="text-blue-300">más control</span>.
+            </h2>
+          </div>
+
+          {/* Body — mobile order-3 (after image), desktop natural flow */}
+          <div className="order-3 lg:order-none flex flex-col gap-5 lg:mt-6">
+            <p className="r-reveal text-white/85 text-base lg:text-[17px] leading-[170%] max-w-xl">
+              Nuestro sistema detecta anomalías antes de que se conviertan en
+              problemas, reduce el gasto energético y permite a los operadores
+              actuar desde cualquier lugar, en tiempo real.
+            </p>
+            <Link
+              to="/beneficios"
+              className="r-reveal group inline-flex items-center justify-center gap-2 w-[210px] h-[44px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300 mt-2"
+            >
+              Conocer más
+              <ArrowIcon />
+            </Link>
+          </div>
         </div>
 
-        {/* Left: framed image (order-1 on desktop = left column) */}
-        <div className="ben-image relative lg:order-1">
+        {/* Image — mobile order-2 (between title and body), desktop col-1 spans both rows */}
+        <div className="order-2 lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:self-center ben-image relative">
           <div className="relative group transition-transform duration-500">
             <div className="relative overflow-hidden rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.55)] ring-1 ring-white/10">
               <SmoothImage
@@ -107,9 +115,7 @@ export default function Beneficios() {
                 alt="Ciudad inteligente con IoT"
                 className="w-full h-[300px] lg:h-[440px] object-cover opacity-95"
               />
-              {/* Soft fade toward text side (right) — visual rhyme with section 01's edge blend */}
               <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#030C40]/45 via-[#030C40]/15 to-transparent" />
-              {/* Corner badge — consistent with sections 02 and 04 */}
               <div className="pointer-events-none absolute top-5 right-5 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
                 <span className="flex h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />
                 <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90">

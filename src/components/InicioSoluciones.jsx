@@ -1,7 +1,10 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper/modules'
 import { useReveal } from '../hooks/useReveal'
 import SmoothImage from './SmoothImage'
+import 'swiper/css'
 
 const ArrowIcon = () => (
   <svg
@@ -35,9 +38,47 @@ const previews = [
   },
 ]
 
+function PreviewCard({ p, i }) {
+  return (
+    <Link
+      to="/soluciones"
+      className="group relative block overflow-hidden rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.35)] hover:-translate-y-1 transition-all duration-500"
+    >
+      <SmoothImage
+        src={p.src}
+        alt={p.label}
+        className="w-full h-[220px] lg:h-[260px] object-cover transition-transform duration-700 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+      <div className="absolute bottom-4 left-4 right-4">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-blue-300 text-[10px] font-bold tabular-nums">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <span className="h-px w-5 bg-blue-300/40" />
+        </div>
+        <p className="text-white font-bold text-[17px] leading-tight">
+          {p.label}
+        </p>
+        <p className="text-white/65 text-[12px] mt-0.5">{p.sublabel}</p>
+      </div>
+    </Link>
+  )
+}
+
 export default function Soluciones() {
   const root = useRef(null)
   const revealRef = useReveal()
+
+  const CTA = (
+    <Link
+      to="/soluciones"
+      className="group inline-flex items-center justify-center gap-2 w-[210px] h-[44px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300"
+    >
+      Conocer más
+      <ArrowIcon />
+    </Link>
+  )
 
   return (
     <section
@@ -59,48 +100,48 @@ export default function Soluciones() {
         <h2 className="r-reveal text-white font-bold text-[40px] md:text-[56px] lg:text-[68px] leading-[1] mb-7">
           Soluciones
         </h2>
-        <p className="r-reveal text-white/85 text-base lg:text-[18px] leading-[170%] max-w-2xl mx-auto mb-10">
+        <p className="r-reveal text-white/85 text-base lg:text-[18px] leading-[170%] max-w-2xl mx-auto mb-8 lg:mb-10">
           Combinamos luminarias LED, controladores IoT y software de gestión en
           un sistema integrado. Fácil de operar, adaptable a cualquier entorno
           urbano y diseñado para reducir costos desde el primer día.
         </p>
-        <Link
-          to="/soluciones"
-          className="r-reveal group inline-flex items-center justify-center gap-2 w-[210px] h-[44px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300"
-        >
-          Conocer más
-          <ArrowIcon />
-        </Link>
+        {/* CTA visible only on desktop (mobile shows it AFTER the carousel) */}
+        <div className="r-reveal hidden lg:flex justify-center">{CTA}</div>
       </div>
 
-      {/* 3 mini-cards preview */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5">
+      {/* Desktop: 3-card grid */}
+      <div className="hidden lg:grid relative z-10 max-w-6xl mx-auto px-6 mt-16 grid-cols-3 gap-5">
         {previews.map((p, i) => (
-          <Link
-            key={p.label}
-            to="/soluciones"
-            className="r-reveal group relative overflow-hidden rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.35)] hover:-translate-y-1 transition-all duration-500"
-          >
-            <SmoothImage
-              src={p.src}
-              alt={p.label}
-              className="w-full h-[200px] lg:h-[260px] object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-blue-300 text-[10px] font-bold tabular-nums">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span className="h-px w-5 bg-blue-300/40" />
-              </div>
-              <p className="text-white font-bold text-[17px] leading-tight">
-                {p.label}
-              </p>
-              <p className="text-white/65 text-[12px] mt-0.5">{p.sublabel}</p>
-            </div>
-          </Link>
+          <div key={p.label} className="r-reveal">
+            <PreviewCard p={p} i={i} />
+          </div>
         ))}
+      </div>
+
+      {/* Mobile: infinite-loop carousel + CTA below */}
+      <div className="lg:hidden relative z-10 mt-10">
+        <Swiper
+          modules={[Autoplay]}
+          slidesPerView={1.15}
+          centeredSlides
+          spaceBetween={14}
+          loop
+          loopAdditionalSlides={2}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: false,
+          }}
+          speed={700}
+          className="!px-6 !pb-2"
+        >
+          {previews.map((p, i) => (
+            <SwiperSlide key={p.label} className="!h-auto">
+              <PreviewCard p={p} i={i} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="r-reveal flex justify-center mt-8">{CTA}</div>
       </div>
     </section>
   )

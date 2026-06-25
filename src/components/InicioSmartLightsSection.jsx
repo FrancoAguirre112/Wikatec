@@ -58,10 +58,10 @@ export default function SmartLightsSection() {
 
       <div
         ref={revealRef}
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-y-5 gap-x-12 lg:gap-x-16 items-start"
       >
-        {/* Left: text */}
-        <div className="flex flex-col gap-5">
+        {/* Title — mobile order-1, desktop col-1 row-1 */}
+        <div className="order-1 lg:col-start-1 lg:row-start-1 flex flex-col gap-5">
           <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-amber-300/80">
             02 · Plataforma
           </p>
@@ -72,6 +72,29 @@ export default function SmartLightsSection() {
             />
             Smart Lights
           </h2>
+        </div>
+
+        {/* Image — mobile order-2 (between title and body), desktop col-2 spans both rows */}
+        <div className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center sl-image relative">
+          <div className="relative group transition-transform duration-500">
+            <SmoothImage
+              src="/images/smart-lights-iot.jpg"
+              alt="Smart Lights IoT"
+              className="w-full h-[300px] lg:h-[460px] object-cover rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.55)] opacity-95"
+            />
+            <div className="pointer-events-none absolute inset-0 rounded-[28px] bg-gradient-to-tr from-amber-500/10 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 rounded-l-[28px] bg-gradient-to-r from-[#030C40]/45 via-[#030C40]/15 to-transparent" />
+            <div className="pointer-events-none absolute top-5 right-5 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
+              <span className="flex h-1.5 w-1.5 rounded-full bg-amber-300 shadow-[0_0_8px_rgba(252,211,77,0.7)]" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90">
+                IoT integrado
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Body — mobile order-3 (after image), desktop col-1 row-2 */}
+        <div className="order-3 lg:col-start-1 lg:row-start-2 flex flex-col gap-5">
           <p className="r-reveal text-white/85 text-base lg:text-[17px] leading-[170%] max-w-xl">
             Gestione toda su red lumínica desde una sola plataforma:
             programe encendidos y apagados graduales según horarios,
@@ -88,28 +111,6 @@ export default function SmartLightsSection() {
             Conocer más
             <ArrowIcon />
           </Link>
-        </div>
-
-        {/* Right: image with corner badge */}
-        <div className="sl-image relative">
-          <div className="relative group transition-transform duration-500">
-            <SmoothImage
-              src="/images/smart-lights-iot.jpg"
-              alt="Smart Lights IoT"
-              className="w-full h-[300px] lg:h-[460px] object-cover rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.55)] opacity-95"
-            />
-            {/* Warm amber tint overlay (subtle, matches title glow) */}
-            <div className="pointer-events-none absolute inset-0 rounded-[28px] bg-gradient-to-tr from-amber-500/10 via-transparent to-transparent" />
-            {/* Soft fade toward text side — visual rhyme with section 01's edge blend */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 rounded-l-[28px] bg-gradient-to-r from-[#030C40]/45 via-[#030C40]/15 to-transparent" />
-            {/* Corner badge */}
-            <div className="pointer-events-none absolute top-5 right-5 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
-              <span className="flex h-1.5 w-1.5 rounded-full bg-amber-300 shadow-[0_0_8px_rgba(252,211,77,0.7)]" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90">
-                IoT integrado
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
