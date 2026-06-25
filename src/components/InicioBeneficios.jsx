@@ -107,6 +107,8 @@ export default function Beneficios() {
                 alt="Ciudad inteligente con IoT"
                 className="w-full h-[300px] lg:h-[440px] object-cover opacity-95"
               />
+              {/* Soft fade toward text side (right) — visual rhyme with section 01's edge blend */}
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#030C40]/45 via-[#030C40]/15 to-transparent" />
               {/* Corner badge — consistent with sections 02 and 04 */}
               <div className="pointer-events-none absolute top-5 right-5 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
                 <span className="flex h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />

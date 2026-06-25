@@ -100,6 +100,8 @@ export default function SmartLightsSection() {
             />
             {/* Warm amber tint overlay (subtle, matches title glow) */}
             <div className="pointer-events-none absolute inset-0 rounded-[28px] bg-gradient-to-tr from-amber-500/10 via-transparent to-transparent" />
+            {/* Soft fade toward text side — visual rhyme with section 01's edge blend */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 rounded-l-[28px] bg-gradient-to-r from-[#030C40]/45 via-[#030C40]/15 to-transparent" />
             {/* Corner badge */}
             <div className="pointer-events-none absolute top-5 right-5 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
               <span className="flex h-1.5 w-1.5 rounded-full bg-amber-300 shadow-[0_0_8px_rgba(252,211,77,0.7)]" />

@@ -56,8 +56,8 @@ export default function QuienesSomos() {
       </div>
 
       <div ref={revealRef} className="relative z-10 grid lg:grid-cols-2 min-h-[80vh] lg:min-h-[640px]">
-        {/* Full-bleed image with subtle parallax */}
-        <div className="relative h-[60vh] lg:h-auto overflow-hidden">
+        {/* Full-bleed image with subtle parallax. Inner edge softened with rounded corner + hairline ring to echo 2/4/5 cards */}
+        <div className="relative h-[60vh] lg:h-auto overflow-hidden rounded-b-[24px] lg:rounded-b-none lg:rounded-r-[28px]">
           <div className="qs-image absolute inset-0 scale-110">
             <SmoothImage
               src="/images/quienes-somos.jpg"
@@ -70,6 +70,9 @@ export default function QuienesSomos() {
           {/* Dark fade on the inner edge for smooth blend with text side */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-[#030C40] via-[#030C40]/40 to-transparent hidden lg:block" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030C40] via-[#030C40]/40 to-transparent lg:hidden" />
+          {/* Hairline inner edge — visual rhyme with the ring-1 on 2/4/5 cards */}
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-white/8 hidden lg:block" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white/8 lg:hidden" />
         </div>
 
         {/* Text panel */}

@@ -104,6 +104,8 @@ export default function Hardware() {
               alt="Controladores IoT y hardware Smart Lights"
               className="w-full h-[300px] lg:h-[460px] object-cover rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.55)] opacity-95"
             />
+            {/* Soft fade toward text side — visual rhyme with section 01's edge blend */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 rounded-l-[28px] bg-gradient-to-r from-[#030C40]/45 via-[#030C40]/15 to-transparent" />
             {/* Corner badge */}
             <div className="pointer-events-none absolute top-5 left-5 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
               <span className="flex h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />
