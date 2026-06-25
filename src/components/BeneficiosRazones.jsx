@@ -10,7 +10,7 @@ const Icon = ({ children }) => (
     viewBox="0 0 24 24"
     strokeWidth={1.6}
     stroke="currentColor"
-    className="w-8 h-8 md:w-10 md:h-10"
+    className="w-7 h-7 md:w-8 md:h-8"
   >
     {children}
   </svg>
@@ -314,7 +314,7 @@ export default function BeneficiosRazones() {
     <section
       ref={sectionRef}
       id="razones-smart-lights"
-      className="relative w-full py-14 md:py-20 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
+      className="relative w-full py-10 md:py-14 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
     >
       <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
@@ -372,13 +372,13 @@ export default function BeneficiosRazones() {
               className="hidden lg:inline-block h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.9)]"
             />
           </p>
-          <h2 className="r-reveal text-white font-bold text-[28px] md:text-[40px] leading-[1.05]">
+          <h2 className="r-reveal text-white font-bold text-[26px] md:text-[34px] leading-[1.05]">
             10 razones para elegir <span className="text-blue-300">Kiwatec Smart Lights</span>
           </h2>
-          <p className="r-reveal mt-5 text-white/70 text-sm md:text-base leading-[170%] max-w-md">
+          <p className="r-reveal mt-4 text-white/70 text-sm leading-[165%] max-w-md">
             El impacto concreto de pasar a una red lumínica inteligente: ahorro, control y sustentabilidad medibles desde el primer día.
           </p>
-          <div className="r-reveal mt-6 hidden lg:flex items-center gap-2.5 text-xs text-white/40">
+          <div className="r-reveal mt-5 hidden lg:flex items-center gap-2.5 text-xs text-white/40">
             <span className="h-px w-10 bg-white/20" />
             <span className="uppercase tracking-[0.2em]">Scroll para descubrir</span>
             <span
@@ -391,23 +391,23 @@ export default function BeneficiosRazones() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
           {razones.map((r, i) => (
             <div
               key={r.id}
               ref={(el) => (cardRefs.current[i] = el)}
-              className="razon-card group relative flex flex-col gap-3 p-5 md:p-6 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[18px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:border-white/40 hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
+              className="razon-card group relative flex flex-col gap-2.5 p-4 md:p-5 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[16px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:border-white/40 hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
             >
-              <span className="absolute top-3 right-3 text-white/30 font-bold text-[12px] tracking-wide tabular-nums">
+              <span className="absolute top-3 right-3 text-white/30 font-bold text-[11px] tracking-wide tabular-nums">
                 {String(r.id).padStart(2, '0')}
               </span>
               <div className="text-blue-300/90 group-hover:text-blue-300 group-hover:scale-110 transition-all duration-300">
                 {r.icon}
               </div>
-              <h3 className="text-white font-bold text-[15px] md:text-[16px] leading-tight">
+              <h3 className="text-white font-bold text-[14.5px] md:text-[15px] leading-tight">
                 {r.titulo}
               </h3>
-              <p className="text-white/75 font-normal text-[13px] md:text-[13.5px] leading-[160%]">
+              <p className="text-white/75 font-normal text-[12.5px] md:text-[13px] leading-[155%]">
                 {r.resumen}
               </p>
             </div>
