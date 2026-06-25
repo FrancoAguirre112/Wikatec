@@ -1,7 +1,6 @@
 import ContactoHero from './ContactoHero'
 import ContactoForm from './ContactoForm'
 import ContactoEquipo from './ContactoEquipo'
-import ContactoReunion from './ContactoReunion'
 
 export default function ContactoPage() {
   return (
@@ -9,7 +8,6 @@ export default function ContactoPage() {
       <ContactoHero />
       <ContactoForm />
       <ContactoEquipo />
-      <ContactoReunion />
     </div>
   )
 }
