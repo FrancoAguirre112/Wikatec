@@ -191,9 +191,9 @@ export default function SLCaracteristicas() {
         ref={explorerRef}
         className="hidden lg:flex lg:items-center lg:h-screen lg:max-h-[860px] relative"
       >
-        <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-stretch">
+        <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-stretch lg:h-[42rem]">
           {/* Left: tabs list */}
-          <div className="col-span-5 flex flex-col gap-2">
+          <div className="col-span-5 flex flex-col justify-center gap-2">
             {caracteristicas.map((f, i) => {
               const on = i === active
               return (
@@ -279,7 +279,7 @@ export default function SLCaracteristicas() {
                   className="w-full h-full object-cover rounded-2xl shadow-xl shadow-black/30 opacity-95"
                 />
               </div>
-              <p className="sl-panel-item text-white/80 text-[14.5px] leading-relaxed">
+              <p className="sl-panel-item text-white/80 text-[14.5px] leading-relaxed min-h-[6.5rem]">
                 {current.descripcion}
               </p>
             </div>
