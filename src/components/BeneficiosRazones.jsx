@@ -234,8 +234,10 @@ export default function BeneficiosRazones() {
             minLen = sampled[s].l
           }
         }
-        // Reveal slightly BEFORE the dot reaches the exact center (feels punchier)
-        return Math.max(0, minLen - 20)
+        // Reveal BEFORE the dot reaches center. Offset proporcional al largo total
+        // para garantizar que la ultima card dispare antes de progress=1
+        const offset = Math.max(40, totalLen * 0.04)
+        return Math.max(0, minLen - offset)
       })
 
       pathData.current = { length: totalLen, cardLengths: cardLens }
