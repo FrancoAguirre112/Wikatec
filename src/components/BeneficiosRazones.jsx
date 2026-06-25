@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from 'react'
+import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap, ScrollTrigger, prefersReduced } from '../lib/gsap'
 import { useReveal } from '../hooks/useReveal'
@@ -122,145 +122,23 @@ const razones = [
   },
 ]
 
-// Reading-order indices in the 2-column grid:
-// [0][1]
-// [2][3]
-// [4][5]
-// [6][7]
-// [8][9]
-// Snake walks: 0→1→3→2→4→5→7→6→8→9 (zigzag right→down→left→down→right…)
-const SNAKE = [0, 1, 3, 2, 4, 5, 7, 6, 8, 9]
-
-// Build a smooth path through points using L+Q segments with rounded corners
-function buildSmoothPath(points, radius = 28) {
-  if (points.length < 2) return ''
-  let d = `M ${points[0].x.toFixed(2)} ${points[0].y.toFixed(2)}`
-  for (let i = 1; i < points.length; i++) {
-    const curr = points[i]
-    const prev = points[i - 1]
-    const next = i + 1 < points.length ? points[i + 1] : null
-
-    if (next) {
-      const dx1 = curr.x - prev.x
-      const dy1 = curr.y - prev.y
-      const len1 = Math.hypot(dx1, dy1) || 1
-      const r1 = Math.min(radius, len1 / 2)
-      const beforeX = curr.x - (dx1 / len1) * r1
-      const beforeY = curr.y - (dy1 / len1) * r1
-
-      const dx2 = next.x - curr.x
-      const dy2 = next.y - curr.y
-      const len2 = Math.hypot(dx2, dy2) || 1
-      const r2 = Math.min(radius, len2 / 2)
-      const afterX = curr.x + (dx2 / len2) * r2
-      const afterY = curr.y + (dy2 / len2) * r2
-
-      d += ` L ${beforeX.toFixed(2)} ${beforeY.toFixed(2)}`
-      d += ` Q ${curr.x.toFixed(2)} ${curr.y.toFixed(2)} ${afterX.toFixed(2)} ${afterY.toFixed(2)}`
-    } else {
-      d += ` L ${curr.x.toFixed(2)} ${curr.y.toFixed(2)}`
-    }
-  }
-  return d
-}
-
 export default function BeneficiosRazones() {
   const sectionRef = useRef(null)
-  const wrapRef = useRef(null)
-  const svgRef = useRef(null)
-  const pathRef = useRef(null)
-  const dotRef = useRef(null)
-  const startMarkerRef = useRef(null)
-  const progressRef = useRef(null)
   const cardRefs = useRef([])
-  const pathData = useRef({ length: 0, cardLengths: [] })
+  const counterRef = useRef(null)
+  const progressBarRef = useRef(null)
   const revealRef = useReveal()
-
-  // Build path geometry on mount + resize
-  useLayoutEffect(() => {
-    const buildPath = () => {
-      const wrap = wrapRef.current
-      const svg = svgRef.current
-      const path = pathRef.current
-      const startMarker = startMarkerRef.current
-      if (!wrap || !svg || !path || !startMarker) return
-
-      const wr = wrap.getBoundingClientRect()
-      if (!wr.width || !wr.height) return
-      svg.setAttribute('viewBox', `0 0 ${wr.width} ${wr.height}`)
-      svg.setAttribute('width', wr.width)
-      svg.setAttribute('height', wr.height)
-
-      const sr = startMarker.getBoundingClientRect()
-      const startPt = {
-        x: sr.left - wr.left + sr.width / 2,
-        y: sr.top - wr.top + sr.height / 2,
-      }
-
-      const cardPoints = SNAKE.map((i) => {
-        const c = cardRefs.current[i]
-        if (!c) return null
-        const r = c.getBoundingClientRect()
-        return {
-          x: r.left - wr.left + r.width / 2,
-          y: r.top - wr.top + r.height / 2,
-        }
-      }).filter(Boolean)
-
-      if (cardPoints.length === 0) return
-
-      const allPoints = [startPt, ...cardPoints]
-      const d = buildSmoothPath(allPoints, 28)
-      path.setAttribute('d', d)
-
-      const totalLen = path.getTotalLength()
-      path.style.strokeDasharray = `${totalLen}`
-      path.style.strokeDashoffset = `${totalLen}`
-
-      // Sample path and find length closest to each card center
-      const SAMPLES = 600
-      const sampled = new Array(SAMPLES + 1)
-      for (let s = 0; s <= SAMPLES; s++) {
-        const l = (s / SAMPLES) * totalLen
-        sampled[s] = { l, pt: path.getPointAtLength(l) }
-      }
-      const cardLens = cardPoints.map((p) => {
-        let minD = Infinity
-        let minLen = 0
-        for (let s = 0; s <= SAMPLES; s++) {
-          const dd = Math.hypot(sampled[s].pt.x - p.x, sampled[s].pt.y - p.y)
-          if (dd < minD) {
-            minD = dd
-            minLen = sampled[s].l
-          }
-        }
-        // Reveal BEFORE the dot reaches center. Offset proporcional al largo total
-        // para garantizar que la ultima card dispare antes de progress=1
-        const offset = Math.max(40, totalLen * 0.04)
-        return Math.max(0, minLen - offset)
-      })
-
-      pathData.current = { length: totalLen, cardLengths: cardLens }
-      ScrollTrigger.refresh()
-    }
-
-    buildPath()
-    const t = setTimeout(buildPath, 250)
-    window.addEventListener('resize', buildPath)
-    return () => {
-      clearTimeout(t)
-      window.removeEventListener('resize', buildPath)
-    }
-  }, [])
 
   useGSAP(
     () => {
       if (prefersReduced) return
       const mm = gsap.matchMedia()
       mm.add('(min-width: 1024px)', () => {
-        const path = pathRef.current
-        const dot = dotRef.current
-        if (!path || !dot) return
+        const total = razones.length
+        // Cards reveal in reading order (1..10). Each one occupies ~9.5% of pin progress,
+        // with a 5% intro buildup and ~5% outro settled view.
+        const stepSize = 0.95 / total
+        const spotlightWindow = stepSize * 0.65 // brief glow
 
         const st = ScrollTrigger.create({
           trigger: sectionRef.current,
@@ -270,37 +148,31 @@ export default function BeneficiosRazones() {
           scrub: 0.6,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const { length, cardLengths } = pathData.current
-            if (!length) return
-
             const progress = self.progress
-            const drawn = length * progress
-
-            path.style.strokeDashoffset = `${length - drawn}`
-
-            if (drawn > 0 && progress < 0.995) {
-              const pt = path.getPointAtLength(drawn)
-              dot.setAttribute('cx', pt.x)
-              dot.setAttribute('cy', pt.y)
-              dot.style.opacity = '1'
-            } else {
-              dot.style.opacity = '0'
-            }
-
-            if (progressRef.current) {
-              progressRef.current.textContent = `${Math.round(progress * 100)}%`
-            }
-
-            cardLengths.forEach((triggerLen, snakeIdx) => {
-              const cardIdx = SNAKE[snakeIdx]
-              const card = cardRefs.current[cardIdx]
+            let revealedCount = 0
+            razones.forEach((_, i) => {
+              const appearAt = 0.025 + i * stepSize
+              const card = cardRefs.current[i]
               if (!card) return
-              if (drawn >= triggerLen) {
+              if (progress >= appearAt) {
                 card.classList.add('is-visible')
+                revealedCount++
+                if (progress < appearAt + spotlightWindow) {
+                  card.classList.add('is-spotlight')
+                } else {
+                  card.classList.remove('is-spotlight')
+                }
               } else {
-                card.classList.remove('is-visible')
+                card.classList.remove('is-visible', 'is-spotlight')
               }
             })
+
+            if (counterRef.current) {
+              counterRef.current.textContent = `${String(revealedCount).padStart(2, '0')} / 10`
+            }
+            if (progressBarRef.current) {
+              progressBarRef.current.style.transform = `scaleX(${revealedCount / total})`
+            }
           },
         })
 
@@ -321,58 +193,11 @@ export default function BeneficiosRazones() {
       <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
 
-      <div
-        ref={wrapRef}
-        className="relative max-w-7xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-14"
-      >
-        {/* SVG path overlay covering both columns (desktop only) */}
-        <svg
-          ref={svgRef}
-          className="pointer-events-none absolute inset-0 z-20 hidden lg:block"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient id="razonesPathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#7DD3FC" stopOpacity="0.95" />
-            </linearGradient>
-            <filter id="razonesPathGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          <path
-            ref={pathRef}
-            fill="none"
-            stroke="url(#razonesPathGradient)"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            filter="url(#razonesPathGlow)"
-          />
-          <circle
-            ref={dotRef}
-            r="5"
-            fill="#7DD3FC"
-            style={{
-              filter: 'drop-shadow(0 0 12px rgba(125,211,252,0.95)) drop-shadow(0 0 26px rgba(125,211,252,0.45))',
-              opacity: 0,
-              transition: 'opacity 200ms ease-out',
-            }}
-          />
-        </svg>
-
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-14">
         {/* Sticky title column */}
         <div ref={revealRef} className="lg:sticky lg:top-28 lg:self-start">
-          <p className="r-reveal mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80 inline-flex items-center gap-2.5">
+          <p className="r-reveal mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
             Beneficios medibles
-            <span
-              ref={startMarkerRef}
-              className="hidden lg:inline-block h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.9)]"
-            />
           </p>
           <h2 className="r-reveal text-white font-bold text-[26px] md:text-[34px] leading-[1.05]">
             10 razones para elegir <span className="text-blue-300">Kiwatec Smart Lights</span>
@@ -384,11 +209,18 @@ export default function BeneficiosRazones() {
             <span className="h-px w-10 bg-white/20" />
             <span className="uppercase tracking-[0.2em]">Scroll para descubrir</span>
             <span
-              ref={progressRef}
+              ref={counterRef}
               className="ml-auto font-semibold tabular-nums text-blue-300/90"
             >
-              0%
+              00 / 10
             </span>
+          </div>
+          <div className="r-reveal hidden lg:block mt-3 h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
+            <div
+              ref={progressBarRef}
+              className="h-full origin-left bg-gradient-to-r from-blue-400 to-sky-300"
+              style={{ transform: 'scaleX(0)', transition: 'transform 250ms ease-out' }}
+            />
           </div>
         </div>
 
@@ -421,12 +253,24 @@ export default function BeneficiosRazones() {
         @media (min-width: 1024px) {
           .razon-card {
             opacity: 0;
-            transform: translateY(14px) scale(0.985);
-            transition: opacity 550ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms, box-shadow 300ms;
+            transform: translateY(16px) scale(0.96);
+            transition:
+              opacity 550ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 450ms ease-out,
+              box-shadow 500ms ease-out;
           }
           .razon-card.is-visible {
             opacity: 1;
             transform: translateY(0) scale(1);
+          }
+          .razon-card.is-spotlight {
+            border-color: rgba(96, 165, 250, 0.55);
+            box-shadow:
+              0 0 0 1px rgba(96, 165, 250, 0.4),
+              0 12px 36px rgba(96, 165, 250, 0.22),
+              0 0 80px rgba(96, 165, 250, 0.18);
+            transform: translateY(0) scale(1.025);
           }
         }
       `}</style>
