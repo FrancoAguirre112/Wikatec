@@ -17,11 +17,12 @@ console.log('-> /smart-lights')
 await page.goto(`${BASE}/smart-lights`, { waitUntil: 'networkidle' })
 await page.waitForTimeout(1500)
 
+// Pin range is approximately scrollY 858 to 2398. Stay within.
 const positions = [
-  { label: 'a-pin-start', y: 1200 },
-  { label: 'b-step1', y: 1500 },
-  { label: 'c-step3', y: 2000 },
-  { label: 'd-step5', y: 2500 },
+  { label: 'a-pin-start', y: 950 },
+  { label: 'b-step1', y: 1100 },
+  { label: 'c-step3', y: 1500 },
+  { label: 'd-step5', y: 1900 },
 ]
 
 for (const p of positions) {

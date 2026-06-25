@@ -192,8 +192,8 @@ export default function SLCaracteristicas() {
         className="hidden lg:flex lg:items-center lg:justify-center lg:h-[calc(100vh-67px)] lg:max-h-[860px] relative"
       >
         <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-stretch lg:h-[36rem]">
-          {/* Left: tabs list */}
-          <div className="col-span-5 flex flex-col justify-center gap-2">
+          {/* Left: tabs list (justify-between distribuye los 7 buttons borde a borde) */}
+          <div className="col-span-5 flex flex-col justify-between">
             {caracteristicas.map((f, i) => {
               const on = i === active
               return (
