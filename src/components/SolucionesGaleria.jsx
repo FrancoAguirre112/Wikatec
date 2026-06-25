@@ -2,7 +2,6 @@ import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap, ScrollTrigger, prefersReduced } from '../lib/gsap'
 import SmoothImage from './SmoothImage'
-import SwipeRow from './SwipeRow'
 
 const CheckIcon = () => (
   <svg
@@ -83,6 +82,11 @@ export default function SolucionesGaleria() {
   const current = active >= 0 ? items[active] : null
   const totalStages = items.length + 1 // mosaic + N items
 
+  // Mobile pin+scroll-jacked horizontal carousel
+  const mobileRoot = useRef(null)
+  const trackRef = useRef(null)
+  const [mobileIdx, setMobileIdx] = useState(0)
+
   // Translate + scale to center of viewport
   // (3-col, 2-row grid: col 0/1/2 -> dx +100/0/-100%, row 0/1 -> dy +50/-50%)
   const getCardStyle = (i, activeIdx) => {
@@ -152,6 +156,32 @@ export default function SolucionesGaleria() {
           stRef.current = null
         }
       })
+
+      // Mobile pin + horizontal scroll-jacked carousel
+      mm.add('(max-width: 767px)', () => {
+        if (prefersReduced) return
+        const track = trackRef.current
+        const sec = mobileRoot.current
+        if (!track || !sec) return
+        const n = items.length
+
+        const st = ScrollTrigger.create({
+          trigger: sec,
+          start: 'top top+=67',
+          end: () => `+=${(n - 1) * window.innerHeight * 0.65}`,
+          pin: true,
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const distance = (n - 1) * window.innerWidth
+            gsap.set(track, { x: -distance * self.progress })
+            const idx = Math.round(self.progress * (n - 1))
+            setMobileIdx(idx)
+          },
+        })
+        return () => st.kill()
+      })
+
       return () => mm.revert()
     },
     { scope: root, dependencies: [] }
@@ -362,64 +392,91 @@ export default function SolucionesGaleria() {
         </div>
       </div>
 
-      {/* Mobile: carrusel horizontal con cards */}
-      <div className="md:hidden py-12 px-0 overflow-hidden relative">
-        <div className="pointer-events-none absolute -right-32 top-20 h-72 w-72 rounded-full bg-blue-400/8 blur-3xl" />
-
-        <div className="relative px-6 mb-6 flex items-center gap-3">
-          <span className="h-px w-10 bg-blue-300/40" />
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-300/80">
-            6 aplicaciones · deslizá
+      {/* Mobile: pin + scroll-jacked horizontal carousel
+          Vertical scroll advances horizontally through all 6 cards */}
+      <div
+        ref={mobileRoot}
+        className="md:hidden relative w-full h-[calc(100vh-67px)] overflow-hidden bg-[#030C40]"
+      >
+        {/* Header overlay */}
+        <div className="absolute top-5 left-6 right-6 z-20 flex items-center gap-3">
+          <span className="h-px w-8 bg-blue-300/40" />
+          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-blue-300/80">
+            6 aplicaciones · scroll
           </span>
           <span className="h-px flex-1 bg-blue-300/20" />
+          <span className="text-[11px] font-bold tabular-nums text-blue-300">
+            {num(mobileIdx)}<span className="text-white/40 ml-1">/ 06</span>
+          </span>
         </div>
 
-        <SwipeRow>
+        {/* Track: 6 cards laid out horizontally, GSAP translates this */}
+        <div
+          ref={trackRef}
+          className="flex h-full items-center will-change-transform"
+          style={{ width: `${items.length * 100}vw` }}
+        >
           {items.map((item, i) => (
             <article
               key={item.id}
               id={item.ancla}
-              className="w-[85vw] shrink-0 snap-center flex flex-col bg-gradient-to-b from-[#0D1640] to-[#0A1133] border border-white/15 rounded-[20px] overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.35)] scroll-mt-[67px]"
+              className="w-screen shrink-0 h-full flex items-center justify-center px-6 pt-14 pb-12"
             >
-              <div className="relative overflow-hidden">
-                <SmoothImage
-                  src={item.imagen}
-                  alt={item.titulo}
-                  className="w-full object-cover h-[180px]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030C40]/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute top-3 left-3 flex items-center gap-2 rounded-full bg-black/40 backdrop-blur-sm px-2.5 py-1 ring-1 ring-white/15">
-                  <span className="font-bold text-blue-300 text-[11px] tabular-nums">
-                    {num(i)}
-                  </span>
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-white/70">
-                    Aplicación
-                  </span>
-                </div>
-              </div>
-
-              <div className="px-5 pt-3 pb-5 flex flex-col gap-3">
-                <h3 className="text-white font-bold text-[19px] leading-tight">
-                  {item.titulo}
-                </h3>
-                <p className="text-white/75 text-[13.5px] leading-[170%]">
-                  {item.descripcion}
-                </p>
-                <div className="flex flex-wrap gap-1.5 mt-1">
-                  {item.bullets.map((b) => (
-                    <span
-                      key={b}
-                      className="inline-flex items-center gap-1 text-[11px] text-white/90 bg-white/10 rounded-full px-2 py-0.5 ring-1 ring-white/15"
-                    >
-                      <CheckIcon />
-                      {b}
+              <div className="w-full max-w-md flex flex-col bg-gradient-to-b from-[#0D1640] to-[#0A1133] border border-white/15 rounded-[20px] overflow-hidden">
+                <div className="relative overflow-hidden">
+                  <SmoothImage
+                    src={item.imagen}
+                    alt={item.titulo}
+                    className="w-full object-cover h-[180px]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#030C40]/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute top-3 left-3 flex items-center gap-2 rounded-full bg-black/45 backdrop-blur-sm px-2.5 py-1 ring-1 ring-white/15">
+                    <span className="font-bold text-blue-300 text-[11px] tabular-nums">
+                      {num(i)}
                     </span>
-                  ))}
+                    <span className="text-[10px] uppercase tracking-[0.18em] text-white/70">
+                      Aplicación
+                    </span>
+                  </div>
+                </div>
+
+                <div className="px-5 pt-3 pb-5 flex flex-col gap-3">
+                  <h3 className="text-white font-bold text-[19px] leading-tight">
+                    {item.titulo}
+                  </h3>
+                  <p className="text-white/75 text-[13.5px] leading-[170%]">
+                    {item.descripcion}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    {item.bullets.map((b) => (
+                      <span
+                        key={b}
+                        className="inline-flex items-center gap-1 text-[11px] text-white/90 bg-white/10 rounded-full px-2 py-0.5 ring-1 ring-white/15"
+                      >
+                        <CheckIcon />
+                        {b}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </article>
           ))}
-        </SwipeRow>
+        </div>
+
+        {/* Progress dots indicator */}
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+          {items.map((_, i) => (
+            <span
+              key={i}
+              className={`h-1 rounded-full transition-all duration-300 ${
+                i === mobileIdx
+                  ? 'w-6 bg-blue-300 shadow-[0_0_8px_rgba(96,165,250,0.6)]'
+                  : 'w-1.5 bg-white/25'
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

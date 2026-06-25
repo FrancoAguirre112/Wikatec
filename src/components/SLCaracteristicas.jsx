@@ -181,7 +181,7 @@ export default function SLCaracteristicas() {
   }
 
   return (
-    <section ref={root} className="w-full bg-[#030C40] text-white overflow-hidden">
+    <section ref={root} className="relative w-full bg-[#030C40] text-white overflow-hidden">
       {/* Decorative orbs */}
       <div className="pointer-events-none absolute -right-32 top-1/3 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-1/4 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
