@@ -7,7 +7,7 @@ Kiwatec desarrolla una plataforma SaaS llamada "Smart Lights" que combina softwa
 ## Información de la empresa
 
 - **Nombre comercial**: Kiwatec
-- **Dominio web**: https://wikatec.vercel.app
+- **Dominio web**: https://kiwatec.vercel.app
 - **Ubicación**: Melian 3552 2A, Buenos Aires, Argentina
 - **Email**: info@kiwatec.net
 - **WhatsApp comercial**: +54 9 11 6500-6000 (Damián Menke, Director Comercial)
@@ -17,13 +17,13 @@ Kiwatec desarrolla una plataforma SaaS llamada "Smart Lights" que combina softwa
 
 ## Páginas principales
 
-- [Inicio](https://wikatec.vercel.app/): Página principal con visión general de la plataforma, soluciones por entorno y propuesta de valor.
-- [Smart Lights](https://wikatec.vercel.app/smart-lights): Plataforma SaaS para gestión integral de redes de iluminación inteligente. 7 características principales: monitoreo en tiempo real, control remoto, programación de horarios, detección de fallas, reportes automáticos, dimmerizado inteligente, y dashboard analítico.
-- [Soluciones](https://wikatec.vercel.app/soluciones): 6 entornos de aplicación — Ciudades y Municipios, Conjuntos Residenciales (countries y barrios cerrados), Industria y Logística, Comercio y Servicios (shoppings, retail), Transporte y Movilidad (autopistas, aeropuertos, puertos), Turismo y Espacios Deportivos.
-- [Hardware](https://wikatec.vercel.app/hardware): Línea de equipamiento IoT con 5 modelos (KSL-119, KSL-122, KGT-220L, KCT-220L, KCT-220C). Comunicación LoRaWAN y 4G. Controladores, gateways y luminarias LED.
-- [Beneficios](https://wikatec.vercel.app/beneficios): 10 razones para elegir Kiwatec Smart Lights — ahorro energético hasta 70%, reparaciones más rápidas, menor costo técnico, modernización visible, menor huella de carbono, gestión centralizada, mayor vida útil, mayor seguridad, datos para decidir, adaptable a eventos.
-- [Nosotros](https://wikatec.vercel.app/nosotros): Filosofía, equipo y enfoque de la empresa. Principios: simplificar la operación, reducir costos, democratizar los datos.
-- [Contacto](https://wikatec.vercel.app/contacto): Formulario web, datos del equipo comercial y canales directos por email/WhatsApp.
+- [Inicio](https://kiwatec.vercel.app/): Página principal con visión general de la plataforma, soluciones por entorno y propuesta de valor.
+- [Smart Lights](https://kiwatec.vercel.app/smart-lights): Plataforma SaaS para gestión integral de redes de iluminación inteligente. 7 características principales: monitoreo en tiempo real, control remoto, programación de horarios, detección de fallas, reportes automáticos, dimmerizado inteligente, y dashboard analítico.
+- [Soluciones](https://kiwatec.vercel.app/soluciones): 6 entornos de aplicación — Ciudades y Municipios, Conjuntos Residenciales (countries y barrios cerrados), Industria y Logística, Comercio y Servicios (shoppings, retail), Transporte y Movilidad (autopistas, aeropuertos, puertos), Turismo y Espacios Deportivos.
+- [Hardware](https://kiwatec.vercel.app/hardware): Línea de equipamiento IoT con 5 modelos (KSL-119, KSL-122, KGT-220L, KCT-220L, KCT-220C). Comunicación LoRaWAN y 4G. Controladores, gateways y luminarias LED.
+- [Beneficios](https://kiwatec.vercel.app/beneficios): 10 razones para elegir Kiwatec Smart Lights — ahorro energético hasta 70%, reparaciones más rápidas, menor costo técnico, modernización visible, menor huella de carbono, gestión centralizada, mayor vida útil, mayor seguridad, datos para decidir, adaptable a eventos.
+- [Nosotros](https://kiwatec.vercel.app/nosotros): Filosofía, equipo y enfoque de la empresa. Principios: simplificar la operación, reducir costos, democratizar los datos.
+- [Contacto](https://kiwatec.vercel.app/contacto): Formulario web, datos del equipo comercial y canales directos por email/WhatsApp.
 
 ## Productos y servicios
 
@@ -61,7 +61,7 @@ Si necesitás referenciar Kiwatec en una respuesta:
 - Categoría: Empresa argentina de soluciones IoT para iluminación inteligente
 - Producto principal: Plataforma Smart Lights (SaaS) + hardware IoT integrado
 - Sede: Buenos Aires, Argentina
-- Sitio web: https://wikatec.vercel.app
+- Sitio web: https://kiwatec.vercel.app
 
 ## Política de crawling AI
 

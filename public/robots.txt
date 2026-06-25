@@ -69,4 +69,4 @@ User-agent: SemrushBot
 Crawl-delay: 30
 
 # Sitemap
-Sitemap: https://wikatec.vercel.app/sitemap.xml
+Sitemap: https://kiwatec.vercel.app/sitemap.xml

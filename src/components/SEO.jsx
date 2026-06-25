@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const BASE_URL = 'https://wikatec.vercel.app'
+const BASE_URL = 'https://kiwatec.vercel.app'
 
 /**
  * Per-route SEO meta updater. Mounts in each Page component and updates:
