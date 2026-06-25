@@ -1,4 +1,7 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useGSAP } from '@gsap/react'
+import { gsap, prefersReduced } from '../lib/gsap'
 import { useReveal } from '../hooks/useReveal'
 import SmoothImage from './SmoothImage'
 
@@ -16,43 +19,119 @@ const ArrowIcon = () => (
   </svg>
 )
 
-const btnCls =
-  'group inline-flex items-center justify-center gap-2 h-[42px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300'
-
 export default function Beneficios() {
-  const ref = useReveal()
+  const root = useRef(null)
+  const revealRef = useReveal()
+
+  useGSAP(
+    () => {
+      if (prefersReduced) return
+      gsap.to('.ben-image', {
+        yPercent: -8,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: root.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5,
+        },
+      })
+      gsap.to('.ben-number', {
+        yPercent: -40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: root.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5,
+        },
+      })
+      // Animated accent bar grows from top as section enters
+      gsap.fromTo(
+        '.ben-bar',
+        { scaleY: 0, transformOrigin: 'top center' },
+        {
+          scaleY: 1,
+          ease: 'power3.out',
+          duration: 1.2,
+          scrollTrigger: {
+            trigger: root.current,
+            start: 'top 80%',
+            once: true,
+          },
+        }
+      )
+    },
+    { scope: root }
+  )
+
   return (
     <section
-      ref={ref}
-      className="py-12 md:py-16 px-6 bg-gradient-to-b from-[#030C40] to-[#172555]"
+      ref={root}
+      className="relative w-full bg-gradient-to-b from-[#172555] to-[#030C40] overflow-hidden py-20 lg:py-28"
     >
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
-        <div className="r-reveal w-full md:w-[60%] order-2 md:order-1 group overflow-hidden rounded-[23px]">
-          <SmoothImage
-            src="/images/beneficios.jpg"
-            alt="Ciudad inteligente con IoT"
-            className="w-full rounded-[23px] shadow-2xl object-cover h-[250px] md:h-auto md:aspect-[16/10] transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="w-full md:w-[40%] flex flex-col gap-5 md:gap-6 order-1 md:order-2">
-          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
-            Impacto medible
+      {/* Big "05" decoration */}
+      <span
+        aria-hidden="true"
+        className="ben-number pointer-events-none absolute -bottom-8 right-2 lg:right-12 font-black leading-none text-white/[0.025] select-none z-0 text-[14rem] sm:text-[20rem] lg:text-[26rem] tabular-nums"
+      >
+        05
+      </span>
+
+      <div
+        ref={revealRef}
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+      >
+        {/* Left: text with vertical accent bar */}
+        <div className="relative pl-8 lg:pl-10">
+          {/* Vertical gradient accent bar (animated) */}
+          <div className="ben-bar absolute left-0 top-2 bottom-2 w-1.5 bg-gradient-to-b from-blue-400 via-sky-300 to-amber-300 rounded-full shadow-[0_0_12px_rgba(96,165,250,0.4)]" />
+
+          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80 mb-5">
+            05 · Impacto medible
           </p>
-          <h2 className="r-reveal text-white font-bold text-[26px] md:text-[34px] leading-[1.15]">
-            Beneficios
+          <h2 className="r-reveal text-white font-bold text-[32px] md:text-[44px] lg:text-[52px] leading-[1.1] mb-6">
+            <span className="text-blue-300">Menos fallas,</span>{' '}
+            <span className="text-blue-300">menos costos,</span>{' '}
+            más control.
           </h2>
-          <p className="r-reveal text-white/85 font-normal text-sm md:text-base leading-relaxed">
-            Menos fallas, menos costos, más control. Nuestro sistema detecta anomalías antes de que se conviertan en problemas, reduce el gasto energético y permite a los operadores actuar desde cualquier lugar, en tiempo real.
+          <p className="r-reveal text-white/85 text-base lg:text-[17px] leading-[170%] max-w-xl mb-8">
+            Nuestro sistema detecta anomalías antes de que se conviertan en
+            problemas, reduce el gasto energético y permite a los operadores
+            actuar desde cualquier lugar, en tiempo real.
           </p>
-          <Link to="/beneficios" className={`r-reveal hidden md:inline-flex w-[200px] ${btnCls}`}>
+          <Link
+            to="/beneficios"
+            className="r-reveal group inline-flex items-center justify-center gap-2 w-[210px] h-[44px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300"
+          >
             Conocer más
             <ArrowIcon />
           </Link>
         </div>
-        <Link to="/beneficios" className={`md:hidden order-3 w-full r-reveal ${btnCls}`}>
-          Conocer más
-          <ArrowIcon />
-        </Link>
+
+        {/* Right: framed image with subtle right-rotation */}
+        <div className="ben-image relative">
+          <div className="relative group lg:rotate-[2deg] transition-transform duration-500 hover:rotate-0">
+            <div className="relative overflow-hidden rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.55)] ring-1 ring-white/10">
+              <SmoothImage
+                src="/images/beneficios.jpg"
+                alt="Ciudad inteligente con IoT"
+                className="w-full h-[300px] lg:h-[440px] object-cover opacity-95"
+              />
+              {/* Bottom gradient + caption-style overlay */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
+                <p className="text-white font-bold text-[15px]">
+                  Ciudad inteligente
+                </p>
+                <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-300/90">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />
+                  En tiempo real
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
