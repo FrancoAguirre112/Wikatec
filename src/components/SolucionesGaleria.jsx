@@ -74,11 +74,37 @@ const num = (i) => String(i + 1).padStart(2, '0')
 
 export default function SolucionesGaleria() {
   const root = useRef(null)
+  const contentRef = useRef(null)
   const stRef = useRef(null)
   const targetRef = useRef(null)
   const lockTimer = useRef(null)
   const [active, setActive] = useState(0)
   const current = items[active]
+
+  // Translate + scale the active card to center of viewport
+  // (3-col, 2-row grid: col 0/1/2 -> dx +100/0/-100%, row 0/1 -> dy +50/-50%)
+  const getCardStyle = (i, on) => {
+    if (!on) {
+      return {
+        transform: 'scale(0.94)',
+        opacity: 0.18,
+        filter: 'blur(3px) saturate(0.45)',
+        zIndex: 1,
+        boxShadow: 'none',
+      }
+    }
+    const col = i % 3
+    const row = Math.floor(i / 3)
+    const tx = (1 - col) * 100 // col 0 -> +100, col 1 -> 0, col 2 -> -100
+    const ty = row === 0 ? 50 : -50
+    return {
+      transform: `translate(${tx}%, ${ty}%) scale(2.65)`,
+      opacity: 1,
+      filter: 'none',
+      zIndex: 30,
+      boxShadow: '0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(147, 197, 253, 0.25)',
+    }
+  }
 
   // Desktop pin + zoom-step
   useGSAP(
@@ -89,7 +115,7 @@ export default function SolucionesGaleria() {
         const st = ScrollTrigger.create({
           trigger: root.current,
           start: 'top top',
-          end: '+=' + items.length * 400,
+          end: '+=' + items.length * 500,
           pin: true,
           anticipatePin: 1,
           onUpdate: (self) => {
@@ -112,6 +138,26 @@ export default function SolucionesGaleria() {
       return () => mm.revert()
     },
     { scope: root, dependencies: [] }
+  )
+
+  // Animate the floating content panel on active change
+  useGSAP(
+    () => {
+      if (prefersReduced) return
+      gsap.fromTo(
+        '.sg-floating-item',
+        { opacity: 0, y: 18 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          stagger: 0.05,
+          overwrite: true,
+        }
+      )
+    },
+    { scope: contentRef, dependencies: [active] }
   )
 
   const goTo = (i) => {
@@ -147,8 +193,8 @@ export default function SolucionesGaleria() {
           </div>
         </div>
 
-        {/* Image grid */}
-        <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-4 lg:gap-5 px-8 lg:px-12 pt-20 pb-16">
+        {/* Image grid — active card flies to viewport center & scales to fullscreen */}
+        <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-4 lg:gap-5 px-8 lg:px-12 pt-20 pb-32">
           {items.map((item, i) => {
             const on = i === active
             return (
@@ -156,15 +202,11 @@ export default function SolucionesGaleria() {
                 key={item.id}
                 id={item.ancla}
                 onClick={() => goTo(i)}
-                className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] origin-center scroll-mt-[67px]"
+                className="relative rounded-2xl overflow-hidden cursor-pointer origin-center scroll-mt-[67px]"
                 style={{
-                  transform: on ? 'scale(1.42)' : 'scale(0.94)',
-                  opacity: on ? 1 : 0.22,
-                  filter: on ? 'none' : 'blur(2.5px) saturate(0.55)',
-                  zIndex: on ? 30 : 1,
-                  boxShadow: on
-                    ? '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(147, 197, 253, 0.3)'
-                    : 'none',
+                  ...getCardStyle(i, on),
+                  transition:
+                    'transform 800ms cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms ease-out, filter 600ms ease-out, box-shadow 600ms ease-out',
                 }}
               >
                 <SmoothImage
@@ -172,41 +214,49 @@ export default function SolucionesGaleria() {
                   alt={item.titulo}
                   className="w-full h-full object-cover"
                 />
-                {/* Content overlay (always rendered, opacity-controlled) */}
+                {/* Subtle bottom gradient when active for legibility (image stays main visual) */}
                 <div
-                  className="absolute inset-x-0 bottom-0 px-5 lg:px-6 pt-12 pb-5 lg:pb-6 bg-gradient-to-t from-black/95 via-black/80 to-transparent transition-opacity duration-500"
+                  className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none"
                   style={{ opacity: on ? 1 : 0 }}
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-blue-300 text-[11px] font-bold tabular-nums">
-                      {num(i)}
-                    </span>
-                    <span className="h-px w-8 bg-blue-300/40" />
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-blue-300/70">
-                      Aplicación
-                    </span>
-                  </div>
-                  <h3 className="text-white font-bold text-[19px] lg:text-[22px] leading-tight mb-2">
-                    {item.titulo}
-                  </h3>
-                  <p className="text-white/85 text-[12px] lg:text-[13px] leading-[160%] mb-3 line-clamp-3">
-                    {item.descripcion}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.bullets.map((b) => (
-                      <span
-                        key={b}
-                        className="inline-flex items-center gap-1 text-[10px] lg:text-[11px] text-white/90 bg-white/10 rounded-full px-2 py-0.5 ring-1 ring-white/20"
-                      >
-                        <CheckIcon />
-                        {b}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                />
               </div>
             )
           })}
+        </div>
+
+        {/* Floating content panel (separate from cards so text stays normal size) */}
+        <div
+          ref={contentRef}
+          className="absolute z-40 bottom-14 left-1/2 -translate-x-1/2 w-full max-w-3xl px-8 pointer-events-none"
+        >
+          <div className="rounded-2xl bg-black/60 backdrop-blur-md border border-white/15 px-6 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            <div className="sg-floating-item flex items-center gap-2 mb-2">
+              <span className="text-blue-300 text-[11px] font-bold tabular-nums">
+                {num(active)}
+              </span>
+              <span className="h-px w-8 bg-blue-300/40" />
+              <span className="text-[10px] uppercase tracking-[0.25em] text-blue-300/80">
+                Aplicación
+              </span>
+            </div>
+            <h3 className="sg-floating-item text-white font-bold text-[22px] lg:text-[26px] leading-tight mb-2">
+              {current.titulo}
+            </h3>
+            <p className="sg-floating-item text-white/85 text-[13.5px] lg:text-[14.5px] leading-[170%] mb-3 line-clamp-2">
+              {current.descripcion}
+            </p>
+            <div className="sg-floating-item flex flex-wrap gap-2">
+              {current.bullets.map((b) => (
+                <span
+                  key={b}
+                  className="inline-flex items-center gap-1.5 text-[11px] lg:text-[12px] text-white/90 bg-white/10 rounded-full px-2.5 py-1 ring-1 ring-white/20"
+                >
+                  <CheckIcon />
+                  {b}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Progress indicator dots */}
