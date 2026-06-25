@@ -78,31 +78,46 @@ export default function SolucionesGaleria() {
   const stRef = useRef(null)
   const targetRef = useRef(null)
   const lockTimer = useRef(null)
-  const [active, setActive] = useState(0)
-  const current = items[active]
+  // active = -1 means "mosaic view" (initial). 0..items.length-1 = focused card
+  const [active, setActive] = useState(-1)
+  const current = active >= 0 ? items[active] : null
+  const totalStages = items.length + 1 // mosaic + N items
 
-  // Translate + scale the active card to center of viewport
+  // Translate + scale to center of viewport
   // (3-col, 2-row grid: col 0/1/2 -> dx +100/0/-100%, row 0/1 -> dy +50/-50%)
-  const getCardStyle = (i, on) => {
-    if (!on) {
+  const getCardStyle = (i, activeIdx) => {
+    // Mosaic view: all cards in normal grid position, no dimming
+    if (activeIdx === -1) {
       return {
-        transform: 'scale(0.94)',
-        opacity: 0.18,
-        filter: 'blur(3px) saturate(0.45)',
+        transform: 'scale(1)',
+        opacity: 1,
+        filter: 'none',
         zIndex: 1,
-        boxShadow: 'none',
+        boxShadow: '0 6px 20px rgba(0, 0, 0, 0.35)',
       }
     }
-    const col = i % 3
-    const row = Math.floor(i / 3)
-    const tx = (1 - col) * 100 // col 0 -> +100, col 1 -> 0, col 2 -> -100
-    const ty = row === 0 ? 50 : -50
+    // This card is the active focused one: fly to center + fullscreen
+    if (i === activeIdx) {
+      const col = i % 3
+      const row = Math.floor(i / 3)
+      const tx = (1 - col) * 100
+      const ty = row === 0 ? 50 : -50
+      return {
+        transform: `translate(${tx}%, ${ty}%) scale(3.3)`,
+        opacity: 1,
+        filter: 'none',
+        zIndex: 30,
+        boxShadow:
+          '0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(147, 197, 253, 0.25)',
+      }
+    }
+    // Another card is focused: this one fades
     return {
-      transform: `translate(${tx}%, ${ty}%) scale(3)`,
-      opacity: 1,
-      filter: 'none',
-      zIndex: 30,
-      boxShadow: '0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(147, 197, 253, 0.25)',
+      transform: 'scale(0.94)',
+      opacity: 0.18,
+      filter: 'blur(3px) saturate(0.45)',
+      zIndex: 1,
+      boxShadow: 'none',
     }
   }
 
@@ -115,19 +130,21 @@ export default function SolucionesGaleria() {
         const st = ScrollTrigger.create({
           trigger: root.current,
           start: 'top top+=67',
-          end: '+=' + items.length * 500,
+          end: '+=' + totalStages * 480,
           pin: true,
           anticipatePin: 1,
           onUpdate: (self) => {
-            const idx = Math.min(
-              items.length - 1,
-              Math.floor(self.progress * items.length)
+            // totalStages = mosaic + items: stage 0 = mosaic, stage 1..N = item N-1
+            const stageIdx = Math.min(
+              totalStages - 1,
+              Math.floor(self.progress * totalStages)
             )
+            const next = stageIdx - 1 // -1 = mosaic, 0..items-1 = focused card
             if (targetRef.current !== null) {
-              if (idx === targetRef.current) targetRef.current = null
+              if (next === targetRef.current) targetRef.current = null
               else return
             }
-            setActive(idx)
+            setActive(next)
           },
         })
         stRef.current = st
@@ -160,6 +177,7 @@ export default function SolucionesGaleria() {
     { scope: contentRef, dependencies: [active] }
   )
 
+  // Jump to a specific stage. i = -1 -> mosaic, 0..items.length-1 -> focused card
   const goTo = (i) => {
     setActive(i)
     const st = stRef.current
@@ -167,7 +185,9 @@ export default function SolucionesGaleria() {
     targetRef.current = i
     if (lockTimer.current) clearTimeout(lockTimer.current)
     lockTimer.current = setTimeout(() => (targetRef.current = null), 1000)
-    const target = st.start + ((i + 0.5) / items.length) * (st.end - st.start)
+    const stageIdx = i + 1 // map -1->0 (mosaic), 0->1 (item 0), etc.
+    const target =
+      st.start + ((stageIdx + 0.5) / totalStages) * (st.end - st.start)
     window.scrollTo({ top: target, behavior: 'smooth' })
   }
 
@@ -187,14 +207,15 @@ export default function SolucionesGaleria() {
             <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-4 lg:gap-5 p-5 lg:p-6">
               {items.map((item, i) => {
                 const on = i === active
+                const mosaic = active === -1
                 return (
                   <div
                     key={item.id}
                     id={item.ancla}
                     onClick={() => goTo(i)}
-                    className="relative rounded-2xl overflow-hidden cursor-pointer origin-center scroll-mt-[67px]"
+                    className={`relative rounded-2xl overflow-hidden cursor-pointer origin-center scroll-mt-[67px] ${mosaic ? 'group hover:ring-2 hover:ring-blue-300/60' : ''}`}
                     style={{
-                      ...getCardStyle(i, on),
+                      ...getCardStyle(i, active),
                       transition:
                         'transform 800ms cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms ease-out, filter 600ms ease-out, box-shadow 600ms ease-out',
                     }}
@@ -202,9 +223,23 @@ export default function SolucionesGaleria() {
                     <SmoothImage
                       src={item.imagen}
                       alt={item.titulo}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    {/* Subtle bottom gradient when active for legibility */}
+                    {/* Mosaic mode: show title label on each card */}
+                    {mosaic && (
+                      <div className="absolute inset-x-0 bottom-0 px-4 py-3 bg-gradient-to-t from-black/90 via-black/60 to-transparent pointer-events-none">
+                        <div className="flex items-center gap-2">
+                          <span className="text-blue-300 text-[10px] font-bold tabular-nums">
+                            {num(i)}
+                          </span>
+                          <span className="h-px w-5 bg-blue-300/40" />
+                        </div>
+                        <h3 className="text-white font-bold text-[14px] lg:text-[16px] leading-tight mt-1">
+                          {item.titulo}
+                        </h3>
+                      </div>
+                    )}
+                    {/* Focused mode: subtle gradient for content panel legibility */}
                     <div
                       className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none"
                       style={{ opacity: on ? 1 : 0 }}
@@ -224,10 +259,10 @@ export default function SolucionesGaleria() {
               </div>
               <div className="flex items-baseline gap-1.5 bg-black/70 backdrop-blur-md rounded-full px-4 py-1.5 ring-1 ring-white/20 pointer-events-auto">
                 <span className="text-white font-black text-lg tabular-nums leading-none">
-                  {num(active)}
+                  {active === -1 ? '00' : num(active + 1)}
                 </span>
                 <span className="text-white/50 text-[12px] font-semibold tabular-nums leading-none">
-                  / {num(items.length - 1)}
+                  / {num(items.length)}
                 </span>
               </div>
             </div>
@@ -237,38 +272,78 @@ export default function SolucionesGaleria() {
               ref={contentRef}
               className="absolute z-40 bottom-12 left-5 right-5 flex justify-center pointer-events-none"
             >
-              <div className="w-full max-w-3xl rounded-2xl bg-black/65 backdrop-blur-md border border-white/15 px-6 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-auto">
-                <div className="sg-floating-item flex items-center gap-2 mb-2">
-                  <span className="text-blue-300 text-[11px] font-bold tabular-nums">
-                    {num(active)}
-                  </span>
-                  <span className="h-px w-8 bg-blue-300/40" />
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-blue-300/80">
-                    Aplicación
-                  </span>
-                </div>
-                <h3 className="sg-floating-item text-white font-bold text-[22px] lg:text-[26px] leading-tight mb-2">
-                  {current.titulo}
-                </h3>
-                <p className="sg-floating-item text-white/85 text-[13.5px] lg:text-[14.5px] leading-[170%] mb-3 line-clamp-2">
-                  {current.descripcion}
-                </p>
-                <div className="sg-floating-item flex flex-wrap gap-2">
-                  {current.bullets.map((b) => (
-                    <span
-                      key={b}
-                      className="inline-flex items-center gap-1.5 text-[11px] lg:text-[12px] text-white/90 bg-white/10 rounded-full px-2.5 py-1 ring-1 ring-white/20"
+              {active === -1 ? (
+                /* Mosaic mode: invitation hint */
+                <div className="sg-floating-item rounded-2xl bg-black/65 backdrop-blur-md border border-white/15 px-6 py-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-auto flex items-center gap-4">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-400/20 text-blue-300 ring-1 ring-blue-300/40">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
                     >
-                      <CheckIcon />
-                      {b}
-                    </span>
-                  ))}
+                      <path d="M12 5v14M19 12l-7 7-7-7" />
+                    </svg>
+                  </span>
+                  <div>
+                    <p className="text-white font-bold text-[15px] lg:text-[16px] leading-tight">
+                      Explorá las 6 aplicaciones
+                    </p>
+                    <p className="text-white/65 text-[12px] lg:text-[13px] mt-0.5">
+                      Scrolleá para recorrerlas o tocá una imagen
+                    </p>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                /* Focused mode: full content for active item */
+                <div className="w-full max-w-3xl rounded-2xl bg-black/65 backdrop-blur-md border border-white/15 px-6 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-auto">
+                  <div className="sg-floating-item flex items-center gap-2 mb-2">
+                    <span className="text-blue-300 text-[11px] font-bold tabular-nums">
+                      {num(active)}
+                    </span>
+                    <span className="h-px w-8 bg-blue-300/40" />
+                    <span className="text-[10px] uppercase tracking-[0.25em] text-blue-300/80">
+                      Aplicación
+                    </span>
+                  </div>
+                  <h3 className="sg-floating-item text-white font-bold text-[22px] lg:text-[26px] leading-tight mb-2">
+                    {current.titulo}
+                  </h3>
+                  <p className="sg-floating-item text-white/85 text-[13.5px] lg:text-[14.5px] leading-[170%] mb-3 line-clamp-2">
+                    {current.descripcion}
+                  </p>
+                  <div className="sg-floating-item flex flex-wrap gap-2">
+                    {current.bullets.map((b) => (
+                      <span
+                        key={b}
+                        className="inline-flex items-center gap-1.5 text-[11px] lg:text-[12px] text-white/90 bg-white/10 rounded-full px-2.5 py-1 ring-1 ring-white/20"
+                      >
+                        <CheckIcon />
+                        {b}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Progress indicator dots — equal spacing from frame bottom */}
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 flex gap-2">
+            {/* Progress indicator dots — first dot = mosaic, rest = items */}
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => goTo(-1)}
+                aria-label="Ver mosaico de aplicaciones"
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  active === -1
+                    ? 'w-8 bg-blue-300'
+                    : 'w-1.5 bg-white/25 hover:bg-white/50'
+                }`}
+              />
+              <span className="h-3 w-px bg-white/15 mx-1" />
               {items.map((_, i) => (
                 <button
                   key={i}
