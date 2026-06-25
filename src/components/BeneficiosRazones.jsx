@@ -200,7 +200,7 @@ export default function BeneficiosRazones() {
     <section
       ref={sectionRef}
       id="razones-smart-lights"
-      className="relative w-full py-6 md:py-8 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
+      className="relative w-full pt-6 pb-12 md:pt-8 md:pb-16 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
     >
       <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
