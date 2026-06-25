@@ -314,7 +314,7 @@ export default function BeneficiosRazones() {
     <section
       ref={sectionRef}
       id="razones-smart-lights"
-      className="relative w-full py-10 md:py-14 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
+      className="relative w-full py-8 md:py-12 px-6 bg-[linear-gradient(180deg,#172555_0%,#030C40_100%)] scroll-mt-[67px] overflow-hidden"
     >
       <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
@@ -391,12 +391,12 @@ export default function BeneficiosRazones() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {razones.map((r, i) => (
             <div
               key={r.id}
               ref={(el) => (cardRefs.current[i] = el)}
-              className="razon-card group relative flex flex-col gap-2.5 p-4 md:p-5 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[16px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:border-white/40 hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
+              className="razon-card group relative flex flex-col gap-2 p-4 md:p-5 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[16px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:border-white/40 hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
             >
               <span className="absolute top-3 right-3 text-white/30 font-bold text-[11px] tracking-wide tabular-nums">
                 {String(r.id).padStart(2, '0')}
