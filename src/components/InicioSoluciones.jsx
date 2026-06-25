@@ -123,16 +123,14 @@ export default function Soluciones() {
       </div>
 
       {/* Mobile: infinite-loop carousel + CTA below.
-          Slides are duplicated at module scope (carouselSlides) so Swiper's
-          internal loop has enough buffer with our 3 base previews. */}
-      <div className="lg:hidden relative z-10 mt-10">
+          Simple slidesPerView 1 + loop + autoplay = the most reliable
+          Swiper config for infinite cycling with few base slides. */}
+      <div className="lg:hidden relative z-10 mt-10 px-6">
         <Swiper
           modules={[Autoplay]}
-          slidesPerView={1.15}
-          centeredSlides
-          spaceBetween={14}
+          slidesPerView={1}
+          spaceBetween={16}
           loop
-          loopAdditionalSlides={3}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -140,14 +138,13 @@ export default function Soluciones() {
           }}
           speed={700}
           onSwiper={(sw) => {
-            // Ensure autoplay starts even if Swiper init raced with mount
             if (sw?.autoplay && !sw.autoplay.running) sw.autoplay.start()
           }}
-          className="!px-6 !pb-2"
+          className="!pb-2"
         >
-          {carouselSlides.map((p, i) => (
-            <SwiperSlide key={`${p.label}-${i}`} className="!h-auto">
-              <PreviewCard p={p} i={i % previews.length} />
+          {previews.map((p, i) => (
+            <SwiperSlide key={p.label} className="!h-auto">
+              <PreviewCard p={p} i={i} />
             </SwiperSlide>
           ))}
         </Swiper>
