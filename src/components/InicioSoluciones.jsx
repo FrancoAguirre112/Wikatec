@@ -63,10 +63,10 @@ export default function Soluciones() {
       ref={root}
       className="relative w-full bg-gradient-to-b from-[#172555] to-[#030C40] overflow-hidden py-20 lg:py-28"
     >
-      {/* HUGE "03" watermark centered behind title */}
+      {/* "03" watermark in top-right corner (consistent with other sections) */}
       <span
         aria-hidden="true"
-        className="sol-number pointer-events-none absolute inset-x-0 -top-4 lg:-top-8 text-center font-black leading-none text-white/[0.03] select-none z-0 text-[18rem] sm:text-[24rem] lg:text-[32rem] tabular-nums"
+        className="sol-number pointer-events-none absolute -top-8 right-4 lg:right-12 font-black leading-none text-white/[0.04] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[22rem] tabular-nums"
       >
         03
       </span>

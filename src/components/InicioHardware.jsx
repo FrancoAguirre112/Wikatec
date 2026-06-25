@@ -57,10 +57,10 @@ export default function Hardware() {
       ref={root}
       className="relative w-full bg-gradient-to-b from-[#030C40] to-[#172555] overflow-hidden py-20 lg:py-28"
     >
-      {/* Big "04" decoration */}
+      {/* "04" decoration top-left (opposite of image which is on the right) */}
       <span
         aria-hidden="true"
-        className="hw-number pointer-events-none absolute -bottom-12 -left-6 lg:-left-12 font-black leading-none text-white/[0.03] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[24rem] tabular-nums"
+        className="hw-number pointer-events-none absolute -top-8 left-2 lg:left-12 font-black leading-none text-white/[0.04] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[22rem] tabular-nums"
       >
         04
       </span>
@@ -87,15 +87,13 @@ export default function Hardware() {
             entorno urbano, garantizan control remoto preciso y respuesta
             inmediata ante cualquier evento.
           </p>
-          {/* Spec chips */}
-          <div className="r-reveal flex flex-wrap gap-2 mt-1">
-            {modelos.map((m) => (
-              <span
-                key={m}
-                className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-white/90 bg-white/[0.06] rounded-full px-3 py-1.5 ring-1 ring-white/15 font-mono"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_6px_rgba(96,165,250,0.7)]" />
-                {m}
+          {/* Spec chips — compact: solo un dot leading + nombres inline con separadores */}
+          <div className="r-reveal flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 font-mono text-[11.5px] text-white/65">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_6px_rgba(96,165,250,0.7)]" />
+            {modelos.map((m, i) => (
+              <span key={m} className="inline-flex items-center gap-2">
+                {i > 0 && <span className="text-white/25">·</span>}
+                <span className="text-white/80">{m}</span>
               </span>
             ))}
           </div>

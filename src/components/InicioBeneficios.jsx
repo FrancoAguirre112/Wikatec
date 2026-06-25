@@ -70,10 +70,10 @@ export default function Beneficios() {
       ref={root}
       className="relative w-full bg-gradient-to-b from-[#172555] to-[#030C40] overflow-hidden py-20 lg:py-28"
     >
-      {/* Big "05" decoration */}
+      {/* "05" decoration top-left (opposite of image which is on the right) */}
       <span
         aria-hidden="true"
-        className="ben-number pointer-events-none absolute -bottom-8 right-2 lg:right-12 font-black leading-none text-white/[0.025] select-none z-0 text-[14rem] sm:text-[20rem] lg:text-[26rem] tabular-nums"
+        className="ben-number pointer-events-none absolute -top-8 left-2 lg:left-12 font-black leading-none text-white/[0.04] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[22rem] tabular-nums"
       >
         05
       </span>
@@ -84,16 +84,15 @@ export default function Beneficios() {
       >
         {/* Left: text with vertical accent bar */}
         <div className="relative pl-8 lg:pl-10">
-          {/* Vertical gradient accent bar (animated) */}
-          <div className="ben-bar absolute left-0 top-2 bottom-2 w-1.5 bg-gradient-to-b from-blue-400 via-sky-300 to-amber-300 rounded-full shadow-[0_0_12px_rgba(96,165,250,0.4)]" />
+          {/* Vertical accent bar (animated) — only blue→sky, amber reserved for Smart Lights */}
+          <div className="ben-bar absolute left-0 top-2 bottom-2 w-1.5 bg-gradient-to-b from-blue-400 to-sky-300 rounded-full shadow-[0_0_12px_rgba(96,165,250,0.4)]" />
 
           <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80 mb-5">
             05 · Impacto medible
           </p>
           <h2 className="r-reveal text-white font-bold text-[32px] md:text-[44px] lg:text-[52px] leading-[1.1] mb-6">
-            <span className="text-blue-300">Menos fallas,</span>{' '}
-            <span className="text-blue-300">menos costos,</span>{' '}
-            más control.
+            Menos fallas, menos costos,{' '}
+            <span className="text-blue-300">más control</span>.
           </h2>
           <p className="r-reveal text-white/85 text-base lg:text-[17px] leading-[170%] max-w-xl mb-8">
             Nuestro sistema detecta anomalías antes de que se conviertan en
@@ -118,14 +117,10 @@ export default function Beneficios() {
                 alt="Ciudad inteligente con IoT"
                 className="w-full h-[300px] lg:h-[440px] object-cover opacity-95"
               />
-              {/* Bottom gradient + caption-style overlay */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
-                <p className="text-white font-bold text-[15px]">
-                  Ciudad inteligente
-                </p>
-                <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-300/90">
-                  <span className="h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />
+              {/* Corner badge — consistent with sections 02 and 04 */}
+              <div className="pointer-events-none absolute top-5 right-5 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
+                <span className="flex h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90">
                   En tiempo real
                 </span>
               </div>

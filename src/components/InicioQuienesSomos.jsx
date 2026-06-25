@@ -80,13 +80,6 @@ export default function QuienesSomos() {
           {/* Dark fade on the inner edge for smooth blend with text side */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-[#030C40] via-[#030C40]/40 to-transparent hidden lg:block" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030C40] via-[#030C40]/40 to-transparent lg:hidden" />
-          {/* Decorative corner accent */}
-          <div className="pointer-events-none absolute top-6 left-6 flex items-center gap-2 rounded-full bg-black/50 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
-            <span className="flex h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(147,197,253,0.6)]" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90">
-              01 · Sobre Kiwatec
-            </span>
-          </div>
         </div>
 
         {/* Text panel */}

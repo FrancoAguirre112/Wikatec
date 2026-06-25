@@ -55,10 +55,10 @@ export default function SmartLightsSection() {
       ref={root}
       className="relative w-full bg-gradient-to-b from-[#030C40] to-[#172555] overflow-hidden py-20 lg:py-28"
     >
-      {/* Big "02" decoration in bottom-right corner (parallax) */}
+      {/* "02" decoration in top-left corner (opposite of image which is on the right) */}
       <span
         aria-hidden="true"
-        className="sl-number pointer-events-none absolute -bottom-12 right-2 lg:right-12 font-black leading-none text-amber-300/[0.04] select-none z-0 text-[14rem] sm:text-[20rem] lg:text-[24rem] tabular-nums"
+        className="sl-number pointer-events-none absolute -top-8 left-2 lg:left-12 font-black leading-none text-amber-300/[0.05] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[22rem] tabular-nums"
       >
         02
       </span>
