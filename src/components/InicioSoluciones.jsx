@@ -46,7 +46,7 @@ function PreviewCard({ p, i }) {
   return (
     <Link
       to="/soluciones"
-      className="group relative block overflow-hidden rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.35)] hover:-translate-y-1 transition-all duration-500"
+      className="group relative block overflow-hidden rounded-2xl hover:-translate-y-1 transition-all duration-500"
     >
       <SmoothImage
         src={p.src}
