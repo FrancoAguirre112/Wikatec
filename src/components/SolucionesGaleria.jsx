@@ -175,105 +175,115 @@ export default function SolucionesGaleria() {
     <section ref={root} className="relative w-full bg-[#030C40]">
       {/* Desktop: pin + zoom inmersivo (height = viewport - navbar 67px) */}
       <div className="hidden md:flex md:items-center md:h-[calc(100vh-67px)] md:overflow-hidden relative">
-        {/* Decorative orbs */}
+        {/* Decorative orbs (behind frame, soft ambient) */}
         <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-blue-400/8 blur-3xl" />
         <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-sky-300/8 blur-3xl" />
 
-        {/* Header bar */}
-        <div className="absolute top-0 left-0 right-0 z-40 px-10 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-10 bg-blue-300/50" />
-            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-300/80">
-              6 aplicaciones
-            </span>
-          </div>
-          <div className="flex items-baseline gap-2 font-display tabular-nums">
-            <span className="text-blue-300 font-black text-2xl">{num(active)}</span>
-            <span className="text-white/40 text-sm">/ {num(items.length - 1)}</span>
-          </div>
-        </div>
-
-        {/* Image grid — active card flies to viewport center & scales to fullscreen */}
-        <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-4 lg:gap-5 px-8 lg:px-12 pt-20 pb-32">
-          {items.map((item, i) => {
-            const on = i === active
-            return (
-              <div
-                key={item.id}
-                id={item.ancla}
-                onClick={() => goTo(i)}
-                className="relative rounded-2xl overflow-hidden cursor-pointer origin-center scroll-mt-[67px]"
-                style={{
-                  ...getCardStyle(i, on),
-                  transition:
-                    'transform 800ms cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms ease-out, filter 600ms ease-out, box-shadow 600ms ease-out',
-                }}
-              >
-                <SmoothImage
-                  src={item.imagen}
-                  alt={item.titulo}
-                  className="w-full h-full object-cover"
-                />
-                {/* Subtle bottom gradient when active for legibility (image stays main visual) */}
-                <div
-                  className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none"
-                  style={{ opacity: on ? 1 : 0 }}
-                />
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Floating content panel (separate from cards so text stays normal size) */}
-        <div
-          ref={contentRef}
-          className="absolute z-40 bottom-14 left-1/2 -translate-x-1/2 w-full max-w-3xl px-8 pointer-events-none"
-        >
-          <div className="rounded-2xl bg-black/60 backdrop-blur-md border border-white/15 px-6 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-            <div className="sg-floating-item flex items-center gap-2 mb-2">
-              <span className="text-blue-300 text-[11px] font-bold tabular-nums">
-                {num(active)}
-              </span>
-              <span className="h-px w-8 bg-blue-300/40" />
-              <span className="text-[10px] uppercase tracking-[0.25em] text-blue-300/80">
-                Aplicación
-              </span>
+        {/* Padded outer frame — creates consistent border around the experience */}
+        <div className="absolute inset-0 p-6 lg:p-8">
+          {/* Clipping container — keeps the scaled card inside the frame */}
+          <div className="relative w-full h-full rounded-[28px] overflow-hidden bg-[#02081d] ring-1 ring-white/5 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]">
+            {/* Image grid */}
+            <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-4 lg:gap-5 p-5 lg:p-6">
+              {items.map((item, i) => {
+                const on = i === active
+                return (
+                  <div
+                    key={item.id}
+                    id={item.ancla}
+                    onClick={() => goTo(i)}
+                    className="relative rounded-2xl overflow-hidden cursor-pointer origin-center scroll-mt-[67px]"
+                    style={{
+                      ...getCardStyle(i, on),
+                      transition:
+                        'transform 800ms cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms ease-out, filter 600ms ease-out, box-shadow 600ms ease-out',
+                    }}
+                  >
+                    <SmoothImage
+                      src={item.imagen}
+                      alt={item.titulo}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Subtle bottom gradient when active for legibility */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none"
+                      style={{ opacity: on ? 1 : 0 }}
+                    />
+                  </div>
+                )
+              })}
             </div>
-            <h3 className="sg-floating-item text-white font-bold text-[22px] lg:text-[26px] leading-tight mb-2">
-              {current.titulo}
-            </h3>
-            <p className="sg-floating-item text-white/85 text-[13.5px] lg:text-[14.5px] leading-[170%] mb-3 line-clamp-2">
-              {current.descripcion}
-            </p>
-            <div className="sg-floating-item flex flex-wrap gap-2">
-              {current.bullets.map((b) => (
-                <span
-                  key={b}
-                  className="inline-flex items-center gap-1.5 text-[11px] lg:text-[12px] text-white/90 bg-white/10 rounded-full px-2.5 py-1 ring-1 ring-white/20"
-                >
-                  <CheckIcon />
-                  {b}
+
+            {/* Header bar — backdrop-blur pills, equal spacing from frame edges */}
+            <div className="absolute top-5 left-5 right-5 z-40 flex items-center justify-between pointer-events-none">
+              <div className="flex items-center gap-2 bg-black/55 backdrop-blur-md rounded-full pl-3 pr-4 py-1.5 ring-1 ring-white/15 pointer-events-auto">
+                <span className="h-px w-5 bg-blue-300/60" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/90">
+                  6 aplicaciones
                 </span>
+              </div>
+              <div className="flex items-baseline gap-1.5 bg-black/55 backdrop-blur-md rounded-full px-4 py-1.5 ring-1 ring-white/15 pointer-events-auto">
+                <span className="text-blue-300 font-black text-base tabular-nums leading-none">
+                  {num(active)}
+                </span>
+                <span className="text-white/50 text-[11px] tabular-nums leading-none">
+                  / {num(items.length - 1)}
+                </span>
+              </div>
+            </div>
+
+            {/* Floating content panel — equal spacing from frame edges */}
+            <div
+              ref={contentRef}
+              className="absolute z-40 bottom-12 left-5 right-5 flex justify-center pointer-events-none"
+            >
+              <div className="w-full max-w-3xl rounded-2xl bg-black/65 backdrop-blur-md border border-white/15 px-6 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-auto">
+                <div className="sg-floating-item flex items-center gap-2 mb-2">
+                  <span className="text-blue-300 text-[11px] font-bold tabular-nums">
+                    {num(active)}
+                  </span>
+                  <span className="h-px w-8 bg-blue-300/40" />
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-blue-300/80">
+                    Aplicación
+                  </span>
+                </div>
+                <h3 className="sg-floating-item text-white font-bold text-[22px] lg:text-[26px] leading-tight mb-2">
+                  {current.titulo}
+                </h3>
+                <p className="sg-floating-item text-white/85 text-[13.5px] lg:text-[14.5px] leading-[170%] mb-3 line-clamp-2">
+                  {current.descripcion}
+                </p>
+                <div className="sg-floating-item flex flex-wrap gap-2">
+                  {current.bullets.map((b) => (
+                    <span
+                      key={b}
+                      className="inline-flex items-center gap-1.5 text-[11px] lg:text-[12px] text-white/90 bg-white/10 rounded-full px-2.5 py-1 ring-1 ring-white/20"
+                    >
+                      <CheckIcon />
+                      {b}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Progress indicator dots — equal spacing from frame bottom */}
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 flex gap-2">
+              {items.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  aria-label={`Ir a aplicación ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    i === active
+                      ? 'w-8 bg-blue-300'
+                      : 'w-1.5 bg-white/25 hover:bg-white/50'
+                  }`}
+                />
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Progress indicator dots */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 flex gap-2">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => goTo(i)}
-              aria-label={`Ir a aplicación ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                i === active
-                  ? 'w-8 bg-blue-300'
-                  : 'w-1.5 bg-white/25 hover:bg-white/50'
-              }`}
-            />
-          ))}
         </div>
       </div>
 
