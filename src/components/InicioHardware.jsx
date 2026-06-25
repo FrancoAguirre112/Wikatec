@@ -90,16 +90,11 @@ export default function Hardware() {
           </div>
         </div>
 
-        {/* Body — mobile order-3, desktop col-1 row-2 */}
-        <div className="order-3 lg:col-start-1 lg:row-start-2 flex flex-col gap-5">
-          <p className="r-reveal text-white/85 text-base lg:text-[17px] leading-[170%] max-w-xl">
-            Nuestros equipos —controladores IoT, gateways y luminarias LED—
-            están diseñados para trabajar en conjunto con la plataforma Smart
-            Lights. Robustos, confiables y preparados para las exigencias del
-            entorno urbano, garantizan control remoto preciso y respuesta
-            inmediata ante cualquier evento.
-          </p>
-          <div className="r-reveal flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 font-mono text-[11.5px] text-white/65">
+        {/* Body wrapper: contents on mobile (children flow flat into grid for ordering),
+            flex column on desktop (col 1 row 2, with chips after paragraph) */}
+        <div className="contents lg:flex lg:flex-col lg:gap-5 lg:col-start-1 lg:row-start-2">
+          {/* Chips — mobile order-3 (right below image), desktop natural flow (after paragraph) */}
+          <div className="r-reveal order-3 lg:order-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11.5px] text-white/65 mt-1 lg:mt-0">
             <span className="flex h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_6px_rgba(96,165,250,0.7)]" />
             {modelos.map((m, i) => (
               <span key={m} className="inline-flex items-center gap-2">
@@ -108,9 +103,18 @@ export default function Hardware() {
               </span>
             ))}
           </div>
+          {/* Paragraph — mobile order-4 (after chips), desktop natural flow (before chips) */}
+          <p className="r-reveal order-4 lg:order-1 text-white/85 text-base lg:text-[17px] leading-[170%] max-w-xl">
+            Nuestros equipos —controladores IoT, gateways y luminarias LED—
+            están diseñados para trabajar en conjunto con la plataforma Smart
+            Lights. Robustos, confiables y preparados para las exigencias del
+            entorno urbano, garantizan control remoto preciso y respuesta
+            inmediata ante cualquier evento.
+          </p>
+          {/* CTA — mobile order-5 (last), desktop natural flow (last) */}
           <Link
             to="/hardware"
-            className="r-reveal group inline-flex items-center justify-center gap-2 w-[210px] h-[44px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300 mt-2"
+            className="r-reveal order-5 lg:order-3 group inline-flex items-center justify-center gap-2 w-[210px] h-[44px] bg-[#030C40] hover:bg-[#01051c] text-white text-base font-bold border border-white rounded-[10px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 no-underline transition-all duration-300 mt-2 lg:mt-0"
           >
             Conocer más
             <ArrowIcon />

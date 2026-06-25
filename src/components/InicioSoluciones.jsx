@@ -118,7 +118,10 @@ export default function Soluciones() {
         ))}
       </div>
 
-      {/* Mobile: infinite-loop carousel + CTA below */}
+      {/* Mobile: infinite-loop carousel + CTA below.
+          Swiper requires more slides than slidesPerView*2 to loop reliably,
+          so we duplicate the array (the cards are identical anyway, user
+          perceives it as a continuous loop). */}
       <div className="lg:hidden relative z-10 mt-10">
         <Swiper
           modules={[Autoplay]}
@@ -126,7 +129,7 @@ export default function Soluciones() {
           centeredSlides
           spaceBetween={14}
           loop
-          loopAdditionalSlides={2}
+          loopAdditionalSlides={3}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -135,9 +138,9 @@ export default function Soluciones() {
           speed={700}
           className="!px-6 !pb-2"
         >
-          {previews.map((p, i) => (
-            <SwiperSlide key={p.label} className="!h-auto">
-              <PreviewCard p={p} i={i} />
+          {[...previews, ...previews].map((p, i) => (
+            <SwiperSlide key={`${p.label}-${i}`} className="!h-auto">
+              <PreviewCard p={p} i={i % previews.length} />
             </SwiperSlide>
           ))}
         </Swiper>
