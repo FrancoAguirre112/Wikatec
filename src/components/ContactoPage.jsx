@@ -1,6 +1,6 @@
 import ContactoHero from './ContactoHero'
 import ContactoForm from './ContactoForm'
-import ContactoEquipo from './ContactoEquipo'
+// import ContactoEquipo from './ContactoEquipo'
 import SEO from './SEO'
 
 const jsonLd = {
@@ -37,7 +37,7 @@ export default function ContactoPage() {
       />
       <ContactoHero />
       <ContactoForm />
-      <ContactoEquipo />
+      {/* <ContactoEquipo /> */}
     </div>
   )
 }
