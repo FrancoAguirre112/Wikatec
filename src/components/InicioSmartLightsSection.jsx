@@ -48,13 +48,13 @@ export default function SmartLightsSection() {
       {/* "02" decoration in top-left corner (opposite of image which is on the right) */}
       <span
         aria-hidden="true"
-        className="sl-number pointer-events-none absolute -top-8 left-2 lg:left-12 font-black leading-none text-amber-300/[0.05] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[22rem] tabular-nums"
+        className="sl-number pointer-events-none absolute -top-8 left-2 lg:left-12 font-black leading-none text-sky-300/[0.05] select-none z-0 text-[14rem] sm:text-[18rem] lg:text-[22rem] tabular-nums"
       >
         02
       </span>
 
-      {/* Decorative amber glow under image area */}
-      <div className="pointer-events-none absolute left-1/4 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" />
+      {/* Decorative sky glow under image area */}
+      <div className="pointer-events-none absolute left-1/4 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-sky-400/10 blur-3xl" />
 
       <div
         ref={revealRef}
@@ -62,12 +62,12 @@ export default function SmartLightsSection() {
       >
         {/* Title — mobile order-1, desktop col-1 row-1 */}
         <div className="order-1 lg:col-start-1 lg:row-start-1 flex flex-col gap-5">
-          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-amber-300/80">
+          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-sky-300/80">
             02 · Plataforma
           </p>
           <h2 className="r-reveal relative inline-block w-fit text-white font-bold text-[32px] md:text-[44px] lg:text-[52px] leading-[1.05]">
             <span
-              className="pointer-events-none absolute -inset-x-4 -inset-y-2 -z-10 rounded-full bg-amber-300/25 blur-2xl animate-pulse"
+              className="pointer-events-none absolute -inset-x-4 -inset-y-2 -z-10 rounded-full bg-sky-300/25 blur-2xl animate-pulse"
               style={{ animationDuration: '3s' }}
             />
             Smart Lights
@@ -82,10 +82,10 @@ export default function SmartLightsSection() {
               alt="Smart Lights IoT"
               className="w-full h-[300px] lg:h-[460px] object-cover rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.55)] opacity-95"
             />
-            <div className="pointer-events-none absolute inset-0 rounded-[28px] bg-gradient-to-tr from-amber-500/10 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-[28px] bg-gradient-to-tr from-sky-500/10 via-transparent to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 rounded-l-[28px] bg-gradient-to-r from-[#030C40]/45 via-[#030C40]/15 to-transparent" />
             <div className="pointer-events-none absolute top-5 right-5 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 ring-1 ring-white/15">
-              <span className="flex h-1.5 w-1.5 rounded-full bg-amber-300 shadow-[0_0_8px_rgba(252,211,77,0.7)]" />
+              <span className="flex h-1.5 w-1.5 rounded-full bg-sky-300 shadow-[0_0_8px_rgba(125,211,252,0.7)]" />
               <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90">
                 IoT integrado
               </span>

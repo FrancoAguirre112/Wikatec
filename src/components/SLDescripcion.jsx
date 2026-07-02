@@ -45,28 +45,28 @@ export default function SLDescripcion() {
 
   return (
     <section className="relative w-full flex items-center justify-center px-6 py-16 md:py-20 bg-gradient-to-b from-[#030C40] to-[#172555] overflow-hidden">
-      {/* Subtle amber dot grid (control panel) */}
+      {/* Subtle sky dot grid (control panel) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(252,211,77,0.7) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(125,211,252,0.7) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       />
-      {/* Soft radial amber glow center-top */}
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-32 rounded-full bg-amber-400/10 blur-3xl" />
+      {/* Soft radial sky glow center-top */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-32 rounded-full bg-sky-400/10 blur-3xl" />
 
       <div ref={ref} className="relative max-w-3xl w-full flex flex-col items-center text-center gap-5">
-        <p className="r-reveal inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-amber-300/85">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(252,211,77,0.95)] animate-pulse" />
+        <p className="r-reveal inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-sky-300/85">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(125,211,252,0.95)] animate-pulse" />
           Plataforma SaaS
         </p>
         <h2 className="r-reveal text-white font-bold text-[24px] md:text-[34px] leading-[1.15]">
           Todo el control de tu red lumínica para
           <br />
-          <span className="relative inline-block align-baseline text-amber-300">
+          <span className="relative inline-block align-baseline text-sky-300">
             <span aria-hidden="true" className="invisible">
               {LONGEST}
             </span>
@@ -104,7 +104,7 @@ export default function SLDescripcion() {
               key={p.label}
               className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.04] border border-white/10 px-3 py-1.5 text-[12px] font-medium text-white/80 backdrop-blur-sm"
             >
-              <span className="text-amber-300/90">{p.icon}</span>
+              <span className="text-sky-300/90">{p.icon}</span>
               {p.label}
             </span>
           ))}

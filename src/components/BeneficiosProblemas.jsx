@@ -34,16 +34,16 @@ export default function BeneficiosProblemas() {
       className="relative w-full py-16 md:py-24 px-6 bg-[linear-gradient(180deg,#030C40_0%,#172555_100%)] scroll-mt-[67px] overflow-hidden"
     >
       {/* Decorative orbs */}
-      <div className="pointer-events-none absolute -left-32 top-10 h-80 w-80 rounded-full bg-amber-400/8 blur-3xl" />
+      <div className="pointer-events-none absolute -left-32 top-10 h-80 w-80 rounded-full bg-sky-400/8 blur-3xl" />
       <div className="pointer-events-none absolute -right-32 bottom-10 h-80 w-80 rounded-full bg-red-400/8 blur-3xl" />
 
       <div className="relative max-w-6xl mx-auto flex flex-col items-center gap-10 md:gap-14">
         <div className="flex flex-col items-center gap-3 text-center max-w-3xl">
-          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-amber-300/80">
+          <p className="r-reveal text-xs font-semibold uppercase tracking-[0.32em] text-sky-300/80">
             Antes de Smart Lights
           </p>
           <h2 className="r-reveal text-white font-bold text-[26px] md:text-[38px] leading-[1.1]">
-            Los 3 problemas principales del <span className="text-amber-300">alumbrado tradicional</span>
+            Los 3 problemas principales del <span className="text-sky-300">alumbrado tradicional</span>
           </h2>
         </div>
 
@@ -51,7 +51,7 @@ export default function BeneficiosProblemas() {
           {problemas.map((p, i) => (
             <article
               key={p.id}
-              className="r-reveal group relative flex flex-col gap-4 p-5 md:p-6 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[20px] shadow-[0px_4px_12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-amber-300/30 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.4)]"
+              className="r-reveal group relative flex flex-col gap-4 p-5 md:p-6 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[20px] shadow-[0px_4px_12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-sky-300/30 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.4)]"
             >
               <span className="absolute top-4 right-4 text-white/25 font-bold text-[13px] tabular-nums z-10">
                 {String(i + 1).padStart(2, '0')}

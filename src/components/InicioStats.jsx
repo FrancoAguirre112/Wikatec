@@ -87,8 +87,8 @@ export default function InicioStats() {
       <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-sky-300/10 blur-3xl" />
       {/* Warm light glow that brightens when stats activate */}
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[28rem] w-[60rem] rounded-full bg-amber-300/0 blur-3xl transition-all duration-[2000ms] ease-out"
-        style={start ? { backgroundColor: 'rgba(252, 211, 77, 0.08)' } : undefined}
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[28rem] w-[60rem] rounded-full bg-sky-300/0 blur-3xl transition-all duration-[2000ms] ease-out"
+        style={start ? { backgroundColor: 'rgba(125, 211, 252, 0.08)' } : undefined}
       />
 
       <div className="relative max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 lg:gap-10">
