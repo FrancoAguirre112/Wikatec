@@ -225,18 +225,21 @@ export default function BeneficiosRazones() {
             <div
               key={r.id}
               ref={(el) => (cardRefs.current[i] = el)}
-              className="razon-card group relative flex flex-col gap-2 p-4 md:p-5 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[16px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:border-white/40 hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
+              className="razon-card group relative flex flex-col gap-2.5 p-4 md:p-5 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[16px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:border-white/40 hover:shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
             >
-              <span className="absolute top-3 right-3 text-white/30 font-bold text-[11px] tracking-wide tabular-nums">
+              <span className="absolute top-3 right-3 text-white/30 font-bold text-[11px] tracking-wide tabular-nums z-10">
                 {String(r.id).padStart(2, '0')}
               </span>
-              <div className="text-blue-300/90 group-hover:text-blue-300 group-hover:scale-110 transition-all duration-300">
-                {r.icon}
+              {/* Header row: icon + title inline */}
+              <div className="flex items-center gap-3 pr-6">
+                <div className="text-blue-300/90 flex-shrink-0 group-hover:text-blue-300 transition-colors duration-300">
+                  {r.icon}
+                </div>
+                <h3 className="text-white font-bold text-[16px] md:text-[17.5px] leading-tight">
+                  {r.titulo}
+                </h3>
               </div>
-              <h3 className="text-white font-bold text-[14.5px] md:text-[15px] leading-tight">
-                {r.titulo}
-              </h3>
-              <p className="text-white/75 font-normal text-[12.5px] md:text-[13px] leading-[155%]">
+              <p className="text-white/85 font-normal text-[13.5px] md:text-[14.5px] leading-[160%]">
                 {r.resumen}
               </p>
             </div>
