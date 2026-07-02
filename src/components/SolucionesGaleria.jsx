@@ -289,13 +289,37 @@ export default function SolucionesGaleria() {
               </div>
               <div className="flex items-baseline gap-1.5 bg-black/70 backdrop-blur-md rounded-full px-4 py-1.5 ring-1 ring-white/20 pointer-events-auto">
                 <span className="text-white font-black text-lg tabular-nums leading-none">
-                  {active === -1 ? '00' : num(active + 1)}
+                  {active === -1 ? '00' : num(active)}
                 </span>
                 <span className="text-white/50 text-[12px] font-semibold tabular-nums leading-none">
-                  / {num(items.length)}
+                  / {String(items.length).padStart(2, '0')}
                 </span>
               </div>
             </div>
+
+            {/* Prev/Next arrow controls — vertically centered, positioned at frame edges */}
+            <button
+              type="button"
+              onClick={() => active > -1 && goTo(active - 1)}
+              disabled={active === -1}
+              aria-label="Aplicación anterior"
+              className="absolute left-5 top-1/2 -translate-y-1/2 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-black/70 backdrop-blur-md ring-1 ring-white/20 text-white transition-all duration-300 hover:bg-black/85 hover:ring-white/40 hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-black/70 disabled:hover:scale-100"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                <path d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => active < items.length - 1 && goTo(active + 1)}
+              disabled={active === items.length - 1}
+              aria-label="Aplicación siguiente"
+              className="absolute right-5 top-1/2 -translate-y-1/2 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-black/70 backdrop-blur-md ring-1 ring-white/20 text-white transition-all duration-300 hover:bg-black/85 hover:ring-white/40 hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-black/70 disabled:hover:scale-100"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                <path d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
 
             {/* Floating content panel — equal spacing from frame edges */}
             <div
