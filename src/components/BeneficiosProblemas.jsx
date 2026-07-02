@@ -1,33 +1,27 @@
 import { useReveal } from '../hooks/useReveal'
-
-const WarningIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.6}
-    stroke="currentColor"
-    className="h-6 w-6"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-  </svg>
-)
+import SmoothImage from './SmoothImage'
 
 const problemas = [
   {
     id: 1,
     titulo: 'Luz encendida de día',
     descripcion: 'Sodio, mercurio o LED sin control consumen energía innecesariamente durante horas de luz solar.',
+    imagen: '/images/problema-luz-dia.png',
+    alt: 'Farola de sodio encendida durante el día en una fachada de edificio antiguo',
   },
   {
     id: 2,
     titulo: 'Luminarias quemadas',
     descripcion: 'Sin monitoreo remoto, las fallas pasan desapercibidas hasta que un vecino llama a reportarlas.',
+    imagen: '/images/problema-luminaria-quemada.png',
+    alt: 'Luminaria de mercurio apagada de noche entre árboles, sin monitoreo',
   },
   {
     id: 3,
     titulo: 'Tecnología obsoleta',
     descripcion: 'Sodio y mercurio: hasta 3 veces más consumo que LED equivalente, con mayor costo de mantenimiento.',
+    imagen: '/images/problema-tecnologia-obsoleta.png',
+    alt: 'Luminaria de vapor de mercurio antigua en una calle residencial',
   },
 ]
 
@@ -55,26 +49,34 @@ export default function BeneficiosProblemas() {
 
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {problemas.map((p, i) => (
-            <div
+            <article
               key={p.id}
-              className="r-reveal group relative flex flex-col gap-4 p-6 md:p-8 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[20px] shadow-[0px_4px_12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-amber-300/30 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.4)]"
+              className="r-reveal group relative flex flex-col gap-4 p-5 md:p-6 bg-gradient-to-b from-[#010729] to-[#182860] border border-white/15 rounded-[20px] shadow-[0px_4px_12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-amber-300/30 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.4)]"
             >
-              <span className="absolute top-4 right-4 text-white/20 font-bold text-[13px] tabular-nums">
+              <span className="absolute top-4 right-4 text-white/25 font-bold text-[13px] tabular-nums z-10">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-400/15 text-amber-300 ring-1 ring-amber-300/30 transition-all group-hover:bg-amber-400/25 group-hover:scale-110">
-                  <WarningIcon />
-                </span>
-                <h3 className="text-white font-bold text-[18px] md:text-[19px] leading-tight">
-                  {p.titulo}
-                </h3>
-              </div>
-              <div className="h-px w-full bg-white/10" />
-              <p className="text-white/75 font-normal text-sm md:text-[15px] leading-[170%]">
+
+              <h3 className="text-white font-bold text-[18px] md:text-[20px] leading-tight text-center px-4 pt-2">
+                {p.titulo}
+              </h3>
+
+              <div className="h-px w-full bg-white/15" />
+
+              <p className="text-white/75 font-normal text-sm md:text-[14.5px] leading-[165%] text-center px-2 min-h-[5rem]">
                 {p.descripcion}
               </p>
-            </div>
+
+              <div className="relative mt-1 overflow-hidden rounded-[14px] ring-1 ring-white/12 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] bg-black/40">
+                <SmoothImage
+                  src={p.imagen}
+                  alt={p.alt}
+                  className="w-full h-[280px] md:h-[320px] object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                {/* Subtle inner top-vignette for depth */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/25 to-transparent" />
+              </div>
+            </article>
           ))}
         </div>
       </div>
