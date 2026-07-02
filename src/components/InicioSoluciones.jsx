@@ -27,20 +27,31 @@ const previews = [
     sublabel: 'Municipios & comunas',
   },
   {
+    src: '/images/sol-residencial.jpg',
+    label: 'Residencial',
+    sublabel: 'Countries & barrios',
+  },
+  {
     src: '/images/sol-industria.jpg',
     label: 'Industria',
-    sublabel: 'Parques & playones',
+    sublabel: 'Parques & logística',
   },
   {
     src: '/images/sol-comercio.jpg',
     label: 'Comercios',
     sublabel: 'Shoppings & retail',
   },
+  {
+    src: '/images/sol-transporte.jpg',
+    label: 'Transporte',
+    sublabel: 'Autopistas & terminales',
+  },
+  {
+    src: '/images/sol-turismo.jpg',
+    label: 'Turismo',
+    sublabel: 'Deporte & hoteles',
+  },
 ]
-
-// Duplicate slides so Swiper loop works reliably with few base slides.
-// Computed at module scope so the array reference is stable across renders.
-const carouselSlides = [...previews, ...previews]
 
 function PreviewCard({ p, i }) {
   return (
